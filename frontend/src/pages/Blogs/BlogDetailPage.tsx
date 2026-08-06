@@ -14,14 +14,21 @@ import {
 } from "react-router-dom";
 
 import InnerPageHero from "../../components/hero/InnerPageHero";
-import { fleetData } from "../../data/fleetData";
 import {
   getBlogBySlug,
   getRelatedBlogs,
 } from "../../data/blogData";
+import { fleetData } from "../../data/fleetData";
 import { serviceAreasData } from "../../data/serviceAreasData";
 import { servicesData } from "../../data/servicesData";
 import "./blogDetailPage.css";
+
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString("en-AU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -50,20 +57,10 @@ export default function BlogDetailPage() {
     post.relatedAreaSlugs.includes(area.slug),
   );
 
-  const publishedDate = new Date(
-    post.publishedAt,
-  ).toLocaleDateString("en-AU", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const publishedDate = formatDate(post.publishedAt);
 
   const updatedDate = post.updatedAt
-    ? new Date(post.updatedAt).toLocaleDateString("en-AU", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
+    ? formatDate(post.updatedAt)
     : null;
 
   return (
@@ -98,7 +95,7 @@ export default function BlogDetailPage() {
 
               <div className="blog-detail__meta-list">
                 <div>
-                  <FiCalendar />
+                  <FiCalendar aria-hidden="true" />
 
                   <span>
                     <strong>Published</strong>
@@ -108,7 +105,7 @@ export default function BlogDetailPage() {
 
                 {updatedDate && (
                   <div>
-                    <FiClock />
+                    <FiClock aria-hidden="true" />
 
                     <span>
                       <strong>Updated</strong>
@@ -118,7 +115,7 @@ export default function BlogDetailPage() {
                 )}
 
                 <div>
-                  <FiClock />
+                  <FiClock aria-hidden="true" />
 
                   <span>
                     <strong>Reading Time</strong>
@@ -127,7 +124,7 @@ export default function BlogDetailPage() {
                 </div>
 
                 <div>
-                  <FiUser />
+                  <FiUser aria-hidden="true" />
 
                   <span>
                     <strong>Author</strong>
@@ -136,7 +133,7 @@ export default function BlogDetailPage() {
                 </div>
 
                 <div>
-                  <FiTag />
+                  <FiTag aria-hidden="true" />
 
                   <span>
                     <strong>Category</strong>
@@ -145,7 +142,6 @@ export default function BlogDetailPage() {
                 </div>
               </div>
             </div>
-
           </aside>
 
           <article className="blog-detail__article">
@@ -158,17 +154,17 @@ export default function BlogDetailPage() {
 
               <div className="blog-detail__article-meta">
                 <span>
-                  <FiCalendar />
+                  <FiCalendar aria-hidden="true" />
                   {publishedDate}
                 </span>
 
                 <span>
-                  <FiClock />
+                  <FiClock aria-hidden="true" />
                   {post.readingTime}
                 </span>
 
                 <span>
-                  <FiUser />
+                  <FiUser aria-hidden="true" />
                   {post.author}
                 </span>
               </div>
@@ -186,11 +182,11 @@ export default function BlogDetailPage() {
                     <p key={paragraph}>{paragraph}</p>
                   ))}
 
-                  {section.points && (
+                  {section.points && section.points.length > 0 && (
                     <ul>
                       {section.points.map((point) => (
                         <li key={point}>
-                          <FiCheck />
+                          <FiCheck aria-hidden="true" />
                           <span>{point}</span>
                         </li>
                       ))}
@@ -206,9 +202,7 @@ export default function BlogDetailPage() {
                   Related Chauffeur Services
                 </span>
 
-                <h2>
-                  Services connected to this article.
-                </h2>
+                <h2>Services connected to this article.</h2>
 
                 <div className="blog-detail__related-grid">
                   {relatedServices.map((service) => {
@@ -216,7 +210,7 @@ export default function BlogDetailPage() {
 
                     return (
                       <article key={service.slug}>
-                        <Icon />
+                        <Icon aria-hidden="true" />
 
                         <h3>{service.shortTitle}</h3>
 
@@ -224,9 +218,10 @@ export default function BlogDetailPage() {
 
                         <Link
                           to={`/services/${service.slug}`}
+                          aria-label={`Explore ${service.shortTitle}`}
                         >
                           Explore Service
-                          <FiArrowRight />
+                          <FiArrowRight aria-hidden="true" />
                         </Link>
                       </article>
                     );
@@ -241,9 +236,7 @@ export default function BlogDetailPage() {
                   Related Chauffeur Fleet
                 </span>
 
-                <h2>
-                  Vehicles suited to this journey.
-                </h2>
+                <h2>Vehicles suited to this journey.</h2>
 
                 <div className="blog-detail__fleet-grid">
                   {relatedFleet.map((vehicle) => (
@@ -251,24 +244,30 @@ export default function BlogDetailPage() {
                       <Link
                         className="blog-detail__fleet-image"
                         to={`/fleet/${vehicle.slug}`}
+                        aria-label={`View ${vehicle.name}`}
                       >
                         <img
                           src={vehicle.image}
-                          alt={vehicle.name}
+                          alt={`${vehicle.name} chauffeur vehicle`}
                           loading="lazy"
                         />
                       </Link>
 
                       <div>
-                        <h3>{vehicle.name}</h3>
+                        <h3>
+                          <Link to={`/fleet/${vehicle.slug}`}>
+                            {vehicle.name}
+                          </Link>
+                        </h3>
 
-                        <p>{vehicle.shortDescription}</p>
+                        <p>{vehicle.description}</p>
 
                         <Link
                           to={`/fleet/${vehicle.slug}`}
+                          aria-label={`View ${vehicle.name}`}
                         >
                           View Vehicle
-                          <FiArrowRight />
+                          <FiArrowRight aria-hidden="true" />
                         </Link>
                       </div>
                     </article>
@@ -283,24 +282,23 @@ export default function BlogDetailPage() {
                   Related Service Areas
                 </span>
 
-                <h2>
-                  Chauffeur coverage across Melbourne.
-                </h2>
+                <h2>Chauffeur coverage across Melbourne.</h2>
 
                 <div className="blog-detail__areas-grid">
                   {relatedAreas.map((area) => (
                     <Link
                       key={area.slug}
                       to={`/service-areas/${area.slug}`}
+                      aria-label={`View chauffeur services in ${area.name}`}
                     >
-                      <FiMapPin />
+                      <FiMapPin aria-hidden="true" />
 
                       <span>
                         <strong>{area.name}</strong>
                         <small>{area.region}</small>
                       </span>
 
-                      <FiArrowRight />
+                      <FiArrowRight aria-hidden="true" />
                     </Link>
                   ))}
                 </div>
@@ -333,14 +331,12 @@ export default function BlogDetailPage() {
                 </span>
 
                 <h2>
-                  Ready to plan your Melbourne chauffeur
-                  journey?
+                  Ready to plan your Melbourne chauffeur journey?
                 </h2>
 
                 <p>
-                  Submit your travel details for a tailored
-                  quotation or contact our team for general
-                  assistance.
+                  Submit your travel details for a tailored quotation or
+                  contact our team for general assistance.
                 </p>
               </div>
 
@@ -350,7 +346,7 @@ export default function BlogDetailPage() {
                   to="/get-a-quote"
                 >
                   Request a Quote
-                  <FiArrowRight />
+                  <FiArrowRight aria-hidden="true" />
                 </Link>
 
                 <Link
@@ -384,7 +380,7 @@ export default function BlogDetailPage() {
                 to="/blog"
               >
                 View All Articles
-                <FiArrowRight />
+                <FiArrowRight aria-hidden="true" />
               </Link>
             </div>
 
@@ -394,6 +390,7 @@ export default function BlogDetailPage() {
                   <Link
                     className="blog-detail__more-image"
                     to={`/blog/${relatedPost.slug}`}
+                    aria-label={`Read ${relatedPost.title}`}
                   >
                     <img
                       src={relatedPost.image}
@@ -406,9 +403,7 @@ export default function BlogDetailPage() {
                     <span>{relatedPost.category}</span>
 
                     <h3>
-                      <Link
-                        to={`/blog/${relatedPost.slug}`}
-                      >
+                      <Link to={`/blog/${relatedPost.slug}`}>
                         {relatedPost.title}
                       </Link>
                     </h3>
@@ -417,9 +412,10 @@ export default function BlogDetailPage() {
 
                     <Link
                       to={`/blog/${relatedPost.slug}`}
+                      aria-label={`Read ${relatedPost.title}`}
                     >
                       Read Article
-                      <FiArrowRight />
+                      <FiArrowRight aria-hidden="true" />
                     </Link>
                   </div>
                 </article>
