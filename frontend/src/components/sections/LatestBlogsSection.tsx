@@ -9,12 +9,19 @@ import { Link } from "react-router-dom";
 import { blogData } from "../../data/blogData";
 import "./latestBlogsSection.css";
 
-const formatBlogDate = (date: string) =>
-  new Date(date).toLocaleDateString("en-AU", {
+const formatBlogDate = (date: string): string => {
+  const parsedDate = new Date(date);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return date;
+  }
+
+  return parsedDate.toLocaleDateString("en-AU", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
+};
 
 export default function LatestBlogsSection() {
   const latestBlogs = [...blogData]
@@ -26,7 +33,10 @@ export default function LatestBlogsSection() {
     .slice(0, 3);
 
   return (
-    <section className="latest-blogs section section--white">
+    <section
+      className="latest-blogs section section--white"
+      aria-labelledby="latest-blogs-title"
+    >
       <div className="container">
         <div className="latest-blogs__header">
           <div className="section-header">
@@ -34,7 +44,10 @@ export default function LatestBlogsSection() {
               Travel Advice and Insights
             </span>
 
-            <h2 className="section-title">
+            <h2
+              className="section-title"
+              id="latest-blogs-title"
+            >
               Helpful guides for travelling around Melbourne.
             </h2>
 
@@ -53,59 +66,70 @@ export default function LatestBlogsSection() {
           </Link>
         </div>
 
-        <div className="latest-blogs__grid">
-          {latestBlogs.map((blog) => (
-            <article
-              className="latest-blogs__card"
-              key={blog.slug}
-            >
-              <Link
-                className="latest-blogs__image"
-                to={`/blog/${blog.slug}`}
-                aria-label={`Read ${blog.title}`}
-              >
-                <img
-                  src={blog.image}
-                  alt={blog.title}
-                  loading="lazy"
-                />
+        {latestBlogs.length > 0 ? (
+          <div className="latest-blogs__grid">
+            {latestBlogs.map((blog) => {
+              const blogPath = `/blog/${blog.slug}`;
 
-                <span>{blog.category}</span>
-              </Link>
-
-              <div className="latest-blogs__content">
-                <div className="latest-blogs__meta">
-                  <span>
-                    <FiCalendar aria-hidden="true" />
-                    {formatBlogDate(blog.publishedAt)}
-                  </span>
-
-                  <span>
-                    <FiClock aria-hidden="true" />
-                    {blog.readingTime}
-                  </span>
-                </div>
-
-                <h3>
-                  <Link to={`/blog/${blog.slug}`}>
-                    {blog.title}
-                  </Link>
-                </h3>
-
-                <p>{blog.excerpt}</p>
-
-                <Link
-                  className="latest-blogs__link"
-                  to={`/blog/${blog.slug}`}
-                  aria-label={`Read article: ${blog.title}`}
+              return (
+                <article
+                  className="latest-blogs__card"
+                  key={blog.slug}
                 >
-                  Read Article
-                  <FiArrowUpRight aria-hidden="true" />
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+                  <Link
+                    className="latest-blogs__image"
+                    to={blogPath}
+                    aria-label={`Read ${blog.title}`}
+                  >
+                    <img
+                      src={blog.image}
+                      alt={`${blog.title} article`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+
+                    <span>{blog.category}</span>
+                  </Link>
+
+                  <div className="latest-blogs__content">
+                    <div className="latest-blogs__meta">
+                      <span>
+                        <FiCalendar aria-hidden="true" />
+                        {formatBlogDate(blog.publishedAt)}
+                      </span>
+
+                      <span>
+                        <FiClock aria-hidden="true" />
+                        {blog.readingTime}
+                      </span>
+                    </div>
+
+                    <h3>
+                      <Link to={blogPath}>
+                        {blog.title}
+                      </Link>
+                    </h3>
+
+                    <p>{blog.excerpt}</p>
+
+                    <Link
+                      className="latest-blogs__link"
+                      to={blogPath}
+                      aria-label={`Read article: ${blog.title}`}
+                    >
+                      Read Article
+                      <FiArrowUpRight aria-hidden="true" />
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="latest-blogs__empty">
+            New chauffeur travel articles will be available soon.
+          </p>
+        )}
       </div>
     </section>
   );
