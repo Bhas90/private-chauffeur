@@ -1,0 +1,531 @@
+/* =========================================================
+   HOME QUOTE SECTION
+========================================================= */
+
+.home-quote {
+  position: relative;
+  z-index: 20;
+
+  margin-top: 0;
+  padding: 46px 0 54px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(198, 166, 107, 0.035),
+      transparent 240px
+    ),
+    var(--color-background);
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.home-quote__card {
+  width: 100%;
+  min-width: 0;
+  padding: 34px;
+
+  border: 1px solid rgba(198, 166, 107, 0.28);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+}
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.home-quote__heading {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.home-quote__heading > span {
+  margin-bottom: 8px;
+
+  display: block;
+
+  color: var(--color-secondary-dark);
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.home-quote__heading h2 {
+  margin-bottom: 10px;
+
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+}
+
+.home-quote__heading p {
+  color: var(--color-text-secondary);
+
+  font-size: 0.96rem;
+  line-height: 1.72;
+}
+
+/* =========================================================
+   TRIP TOGGLE
+========================================================= */
+
+.home-quote__trip-toggle {
+  max-width: 100%;
+  margin-bottom: 22px;
+  padding: 4px;
+
+  display: inline-flex;
+
+  border-radius: var(--radius-full);
+
+  background: var(--color-surface-soft);
+}
+
+.home-quote__trip-button {
+  min-width: 108px;
+  min-height: 42px;
+  padding: 0 18px;
+
+  border: 0;
+  border-radius: var(--radius-full);
+
+  background: transparent;
+  color: var(--color-text-secondary);
+
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.home-quote__trip-button:hover {
+  color: var(--color-primary);
+}
+
+.home-quote__trip-button--active {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+
+  box-shadow: 0 7px 18px rgba(7, 20, 31, 0.16);
+}
+
+.home-quote__trip-button--active:hover {
+  color: var(--color-text-light);
+}
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.home-quote__fields {
+  display: grid;
+
+  grid-template-columns:
+    minmax(190px, 1.35fr)
+    minmax(190px, 1.35fr)
+    minmax(145px, 0.82fr)
+    minmax(135px, 0.78fr)
+    minmax(125px, 0.66fr)
+    auto;
+
+  gap: 14px;
+  align-items: end;
+}
+
+.home-quote__field {
+  min-width: 0;
+
+  display: block;
+}
+
+.home-quote__field > span {
+  margin-bottom: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: var(--color-primary);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.home-quote__field > span svg {
+  flex-shrink: 0;
+
+  color: var(--color-secondary-dark);
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.home-quote__field input,
+.home-quote__field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  padding: 0 14px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  outline: none;
+
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.home-quote__field input::placeholder {
+  color: #8a939c;
+}
+
+.home-quote__field input:hover,
+.home-quote__field select:hover {
+  border-color: rgba(16, 40, 63, 0.36);
+}
+
+.home-quote__field input:focus,
+.home-quote__field select:focus {
+  border-color: var(--color-secondary);
+
+  box-shadow: 0 0 0 3px rgba(198, 166, 107, 0.14);
+}
+
+.home-quote__field input[type="date"],
+.home-quote__field input[type="time"],
+.home-quote__field select {
+  cursor: pointer;
+}
+
+/* Prevent iOS input overflow */
+.home-quote__field input,
+.home-quote__field select,
+.home-quote__submit {
+  max-width: 100%;
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.home-quote__submit {
+  min-height: 52px;
+  padding: 0 24px;
+
+  border: 0;
+  border-radius: var(--radius-full);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  background: var(--color-secondary);
+  color: var(--color-primary-dark);
+
+  font-weight: 800;
+  white-space: nowrap;
+
+  box-shadow: 0 9px 20px rgba(198, 166, 107, 0.18);
+
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.home-quote__submit:hover {
+  background: var(--color-secondary-light);
+
+  box-shadow: 0 12px 26px rgba(16, 40, 63, 0.14);
+  transform: translateY(-2px);
+}
+
+.home-quote__submit svg {
+  flex-shrink: 0;
+
+  transition: transform var(--transition-fast);
+}
+
+.home-quote__submit:hover svg {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   NOTICE
+========================================================= */
+
+.home-quote__notice {
+  margin-top: 18px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1440px) {
+  .home-quote__card {
+    padding: 38px;
+  }
+
+  .home-quote__fields {
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 1280px) {
+  .home-quote__fields {
+    grid-template-columns: repeat(
+      3,
+      minmax(0, 1fr)
+    );
+  }
+
+  .home-quote__submit {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
+@media (max-width: 1024px) {
+  .home-quote {
+    padding: 40px 0 46px;
+  }
+
+  .home-quote__card {
+    padding: 30px;
+  }
+
+  .home-quote__fields {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+    gap: 18px;
+  }
+
+  .home-quote__field--location {
+    grid-column: span 1;
+  }
+
+  .home-quote__submit {
+    grid-column: 1 / -1;
+  }
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media (max-width: 768px) {
+  .home-quote {
+    padding: 34px 0 38px;
+  }
+
+  .home-quote__card {
+    padding: 27px 24px;
+  }
+
+  .home-quote__heading {
+    margin-bottom: 24px;
+  }
+
+  .home-quote__heading h2 {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+  }
+
+  .home-quote__fields {
+    gap: 16px;
+  }
+
+  .home-quote__field input,
+  .home-quote__field select,
+  .home-quote__submit {
+    min-height: 50px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+  .home-quote {
+    padding: 28px 0 32px;
+  }
+
+  .home-quote__card {
+    padding: 24px 18px;
+
+    border-radius: var(--radius-md);
+  }
+
+  .home-quote__heading {
+    margin-bottom: 22px;
+  }
+
+  .home-quote__heading > span {
+    font-size: 0.69rem;
+    letter-spacing: 0.13em;
+  }
+
+  .home-quote__heading p {
+    font-size: 0.9rem;
+  }
+
+  .home-quote__trip-toggle {
+    width: 100%;
+
+    display: flex;
+  }
+
+  .home-quote__trip-button {
+    min-width: 0;
+    flex: 1;
+
+    padding-inline: 12px;
+  }
+
+  .home-quote__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .home-quote__field--location,
+  .home-quote__submit {
+    grid-column: auto;
+  }
+
+  .home-quote__submit {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+  .home-quote__card {
+    padding: 21px 15px;
+  }
+
+  .home-quote__heading h2 {
+    font-size: 1.72rem;
+  }
+
+  .home-quote__heading p {
+    font-size: 0.86rem;
+  }
+
+  .home-quote__field > span {
+    font-size: 0.74rem;
+  }
+
+  .home-quote__field input,
+  .home-quote__field select {
+    padding-inline: 12px;
+
+    font-size: 0.93rem;
+  }
+
+  .home-quote__trip-button {
+    min-height: 40px;
+
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 340px) {
+  .home-quote__card {
+    padding: 19px 13px;
+  }
+
+  .home-quote__trip-button {
+    padding-inline: 8px;
+
+    font-size: 0.75rem;
+  }
+
+  .home-quote__submit {
+    padding-inline: 18px;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+  .home-quote__submit:hover {
+    box-shadow: 0 9px 20px rgba(198, 166, 107, 0.18);
+    transform: none;
+  }
+
+  .home-quote__submit:hover svg {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.home-quote__trip-button:focus-visible,
+.home-quote__field input:focus-visible,
+.home-quote__field select:focus-visible,
+.home-quote__submit:focus-visible {
+  outline: 3px solid rgba(198, 166, 107, 0.35);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-quote__trip-button,
+  .home-quote__field input,
+  .home-quote__field select,
+  .home-quote__submit,
+  .home-quote__submit svg {
+    transition: none;
+  }
+
+  .home-quote__submit:hover,
+  .home-quote__submit:hover svg {
+    transform: none;
+  }
+}

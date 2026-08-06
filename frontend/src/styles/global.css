@@ -1,0 +1,799 @@
+@import "./variables.css";
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--sticky-offset, 104px);
+
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+
+  background: var(--color-background);
+  color: var(--color-text-primary);
+
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.menu-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+
+  color: var(--color-primary);
+
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.15;
+
+  overflow-wrap: anywhere;
+}
+
+p {
+  margin: 0;
+}
+
+strong,
+b {
+  font-weight: 800;
+}
+
+small {
+  font-size: 0.8em;
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   FORM RESET
+========================================================= */
+
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  color: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+/* Prevent browser defaults from breaking custom form layouts */
+
+input,
+select,
+textarea {
+  min-width: 0;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+img,
+picture,
+svg,
+video,
+canvas,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+img {
+  font-style: italic;
+}
+
+svg {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   LISTS
+========================================================= */
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* =========================================================
+   GLOBAL CONTAINER
+========================================================= */
+
+.container {
+  width: min(
+    calc(100% - clamp(32px, 4vw, 64px)),
+    var(--container-width)
+  );
+
+  margin-inline: auto;
+}
+
+/* =========================================================
+   GLOBAL SECTIONS
+========================================================= */
+
+.section {
+  padding: clamp(72px, 7vw, 104px) 0;
+}
+
+.section--white {
+  background: var(--color-surface);
+}
+
+.section--dark {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header {
+  max-width: 760px;
+  margin-bottom: 44px;
+}
+
+.section-header--center {
+  margin-inline: auto;
+
+  text-align: center;
+}
+
+.section-header--center .section-description {
+  margin-inline: auto;
+}
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.eyebrow {
+  max-width: 100%;
+  margin-bottom: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--color-secondary-dark);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+
+  overflow-wrap: anywhere;
+}
+
+.eyebrow::before {
+  width: 34px;
+  height: 1px;
+  flex-shrink: 0;
+
+  background: currentColor;
+
+  content: "";
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title {
+  max-width: 100%;
+  margin-bottom: 16px;
+
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.14;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   SECTION DESCRIPTION
+========================================================= */
+
+.section-description {
+  max-width: 760px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   GLOBAL BUTTON
+========================================================= */
+
+.button {
+  min-width: 0;
+  min-height: 52px;
+  padding: 0 24px;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.button svg {
+  flex-shrink: 0;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button--primary {
+  background: var(--color-secondary);
+  color: var(--color-primary-dark);
+
+  box-shadow:
+    0 10px 22px rgba(198, 166, 107, 0.16);
+}
+
+.button--primary:hover {
+  background: var(--color-secondary-light);
+
+  box-shadow:
+    0 14px 28px rgba(198, 166, 107, 0.24);
+}
+
+.button--dark {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.button--dark:hover {
+  background: var(--color-primary-light);
+}
+
+.button--outline {
+  border-color: rgba(255, 255, 255, 0.55);
+
+  background: transparent;
+  color: var(--color-text-light);
+}
+
+.button--outline:hover {
+  border-color: var(--color-secondary);
+
+  background: var(--color-secondary);
+  color: var(--color-primary-dark);
+}
+
+/* =========================================================
+   PAGE CONTENT
+========================================================= */
+
+.page-content {
+  min-height: 70vh;
+}
+
+/* =========================================================
+   STICKY DETAIL PAGE SUPPORT
+========================================================= */
+
+/*
+  These wrappers contain sticky sidebars.
+
+  Do not use overflow: hidden, auto, scroll or clip on these
+  vertical page wrappers because that prevents sticky elements
+  from working correctly.
+*/
+
+.service-detail,
+.fleet-detail,
+.service-area-detail,
+.legal-page,
+.contact-page,
+.report-problem-page,
+.blog-detail,
+.quote-page {
+  overflow: visible;
+}
+
+/*
+  Layout containers must not clip their sticky sidebar.
+*/
+
+.service-detail__layout,
+.fleet-detail__layout,
+.service-area-detail__layout,
+.legal-page__layout,
+.contact-page__layout,
+.report-problem-page__layout,
+.blog-detail__layout,
+.quote-page__layout {
+  overflow: visible;
+  align-items: start;
+}
+
+/*
+  Prevent the direct aside column from stretching to match the
+  main content column.
+
+  Height, scrolling and responsive behaviour remain controlled
+  inside each component stylesheet.
+*/
+
+.service-detail__layout > aside,
+.fleet-detail__layout > aside,
+.service-area-detail__layout > aside,
+.legal-page__layout > aside,
+.contact-page__layout > aside,
+.report-problem-page__layout > aside,
+.blog-detail__layout > aside,
+.quote-page__layout > aside {
+  min-width: 0;
+
+  align-self: start;
+
+  height: max-content;
+}
+
+/*
+  Important:
+  No global max-height is applied to sidebars or sidebar menus.
+
+  Each sidebar stylesheet controls:
+  - sticky offset
+  - menu scrolling
+  - assistance-card height
+  - desktop/tablet/mobile behaviour
+*/
+
+/* =========================================================
+   SCREEN READER ONLY
+========================================================= */
+
+.sr-only {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+
+  position: absolute;
+  overflow: hidden;
+
+  border: 0;
+
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+  background: rgba(198, 166, 107, 0.32);
+  color: var(--color-primary-dark);
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color:
+    rgba(16, 40, 63, 0.3)
+    transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: var(--radius-full);
+
+  background: rgba(16, 40, 63, 0.3);
+  background-clip: padding-box;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 40, 63, 0.48);
+  background-clip: padding-box;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(198, 166, 107, 0.4);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1600px) {
+  .section {
+    padding: 108px 0;
+  }
+
+  .section-header {
+    margin-bottom: 50px;
+  }
+
+  .section-description {
+    font-size: 1.08rem;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1280px) {
+  html {
+    scroll-padding-top: var(--sticky-offset, 96px);
+  }
+
+  .section {
+    padding: 88px 0;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  html {
+    scroll-padding-top: var(--sticky-offset, 88px);
+  }
+
+  .container {
+    width: min(
+      calc(100% - 36px),
+      var(--container-width)
+    );
+  }
+
+  .section {
+    padding: 78px 0;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-description {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media (max-width: 768px) {
+  .container {
+    width: min(
+      calc(100% - 28px),
+      var(--container-width)
+    );
+  }
+
+  .section {
+    padding: 70px 0;
+  }
+
+  .section-header {
+    margin-bottom: 34px;
+  }
+
+  .section-title {
+    font-size: clamp(1.9rem, 7vw, 3rem);
+  }
+
+  .section-description {
+    font-size: 0.96rem;
+    line-height: 1.75;
+  }
+
+  .button {
+    min-height: 48px;
+    padding-inline: 20px;
+
+    font-size: 0.86rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  html {
+    scroll-padding-top: var(--sticky-offset, 78px);
+  }
+
+  .container {
+    width: min(
+      calc(100% - 24px),
+      var(--container-width)
+    );
+  }
+
+  .section {
+    padding: 58px 0;
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  .eyebrow {
+    gap: 8px;
+
+    font-size: 0.7rem;
+    letter-spacing: 0.13em;
+  }
+
+  .eyebrow::before {
+    width: 27px;
+  }
+
+  .section-title {
+    margin-bottom: 13px;
+
+    font-size: clamp(1.8rem, 9vw, 2.65rem);
+  }
+
+  .section-description {
+    font-size: 0.9rem;
+    line-height: 1.72;
+  }
+
+  .button {
+    min-height: 48px;
+    padding-inline: 18px;
+
+    font-size: 0.82rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .container {
+    width: min(
+      calc(100% - 20px),
+      var(--container-width)
+    );
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-description {
+    font-size: 0.86rem;
+  }
+
+  .button {
+    padding-inline: 16px;
+
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 340px) {
+  .container {
+    width: min(
+      calc(100% - 16px),
+      var(--container-width)
+    );
+  }
+
+  .section {
+    padding: 46px 0;
+  }
+
+  .eyebrow {
+    font-size: 0.65rem;
+  }
+
+  .eyebrow::before {
+    width: 22px;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .section-description {
+    font-size: 0.82rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+  .button:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .button:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,876 @@
+/* =========================================================
+   TAILORED QUOTE FORM
+========================================================= */
+
+.tailored-quote-form {
+  width: 100%;
+  min-width: 0;
+  padding: 36px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================================================
+   MAIN FORM HEADING
+========================================================= */
+
+.tailored-quote-form__heading {
+  max-width: 780px;
+  margin-bottom: 34px;
+}
+
+.tailored-quote-form__heading > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--color-secondary-dark);
+
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.tailored-quote-form__heading > span::before {
+  width: 34px;
+  height: 1px;
+  flex-shrink: 0;
+
+  background: currentColor;
+
+  content: "";
+}
+
+.tailored-quote-form__heading h2 {
+  margin-top: 12px;
+
+  font-size: clamp(2rem, 4vw, 3.35rem);
+}
+
+.tailored-quote-form__heading p {
+  max-width: 740px;
+  margin-top: 14px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.tailored-quote-form__heading p a {
+  color: var(--color-primary);
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   FORM ROOT
+========================================================= */
+
+.tailored-quote-form form {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   JOURNEY EDITOR
+========================================================= */
+
+.tailored-quote-form__journey-editor {
+  margin-bottom: 30px;
+  padding: 28px;
+
+  border: 1px solid rgba(198, 166, 107, 0.34);
+  border-radius: var(--radius-md);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(198, 166, 107, 0.07),
+      transparent 58%
+    ),
+    var(--color-surface-soft);
+}
+
+.tailored-quote-form__journey-heading {
+  margin-bottom: 24px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.tailored-quote-form__journey-heading > div {
+  min-width: 0;
+}
+
+.tailored-quote-form__journey-heading > div > span,
+.tailored-quote-form__section-heading > span {
+  display: block;
+
+  color: var(--color-secondary-dark);
+
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tailored-quote-form__journey-heading h3,
+.tailored-quote-form__section-heading h3 {
+  margin-top: 7px;
+
+  color: var(--color-primary);
+
+  font-family: var(--font-heading);
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  line-height: 1.2;
+}
+
+.tailored-quote-form__journey-heading p {
+  max-width: 650px;
+  margin-top: 9px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.tailored-quote-form__journey-heading > svg {
+  width: 50px;
+  height: 50px;
+  padding: 13px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: rgba(198, 166, 107, 0.14);
+  color: var(--color-secondary-dark);
+}
+
+/* =========================================================
+   COMPLETED JOURNEY SUMMARY
+========================================================= */
+
+.tailored-quote-form__journey-confirmed {
+  margin-bottom: 30px;
+  padding: 18px 20px;
+
+  border: 1px solid rgba(62, 145, 91, 0.28);
+  border-radius: var(--radius-md);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  background: rgba(62, 145, 91, 0.06);
+}
+
+.tailored-quote-form__journey-confirmed > div {
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.tailored-quote-form__journey-confirmed > div > svg {
+  margin-top: 3px;
+  flex-shrink: 0;
+
+  color: var(--color-success);
+
+  font-size: 1.3rem;
+}
+
+.tailored-quote-form__journey-confirmed > div > span {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.tailored-quote-form__journey-confirmed strong {
+  color: var(--color-primary);
+
+  font-size: 0.9rem;
+}
+
+.tailored-quote-form__journey-confirmed small {
+  margin-top: 4px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.78rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.tailored-quote-form__journey-confirmed > button {
+  min-height: 42px;
+  padding: 0 16px;
+  flex-shrink: 0;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  background: var(--color-surface);
+  color: var(--color-primary);
+
+  font-size: 0.76rem;
+  font-weight: 800;
+
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.tailored-quote-form__journey-confirmed > button:hover {
+  border-color: var(--color-secondary);
+  background: rgba(198, 166, 107, 0.1);
+  color: var(--color-secondary-dark);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   SAVE JOURNEY BUTTON
+========================================================= */
+
+.tailored-quote-form__save-journey {
+  min-height: 48px;
+  margin-top: 22px;
+  padding: 0 20px;
+
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-full);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  background: var(--color-primary);
+  color: var(--color-text-light);
+
+  font-size: 0.82rem;
+  font-weight: 800;
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.tailored-quote-form__save-journey:hover {
+  border-color: var(--color-primary-light);
+  background: var(--color-primary-light);
+  transform: translateY(-1px);
+}
+
+.tailored-quote-form__save-journey svg {
+  color: var(--color-secondary);
+}
+
+/* =========================================================
+   CUSTOMER DETAILS SECTION
+========================================================= */
+
+.tailored-quote-form__customer-section {
+  min-width: 0;
+}
+
+.tailored-quote-form__section-heading {
+  margin-bottom: 24px;
+}
+
+.tailored-quote-form__section-heading h3 {
+  max-width: 680px;
+}
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.tailored-quote-form__grid {
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 22px;
+}
+
+.tailored-quote-form__grid > label {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.tailored-quote-form__wide,
+.tailored-quote-form__full {
+  grid-column: 1 / -1;
+}
+
+.tailored-quote-form__grid label > span,
+.tailored-quote-form__trip-type legend {
+  margin-bottom: 9px;
+
+  color: var(--color-primary);
+
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.tailored-quote-form input,
+.tailored-quote-form select,
+.tailored-quote-form textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  outline: none;
+
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+
+  font: inherit;
+
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.tailored-quote-form input,
+.tailored-quote-form select {
+  min-height: 54px;
+  padding: 0 16px;
+}
+
+.tailored-quote-form textarea {
+  min-height: 150px;
+  padding: 16px;
+
+  line-height: 1.65;
+  resize: vertical;
+}
+
+.tailored-quote-form input::placeholder,
+.tailored-quote-form textarea::placeholder {
+  color: rgba(82, 97, 111, 0.72);
+}
+
+.tailored-quote-form input:hover,
+.tailored-quote-form select:hover,
+.tailored-quote-form textarea:hover {
+  border-color: rgba(198, 166, 107, 0.48);
+}
+
+.tailored-quote-form input:focus,
+.tailored-quote-form select:focus,
+.tailored-quote-form textarea:focus {
+  border-color: var(--color-secondary);
+
+  box-shadow: 0 0 0 4px rgba(198, 166, 107, 0.13);
+}
+
+.tailored-quote-form input:disabled,
+.tailored-quote-form select:disabled,
+.tailored-quote-form textarea:disabled {
+  cursor: not-allowed;
+  background: var(--color-surface-soft);
+  opacity: 0.72;
+}
+
+.tailored-quote-form input[type="date"],
+.tailored-quote-form input[type="time"],
+.tailored-quote-form select {
+  cursor: pointer;
+}
+
+.tailored-quote-form select {
+  appearance: auto;
+}
+
+/* =========================================================
+   JOURNEY TYPE SELECTOR
+========================================================= */
+
+.tailored-quote-form__trip-type {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+}
+
+.tailored-quote-form__trip-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tailored-quote-form__trip-option {
+  min-width: 0;
+  min-height: 54px;
+  padding: 0 17px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: var(--color-surface);
+
+  cursor: pointer;
+
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.tailored-quote-form__trip-option:hover {
+  border-color: rgba(198, 166, 107, 0.52);
+}
+
+.tailored-quote-form__trip-option--active {
+  border-color: var(--color-secondary);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(198, 166, 107, 0.13),
+      rgba(198, 166, 107, 0.04)
+    );
+
+  box-shadow: 0 0 0 3px rgba(198, 166, 107, 0.09);
+}
+
+.tailored-quote-form__trip-option input {
+  width: 17px;
+  height: 17px;
+  min-height: auto;
+  padding: 0;
+  flex-shrink: 0;
+
+  accent-color: var(--color-secondary-dark);
+}
+
+.tailored-quote-form__trip-option span {
+  min-width: 0;
+  margin: 0;
+
+  color: var(--color-primary);
+
+  font-size: 0.86rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   CONSENT
+========================================================= */
+
+.tailored-quote-form__consent {
+  margin-top: 24px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.tailored-quote-form__consent + .tailored-quote-form__consent {
+  margin-top: 14px;
+}
+
+.tailored-quote-form__consent input {
+  width: 18px;
+  height: 18px;
+  min-height: auto;
+  margin-top: 3px;
+  padding: 0;
+  flex-shrink: 0;
+
+  accent-color: var(--color-secondary-dark);
+}
+
+.tailored-quote-form__consent span {
+  min-width: 0;
+  margin: 0;
+}
+
+.tailored-quote-form__consent a {
+  color: var(--color-primary);
+
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(198, 166, 107, 0.65);
+  text-underline-offset: 3px;
+}
+
+/* =========================================================
+   LEGACY PRIVACY TEXT
+========================================================= */
+
+.tailored-quote-form__privacy {
+  margin-top: 18px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.tailored-quote-form__privacy a {
+  color: var(--color-primary);
+
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(198, 166, 107, 0.65);
+  text-underline-offset: 3px;
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.tailored-quote-form form > button[type="submit"] {
+  min-height: 56px;
+  margin-top: 26px;
+  padding: 0 28px;
+  align-self: flex-start;
+
+  border: 0;
+  border-radius: var(--radius-full);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background: var(--color-secondary);
+  color: var(--color-primary-dark);
+
+  font-size: 0.9rem;
+  font-weight: 900;
+
+  box-shadow: 0 10px 22px rgba(198, 166, 107, 0.2);
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.tailored-quote-form form > button[type="submit"]:hover {
+  background: var(--color-secondary-light);
+
+  box-shadow: 0 14px 28px rgba(198, 166, 107, 0.27);
+  transform: translateY(-2px);
+}
+
+.tailored-quote-form form > button[type="submit"]:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+  transform: none;
+}
+
+/* =========================================================
+   SUBMISSION NOTICE
+========================================================= */
+
+.tailored-quote-form__notice {
+  margin-top: 18px;
+  padding-top: 18px;
+
+  border-top: 1px solid var(--color-border);
+
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.76rem;
+  line-height: 1.65;
+}
+
+.tailored-quote-form__notice svg {
+  margin-top: 3px;
+  flex-shrink: 0;
+
+  color: var(--color-success);
+}
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+  .tailored-quote-form {
+    padding: 32px;
+  }
+
+  .tailored-quote-form__grid {
+    gap: 22px 18px;
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
+@media (max-width: 900px) {
+  .tailored-quote-form {
+    padding: 30px 24px;
+  }
+
+  .tailored-quote-form__journey-editor {
+    padding: 24px;
+  }
+
+  .tailored-quote-form__journey-heading {
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media (max-width: 720px) {
+  .tailored-quote-form__journey-confirmed {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tailored-quote-form__journey-confirmed > button {
+    width: 100%;
+  }
+
+  .tailored-quote-form__journey-heading {
+    flex-direction: column-reverse;
+  }
+
+  .tailored-quote-form__journey-heading > svg {
+    width: 44px;
+    height: 44px;
+    padding: 11px;
+  }
+
+  .tailored-quote-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tailored-quote-form__wide,
+  .tailored-quote-form__full {
+    grid-column: auto;
+  }
+
+  .tailored-quote-form__trip-options {
+    grid-template-columns: 1fr;
+  }
+
+  .tailored-quote-form__save-journey,
+  .tailored-quote-form form > button[type="submit"] {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  .tailored-quote-form {
+    padding: 24px 18px;
+
+    border-radius: var(--radius-md);
+  }
+
+  .tailored-quote-form__heading {
+    margin-bottom: 27px;
+  }
+
+  .tailored-quote-form__heading h2 {
+    font-size: 2rem;
+  }
+
+  .tailored-quote-form__heading p {
+    font-size: 0.88rem;
+  }
+
+  .tailored-quote-form__journey-editor {
+    margin-inline: -2px;
+    padding: 21px 17px;
+  }
+
+  .tailored-quote-form__journey-heading h3,
+  .tailored-quote-form__section-heading h3 {
+    font-size: 1.65rem;
+  }
+
+  .tailored-quote-form__grid {
+    gap: 19px;
+  }
+
+  .tailored-quote-form input,
+  .tailored-quote-form select {
+    min-height: 52px;
+    padding-inline: 14px;
+  }
+
+  .tailored-quote-form textarea {
+    min-height: 135px;
+    padding: 14px;
+  }
+
+  .tailored-quote-form__consent {
+    font-size: 0.76rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .tailored-quote-form {
+    padding: 21px 15px;
+  }
+
+  .tailored-quote-form__heading h2 {
+    font-size: 1.82rem;
+  }
+
+  .tailored-quote-form__journey-editor {
+    padding: 19px 14px;
+  }
+
+  .tailored-quote-form__journey-confirmed {
+    padding: 16px;
+  }
+
+  .tailored-quote-form input,
+  .tailored-quote-form select {
+    min-height: 50px;
+    padding-inline: 12px;
+
+    font-size: 0.92rem;
+  }
+
+  .tailored-quote-form textarea {
+    padding: 13px;
+
+    font-size: 0.92rem;
+  }
+
+  .tailored-quote-form__trip-option {
+    padding-inline: 13px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 340px) {
+  .tailored-quote-form {
+    padding: 19px 12px;
+  }
+
+  .tailored-quote-form__journey-editor {
+    padding: 17px 12px;
+  }
+
+  .tailored-quote-form__heading > span,
+  .tailored-quote-form__journey-heading > div > span,
+  .tailored-quote-form__section-heading > span {
+    letter-spacing: 0.1em;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+  .tailored-quote-form form > button[type="submit"]:hover,
+  .tailored-quote-form__save-journey:hover,
+  .tailored-quote-form__journey-confirmed > button:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.tailored-quote-form input:focus-visible,
+.tailored-quote-form select:focus-visible,
+.tailored-quote-form textarea:focus-visible,
+.tailored-quote-form button:focus-visible,
+.tailored-quote-form a:focus-visible {
+  outline: 3px solid rgba(198, 166, 107, 0.32);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .tailored-quote-form input,
+  .tailored-quote-form select,
+  .tailored-quote-form textarea,
+  .tailored-quote-form__trip-option,
+  .tailored-quote-form__save-journey,
+  .tailored-quote-form__journey-confirmed > button,
+  .tailored-quote-form form > button[type="submit"] {
+    transition: none;
+  }
+
+  .tailored-quote-form__save-journey:hover,
+  .tailored-quote-form__journey-confirmed > button:hover,
+  .tailored-quote-form form > button[type="submit"]:hover {
+    transform: none;
+  }
+}

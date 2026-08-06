@@ -1,0 +1,468 @@
+/* =========================================================
+   CORPORATE TRAVEL
+========================================================= */
+
+.corporate-travel {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-primary-dark),
+      var(--color-primary)
+    );
+}
+
+/* =========================================================
+   PANEL
+========================================================= */
+
+.corporate-travel__panel {
+  overflow: hidden;
+
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 26px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(380px,.92fr)
+    minmax(0,1.08fr);
+
+  background: rgba(255,255,255,.05);
+
+  box-shadow:
+    0 35px 80px rgba(0,0,0,.24);
+}
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.corporate-travel__visual{
+  min-height:720px;
+  position:relative;
+  overflow:hidden;
+}
+
+.corporate-travel__visual img{
+  width:100%;
+  height:100%;
+
+  position:absolute;
+  inset:0;
+
+  object-fit:cover;
+  object-position:center;
+
+  transition:
+    transform .8s ease,
+    filter .8s ease;
+}
+
+.corporate-travel__panel:hover
+.corporate-travel__visual img{
+  transform:scale(1.05);
+  filter:saturate(1.05);
+}
+
+.corporate-travel__image-overlay{
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8,25,39,.05) 20%,
+      rgba(8,25,39,.92) 100%
+    );
+}
+
+.corporate-travel__image-content{
+  max-width:470px;
+
+  position:absolute;
+  right:36px;
+  bottom:38px;
+  left:36px;
+
+  z-index:2;
+}
+
+.corporate-travel__image-content span{
+  margin-bottom:12px;
+
+  display:block;
+
+  color:var(--color-secondary);
+
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.corporate-travel__image-content h3{
+  color:#fff;
+
+  font-size:clamp(2rem,3vw,3.2rem);
+  line-height:1.12;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.corporate-travel__content{
+  min-width:0;
+  padding:60px;
+}
+
+.corporate-travel__content
+.section-title{
+  color:#fff;
+}
+
+.corporate-travel__content
+.section-description{
+  color:rgba(255,255,255,.66);
+
+  line-height:1.8;
+}
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+.corporate-travel__benefits{
+  margin-top:34px;
+
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:24px;
+}
+
+.corporate-travel__benefits article{
+  min-width:0;
+
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+}
+
+.corporate-travel__benefits article>svg{
+  margin-top:4px;
+  flex-shrink:0;
+
+  color:var(--color-secondary);
+
+  font-size:1.25rem;
+}
+
+.corporate-travel__benefits h3{
+  margin-bottom:6px;
+
+  color:#fff;
+
+  font-family:var(--font-body);
+  font-size:.95rem;
+}
+
+.corporate-travel__benefits p{
+  color:rgba(255,255,255,.60);
+
+  font-size:.82rem;
+  line-height:1.65;
+}
+
+/* =========================================================
+   POINTS
+========================================================= */
+
+.corporate-travel__points{
+  margin-top:32px;
+  padding:24px;
+
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius-md);
+
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:12px 20px;
+
+  background:rgba(255,255,255,.05);
+}
+
+.corporate-travel__points li{
+  min-width:0;
+
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+
+  color:rgba(255,255,255,.74);
+
+  font-size:.84rem;
+  line-height:1.55;
+}
+
+.corporate-travel__points svg{
+  margin-top:3px;
+  flex-shrink:0;
+
+  color:var(--color-secondary);
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.corporate-travel__actions{
+  margin-top:34px;
+
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:18px;
+}
+
+.corporate-travel__actions .button{
+  min-height:54px;
+}
+
+.corporate-travel__account-link{
+  color:rgba(255,255,255,.76);
+
+  font-size:.84rem;
+  font-weight:700;
+
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:5px;
+
+  transition:color var(--transition-fast);
+}
+
+.corporate-travel__account-link:hover{
+  color:var(--color-secondary);
+}
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media(max-width:1280px){
+
+.corporate-travel__panel{
+grid-template-columns:
+minmax(340px,.9fr)
+minmax(0,1fr);
+}
+
+.corporate-travel__visual{
+min-height:650px;
+}
+
+.corporate-travel__content{
+padding:48px;
+}
+
+}
+
+/* =========================================================
+   SMALL LAPTOP
+========================================================= */
+
+@media(max-width:1100px){
+
+.corporate-travel__panel{
+grid-template-columns:1fr;
+}
+
+.corporate-travel__visual{
+min-height:540px;
+}
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+.corporate-travel__content{
+padding:42px 34px;
+}
+
+.corporate-travel__benefits{
+grid-template-columns:1fr 1fr;
+}
+
+.corporate-travel__points{
+grid-template-columns:1fr;
+}
+
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media(max-width:768px){
+
+.corporate-travel__visual{
+min-height:460px;
+}
+
+.corporate-travel__image-content{
+right:24px;
+left:24px;
+bottom:26px;
+}
+
+.corporate-travel__content{
+padding:36px 24px;
+}
+
+.corporate-travel__benefits{
+grid-template-columns:1fr;
+gap:20px;
+}
+
+.corporate-travel__actions{
+flex-direction:column;
+align-items:stretch;
+}
+
+.corporate-travel__actions .button{
+width:100%;
+}
+
+.corporate-travel__account-link{
+text-align:center;
+}
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:560px){
+
+.corporate-travel__panel{
+border-radius:20px;
+}
+
+.corporate-travel__visual{
+min-height:390px;
+}
+
+.corporate-travel__image-content{
+right:18px;
+left:18px;
+bottom:20px;
+}
+
+.corporate-travel__image-content h3{
+font-size:1.8rem;
+}
+
+.corporate-travel__content{
+padding:28px 18px;
+}
+
+.corporate-travel__points{
+padding:18px;
+}
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:390px){
+
+.corporate-travel__visual{
+min-height:340px;
+}
+
+.corporate-travel__content{
+padding:24px 16px;
+}
+
+.corporate-travel__image-content h3{
+font-size:1.55rem;
+}
+
+.corporate-travel__benefits h3{
+font-size:.9rem;
+}
+
+.corporate-travel__benefits p{
+font-size:.78rem;
+}
+
+.corporate-travel__points li{
+font-size:.8rem;
+}
+
+}
+
+/* =========================================================
+   VERY SMALL
+========================================================= */
+
+@media(max-width:340px){
+
+.corporate-travel__content{
+padding:22px 14px;
+}
+
+.corporate-travel__visual{
+min-height:300px;
+}
+
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media(hover:none){
+
+.corporate-travel__panel:hover
+.corporate-travel__visual img{
+transform:none;
+filter:none;
+}
+
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.corporate-travel a:focus-visible,
+.corporate-travel button:focus-visible{
+outline:3px solid rgba(198,166,107,.35);
+outline-offset:3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+.corporate-travel *{
+transition:none!important;
+}
+
+}

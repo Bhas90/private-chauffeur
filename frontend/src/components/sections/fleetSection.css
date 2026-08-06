@@ -1,0 +1,300 @@
+/* =========================================================
+   FLEET SECTION
+========================================================= */
+
+.fleet-section {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 86% 12%,
+      rgba(198,166,107,.14),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #07131e 0%,
+      #10283f 55%,
+      #081a2a 100%
+    );
+}
+
+/* Decorative Circle */
+
+.fleet-section::before {
+  width: 500px;
+  height: 500px;
+
+  position: absolute;
+  left: -220px;
+  bottom: -320px;
+
+  border: 1px solid rgba(198,166,107,.16);
+  border-radius: 50%;
+
+  content: "";
+  pointer-events: none;
+}
+
+.fleet-section .section-title{
+  color:var(--color-text-light);
+}
+
+.fleet-section .section-description{
+  color:rgba(255,255,255,.66);
+  line-height:1.8;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.fleet-section__header{
+  margin-bottom:48px;
+
+  position:relative;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.fleet-section__header .section-header{
+  max-width:760px;
+  margin-bottom:0;
+}
+
+.fleet-section__button{
+  min-height:54px;
+  flex-shrink:0;
+
+  border:1px solid rgba(255,255,255,.32);
+
+  background:transparent;
+  color:var(--color-text-light);
+
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.fleet-section__button:hover{
+  border-color:var(--color-secondary);
+
+  background:var(--color-secondary);
+  color:var(--color-primary-dark);
+
+  transform:translateY(-2px);
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.fleet-section__grid{
+  position:relative;
+
+  display:grid;
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:26px;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width:1500px){
+
+.fleet-section__grid{
+gap:30px;
+}
+
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width:1280px){
+
+.fleet-section__header{
+gap:24px;
+}
+
+.fleet-section__grid{
+gap:22px;
+}
+
+}
+
+/* =========================================================
+   SMALL LAPTOP
+========================================================= */
+
+@media (max-width:1100px){
+
+.fleet-section::before{
+width:420px;
+height:420px;
+
+left:-180px;
+bottom:-260px;
+}
+
+.fleet-section__header{
+align-items:flex-start;
+flex-direction:column;
+}
+
+.fleet-section__button{
+width:auto;
+}
+
+.fleet-section__grid{
+grid-template-columns:
+repeat(2,minmax(0,1fr));
+}
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:900px){
+
+.fleet-section__header{
+margin-bottom:38px;
+}
+
+.fleet-section__grid{
+gap:20px;
+}
+
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media (max-width:768px){
+
+.fleet-section{
+background:
+linear-gradient(
+135deg,
+#07131e,
+#10283f
+);
+}
+
+.fleet-section::before{
+display:none;
+}
+
+.fleet-section__header{
+margin-bottom:32px;
+}
+
+.fleet-section__button{
+width:100%;
+}
+
+.fleet-section__grid{
+grid-template-columns:1fr;
+gap:18px;
+}
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:560px){
+
+.fleet-section__header{
+gap:18px;
+}
+
+.fleet-section .section-description{
+font-size:.9rem;
+}
+
+.fleet-section__button{
+min-height:50px;
+}
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width:390px){
+
+.fleet-section__header{
+margin-bottom:28px;
+}
+
+.fleet-section__button{
+font-size:.82rem;
+}
+
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width:340px){
+
+.fleet-section .section-title{
+font-size:1.8rem;
+}
+
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover:none){
+
+.fleet-section__button:hover{
+transform:none;
+}
+
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.fleet-section a:focus-visible,
+.fleet-section button:focus-visible{
+outline:3px solid rgba(198,166,107,.35);
+outline-offset:3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+.fleet-section *{
+transition:none!important;
+}
+
+.fleet-section__button:hover{
+transform:none;
+}
+
+}

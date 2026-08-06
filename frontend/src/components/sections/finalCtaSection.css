@@ -1,0 +1,397 @@
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.final-cta {
+  min-height: 520px;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: var(--color-primary-dark);
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.final-cta__background {
+  position: absolute;
+  inset: 0;
+
+  background:
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1900&q=85")
+    center / cover no-repeat;
+
+  transform: scale(1.01);
+
+  transition:
+    transform 900ms ease,
+    filter 900ms ease;
+}
+
+.final-cta:hover .final-cta__background {
+  filter: saturate(1.05);
+  transform: scale(1.045);
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.final-cta__overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 78% 20%,
+      rgba(198, 166, 107, 0.14),
+      transparent 28%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(5, 15, 24, 0.96) 0%,
+      rgba(8, 26, 42, 0.84) 48%,
+      rgba(8, 26, 42, 0.7) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.final-cta__content {
+  width: 100%;
+  max-width: 900px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+}
+
+.final-cta__content > span {
+  display: inline-block;
+
+  color: var(--color-secondary);
+
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.final-cta__content h2 {
+  max-width: 880px;
+  margin: 16px auto 0;
+
+  color: white;
+
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+  line-height: 1.05;
+
+  overflow-wrap: anywhere;
+}
+
+.final-cta__content p {
+  max-width: 690px;
+  margin: 22px auto 0;
+
+  color: rgba(255, 255, 255, 0.74);
+
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.final-cta__actions {
+  margin-top: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+.final-cta__actions .button {
+  min-height: 54px;
+}
+
+.final-cta__call,
+.final-cta__whatsapp {
+  border: 1px solid rgba(255, 255, 255, 0.34);
+
+  background: rgba(255, 255, 255, 0.03);
+  color: white;
+
+  backdrop-filter: blur(4px);
+}
+
+.final-cta__call:hover,
+.final-cta__whatsapp:hover {
+  border-color: white;
+
+  background: white;
+  color: var(--color-primary);
+
+  transform: translateY(-2px);
+}
+
+.final-cta__actions svg {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+  .final-cta {
+    min-height: 560px;
+  }
+
+  .final-cta__content {
+    max-width: 960px;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1280px) {
+  .final-cta {
+    min-height: 500px;
+  }
+
+  .final-cta__content {
+    max-width: 840px;
+  }
+
+  .final-cta__content h2 {
+    font-size: clamp(2.5rem, 4.8vw, 4.3rem);
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
+@media (max-width: 1024px) {
+  .final-cta {
+    min-height: 500px;
+  }
+
+  .final-cta__content {
+    max-width: 760px;
+    padding-top: 62px;
+    padding-bottom: 62px;
+  }
+
+  .final-cta__overlay {
+    background:
+      radial-gradient(
+        circle at 78% 20%,
+        rgba(198, 166, 107, 0.13),
+        transparent 30%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(5, 15, 24, 0.95),
+        rgba(8, 26, 42, 0.8)
+      );
+  }
+
+  .final-cta__content p {
+    font-size: 0.98rem;
+  }
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media (max-width: 768px) {
+  .final-cta {
+    min-height: 560px;
+  }
+
+  .final-cta__background {
+    background-position: 60% center;
+  }
+
+  .final-cta__overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 15, 24, 0.88),
+        rgba(5, 15, 24, 0.8)
+      );
+  }
+
+  .final-cta__content {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+
+  .final-cta__content > span {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+  }
+
+  .final-cta__content h2 {
+    font-size: clamp(2.2rem, 7vw, 3.7rem);
+  }
+
+  .final-cta__content p {
+    max-width: 620px;
+    margin-top: 18px;
+
+    font-size: 0.94rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+  .final-cta {
+    min-height: 620px;
+  }
+
+  .final-cta__content {
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+
+  .final-cta__content h2 {
+    font-size: clamp(2rem, 9vw, 3rem);
+    line-height: 1.08;
+  }
+
+  .final-cta__content p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .final-cta__actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .final-cta__actions .button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+  .final-cta {
+    min-height: 580px;
+  }
+
+  .final-cta__content {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .final-cta__content > span {
+    font-size: 0.64rem;
+    letter-spacing: 0.13em;
+  }
+
+  .final-cta__content h2 {
+    font-size: 1.85rem;
+  }
+
+  .final-cta__content p {
+    font-size: 0.86rem;
+  }
+
+  .final-cta__actions .button {
+    min-height: 50px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 340px) {
+  .final-cta {
+    min-height: 550px;
+  }
+
+  .final-cta__content {
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .final-cta__content h2 {
+    font-size: 1.68rem;
+  }
+
+  .final-cta__content p {
+    font-size: 0.82rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+  .final-cta:hover .final-cta__background,
+  .final-cta__call:hover,
+  .final-cta__whatsapp:hover {
+    filter: none;
+    transform: none;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.final-cta a:focus-visible,
+.final-cta button:focus-visible {
+  outline: 3px solid rgba(198, 166, 107, 0.4);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .final-cta__background,
+  .final-cta__call,
+  .final-cta__whatsapp {
+    transition: none;
+  }
+
+  .final-cta:hover .final-cta__background,
+  .final-cta__call:hover,
+  .final-cta__whatsapp:hover {
+    filter: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,485 @@
+/* =========================================================
+   WHY CHOOSE US
+========================================================= */
+
+.why-choose-us{
+    position:relative;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(198,166,107,.025),
+            transparent 240px
+        ),
+        var(--color-background);
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.why-choose-us__layout{
+    display:grid;
+    grid-template-columns:
+        minmax(360px,.92fr)
+        minmax(0,1.08fr);
+
+    gap:clamp(42px,5vw,78px);
+    align-items:center;
+}
+
+.why-choose-us__content{
+    min-width:0;
+}
+
+.why-choose-us__content
+.section-description{
+    margin-bottom:34px;
+    line-height:1.8;
+}
+
+/* =========================================================
+   VISUAL
+========================================================= */
+
+.why-choose-us__visual{
+    min-height:660px;
+    position:relative;
+}
+
+.why-choose-us__main-image{
+    width:84%;
+    height:570px;
+
+    overflow:hidden;
+
+    border-radius:160px 20px 20px 20px;
+
+    box-shadow:var(--shadow-lg);
+}
+
+.why-choose-us__main-image img,
+.why-choose-us__small-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    transition:
+        transform .8s ease,
+        filter .8s ease;
+}
+
+.why-choose-us__visual:hover
+.why-choose-us__main-image img,
+.why-choose-us__visual:hover
+.why-choose-us__small-image img{
+    filter:saturate(1.04);
+    transform:scale(1.05);
+}
+
+/* =========================================================
+   SMALL IMAGE
+========================================================= */
+
+.why-choose-us__small-image{
+    width:45%;
+    height:260px;
+
+    position:absolute;
+    right:0;
+    bottom:0;
+
+    overflow:hidden;
+
+    border:10px solid
+        var(--color-background);
+    border-radius:18px;
+
+    box-shadow:var(--shadow-md);
+}
+
+/* =========================================================
+   EXPERIENCE CARD
+========================================================= */
+
+.why-choose-us__experience{
+    padding:18px 21px;
+
+    position:absolute;
+    top:70px;
+    right:-20px;
+
+    border:1px solid
+        rgba(198,166,107,.4);
+    border-radius:var(--radius-md);
+
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    background:
+        rgba(255,255,255,.94);
+
+    box-shadow:var(--shadow-md);
+
+    backdrop-filter:blur(10px);
+}
+
+.why-choose-us__experience>svg{
+    color:var(--color-secondary-dark);
+    font-size:1.45rem;
+    flex-shrink:0;
+}
+
+.why-choose-us__experience div{
+    display:flex;
+    flex-direction:column;
+}
+
+.why-choose-us__experience strong{
+    color:var(--color-primary);
+    font-size:.9rem;
+}
+
+.why-choose-us__experience span{
+    color:var(--color-text-secondary);
+    font-size:.74rem;
+}
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+.why-choose-us__benefits{
+    display:grid;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:24px;
+}
+
+.why-choose-us__benefits article{
+    min-width:0;
+
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+}
+
+.why-choose-us__benefits article>span{
+    width:46px;
+    height:46px;
+    flex:0 0 46px;
+
+    border-radius:50%;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(198,166,107,.15);
+
+    color:var(--color-secondary-dark);
+
+    font-size:1.12rem;
+
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.why-choose-us__benefits article:hover
+span{
+    background:var(--color-secondary);
+    color:var(--color-primary-dark);
+    transform:translateY(-2px);
+}
+
+.why-choose-us__benefits h3{
+    margin-bottom:6px;
+
+    font-family:var(--font-body);
+    font-size:.96rem;
+    font-weight:800;
+
+    line-height:1.4;
+}
+
+.why-choose-us__benefits p{
+    color:var(--color-text-secondary);
+
+    font-size:.82rem;
+    line-height:1.65;
+}
+
+/* =========================================================
+   INCLUDED
+========================================================= */
+
+.why-choose-us__included{
+    margin-top:34px;
+    padding:26px;
+
+    border:1px solid
+        var(--color-border);
+    border-radius:var(--radius-md);
+
+    display:grid;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:13px 24px;
+
+    background:var(--color-surface);
+
+    box-shadow:var(--shadow-sm);
+}
+
+.why-choose-us__included li{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+
+    color:var(--color-text-secondary);
+
+    font-size:.86rem;
+    line-height:1.6;
+}
+
+.why-choose-us__included svg{
+    flex-shrink:0;
+    margin-top:3px;
+
+    color:var(--color-success);
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.why-choose-us__actions{
+    margin-top:32px;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:13px;
+}
+
+.why-choose-us__actions .button{
+    min-height:52px;
+}
+
+.why-choose-us__quote{
+    border:1px solid
+        var(--color-border);
+
+    color:var(--color-primary);
+}
+
+.why-choose-us__quote:hover{
+    border-color:var(--color-secondary);
+
+    background:var(--color-secondary);
+
+    color:var(--color-primary-dark);
+}
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media(max-width:1280px){
+
+.why-choose-us__layout{
+grid-template-columns:
+minmax(320px,.9fr)
+minmax(0,1.1fr);
+}
+
+.why-choose-us__visual{
+min-height:600px;
+}
+
+.why-choose-us__main-image{
+height:520px;
+}
+
+}
+
+/* =========================================================
+   SMALL LAPTOP
+========================================================= */
+
+@media(max-width:1080px){
+
+.why-choose-us__layout{
+grid-template-columns:1fr;
+}
+
+.why-choose-us__visual{
+width:min(100%,700px);
+margin-inline:auto;
+}
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+.why-choose-us__visual{
+min-height:540px;
+}
+
+.why-choose-us__main-image{
+height:470px;
+}
+
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media(max-width:768px){
+
+.why-choose-us__visual{
+min-height:500px;
+}
+
+.why-choose-us__main-image{
+width:90%;
+height:440px;
+
+border-radius:90px 18px 18px;
+}
+
+.why-choose-us__small-image{
+width:48%;
+height:200px;
+}
+
+.why-choose-us__experience{
+top:30px;
+right:0;
+}
+
+.why-choose-us__benefits,
+.why-choose-us__included{
+grid-template-columns:1fr;
+}
+
+.why-choose-us__actions{
+flex-direction:column;
+}
+
+.why-choose-us__actions .button{
+width:100%;
+}
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:560px){
+
+.why-choose-us__visual{
+min-height:430px;
+}
+
+.why-choose-us__main-image{
+height:370px;
+}
+
+.why-choose-us__small-image{
+height:160px;
+border-width:6px;
+}
+
+.why-choose-us__benefits{
+gap:20px;
+}
+
+.why-choose-us__included{
+padding:20px;
+}
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:480px){
+
+.why-choose-us__experience{
+display:none;
+}
+
+.why-choose-us__main-image{
+width:100%;
+border-radius:24px;
+}
+
+.why-choose-us__small-image{
+display:none;
+}
+
+}
+
+/* =========================================================
+   VERY SMALL
+========================================================= */
+
+@media(max-width:340px){
+
+.why-choose-us__included{
+padding:16px;
+}
+
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media(hover:none){
+
+.why-choose-us__visual:hover img,
+.why-choose-us__benefits article:hover span{
+transform:none;
+filter:none;
+}
+
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.why-choose-us a:focus-visible,
+.why-choose-us button:focus-visible{
+outline:3px solid rgba(198,166,107,.35);
+outline-offset:3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+.why-choose-us *{
+transition:none!important;
+}
+
+}

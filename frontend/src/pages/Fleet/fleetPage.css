@@ -1,0 +1,485 @@
+/* =========================================================
+   FLEET PAGE
+========================================================= */
+
+.fleet-page{
+    position:relative;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(198,166,107,.025),
+            transparent 260px
+        ),
+        var(--color-background);
+}
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.fleet-page__intro{
+    max-width:780px;
+    margin-bottom:46px;
+}
+
+.fleet-page__intro .section-description{
+    line-height:1.8;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.fleet-page__grid{
+    display:grid;
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:26px;
+}
+
+.fleet-page__grid>*{
+    min-width:0;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.fleet-page__card{
+    width:100%;
+    height:100%;
+    min-width:0;
+    overflow:hidden;
+
+    border:1px solid var(--color-border);
+    border-radius:var(--radius-lg);
+
+    display:flex;
+    flex-direction:column;
+
+    background:white;
+
+    box-shadow:var(--shadow-sm);
+
+    transition:
+        border-color var(--transition-normal),
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.fleet-page__card:hover{
+    border-color:rgba(198,166,107,.35);
+
+    box-shadow:var(--shadow-md);
+
+    transform:translateY(-7px);
+}
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.fleet-page__image{
+    height:265px;
+
+    position:relative;
+    overflow:hidden;
+
+    display:block;
+    flex-shrink:0;
+
+    background:var(--color-primary);
+}
+
+.fleet-page__image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    transition:
+        transform .65s ease,
+        filter .65s ease;
+}
+
+.fleet-page__card:hover
+.fleet-page__image img{
+    filter:saturate(1.05);
+    transform:scale(1.06);
+}
+
+.fleet-page__overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,15,24,.04),
+            rgba(5,15,24,.78)
+        );
+
+    pointer-events:none;
+}
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.fleet-page__category{
+    min-height:30px;
+    padding:0 12px;
+
+    position:absolute;
+    right:18px;
+    bottom:18px;
+    z-index:2;
+
+    border-radius:999px;
+
+    display:inline-flex;
+    align-items:center;
+
+    background:rgba(5,15,24,.82);
+    color:white;
+
+    font-size:.68rem;
+    font-weight:800;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+
+    backdrop-filter:blur(8px);
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.fleet-page__content{
+    min-width:0;
+    padding:26px;
+
+    display:flex;
+    flex:1;
+    flex-direction:column;
+}
+
+.fleet-page__content h3{
+    font-size:1.65rem;
+    line-height:1.25;
+
+    overflow-wrap:anywhere;
+}
+
+.fleet-page__content h3 a{
+    color:var(--color-primary);
+
+    transition:color var(--transition-fast);
+}
+
+.fleet-page__content h3 a:hover{
+    color:var(--color-secondary-dark);
+}
+
+.fleet-page__content>p{
+    min-height:108px;
+
+    margin-top:13px;
+
+    color:var(--color-text-secondary);
+
+    font-size:.88rem;
+    line-height:1.72;
+}
+
+/* =========================================================
+   CAPACITY
+========================================================= */
+
+.fleet-page__capacity{
+    margin-top:20px;
+    padding:18px 0;
+
+    border-top:1px solid var(--color-border);
+    border-bottom:1px solid var(--color-border);
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.fleet-page__capacity span{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+
+    color:var(--color-text-secondary);
+
+    font-size:.8rem;
+    line-height:1.5;
+}
+
+.fleet-page__capacity svg{
+    margin-top:2px;
+    flex-shrink:0;
+
+    color:var(--color-secondary-dark);
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.fleet-page__actions{
+    margin-top:auto;
+    padding-top:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+}
+
+.fleet-page__actions a{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    font-size:.75rem;
+    font-weight:900;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+
+    transition:
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.fleet-page__actions a:first-child{
+    color:var(--color-primary);
+}
+
+.fleet-page__actions a:last-child{
+    color:var(--color-secondary-dark);
+}
+
+.fleet-page__actions a:hover{
+    transform:translateX(3px);
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media(min-width:1500px){
+
+.fleet-page__grid{
+gap:30px;
+}
+
+.fleet-page__image{
+height:285px;
+}
+
+.fleet-page__content{
+padding:30px;
+}
+
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media(max-width:1280px){
+
+.fleet-page__grid{
+gap:22px;
+}
+
+.fleet-page__image{
+height:240px;
+}
+
+.fleet-page__content{
+padding:22px;
+}
+
+.fleet-page__content h3{
+font-size:1.5rem;
+}
+
+}
+
+/* =========================================================
+   SMALL LAPTOP
+========================================================= */
+
+@media(max-width:1020px){
+
+.fleet-page__grid{
+grid-template-columns:
+repeat(2,minmax(0,1fr));
+}
+
+.fleet-page__content>p{
+min-height:90px;
+}
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:768px){
+
+.fleet-page__grid{
+gap:20px;
+}
+
+.fleet-page__image{
+height:225px;
+}
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:650px){
+
+.fleet-page__grid{
+grid-template-columns:1fr;
+}
+
+.fleet-page__card{
+max-width:680px;
+margin-inline:auto;
+}
+
+.fleet-page__content{
+padding:20px 18px;
+}
+
+.fleet-page__content h3{
+font-size:1.4rem;
+}
+
+.fleet-page__content>p{
+min-height:auto;
+
+font-size:.84rem;
+}
+
+.fleet-page__actions{
+align-items:stretch;
+flex-direction:column;
+}
+
+.fleet-page__actions a{
+width:100%;
+justify-content:center;
+}
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:390px){
+
+.fleet-page__image{
+height:200px;
+}
+
+.fleet-page__category{
+right:14px;
+bottom:14px;
+
+font-size:.62rem;
+}
+
+.fleet-page__content{
+padding:18px 16px;
+}
+
+.fleet-page__content h3{
+font-size:1.25rem;
+}
+
+.fleet-page__capacity{
+padding:15px 0;
+}
+
+.fleet-page__capacity span{
+font-size:.76rem;
+}
+
+}
+
+/* =========================================================
+   VERY SMALL
+========================================================= */
+
+@media(max-width:340px){
+
+.fleet-page__image{
+height:180px;
+}
+
+.fleet-page__content{
+padding:16px 14px;
+}
+
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media(hover:none){
+
+.fleet-page__card:hover,
+.fleet-page__card:hover .fleet-page__image img,
+.fleet-page__actions a:hover{
+
+transform:none;
+filter:none;
+}
+
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.fleet-page a:focus-visible,
+.fleet-page button:focus-visible{
+outline:3px solid rgba(198,166,107,.35);
+outline-offset:3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+.fleet-page *{
+transition:none!important;
+}
+
+.fleet-page__card:hover,
+.fleet-page__card:hover .fleet-page__image img{
+transform:none;
+filter:none;
+}
+
+}

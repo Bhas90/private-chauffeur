@@ -1,0 +1,337 @@
+/* =========================================================
+   STATISTICS SECTION
+========================================================= */
+
+.statistics-section {
+  position: relative;
+  overflow: hidden;
+
+  padding: 52px 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-secondary),
+      var(--color-secondary-light)
+    );
+}
+
+/* Subtle decorative layer */
+
+.statistics-section::before {
+  width: 340px;
+  height: 340px;
+
+  position: absolute;
+  top: -220px;
+  right: -160px;
+
+  border: 1px solid rgba(16, 40, 63, 0.12);
+  border-radius: 50%;
+
+  content: "";
+  pointer-events: none;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.statistics-section__grid {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+}
+
+/* =========================================================
+   STAT ITEM
+========================================================= */
+
+.statistics-section__grid article {
+  min-width: 0;
+  min-height: 110px;
+  padding: 20px 34px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.statistics-section__grid article:not(:last-child)::after {
+  width: 1px;
+  height: 64%;
+
+  position: absolute;
+  top: 18%;
+  right: 0;
+
+  background: rgba(16, 40, 63, 0.22);
+
+  content: "";
+}
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.statistics-section__grid svg {
+  width: 48px;
+  height: 48px;
+  padding: 11px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--color-primary);
+
+  font-size: 1.8rem;
+}
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.statistics-section__grid div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.statistics-section__grid strong {
+  color: var(--color-primary-dark);
+
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 2.6vw, 2.2rem);
+  line-height: 1;
+
+  overflow-wrap: anywhere;
+}
+
+.statistics-section__grid span {
+  margin-top: 7px;
+
+  color: rgba(8, 26, 42, 0.74);
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.45;
+  text-transform: uppercase;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+  .statistics-section {
+    padding: 58px 0;
+  }
+
+  .statistics-section__grid article {
+    min-height: 118px;
+    padding-inline: 40px;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1280px) {
+  .statistics-section__grid article {
+    padding-inline: 26px;
+  }
+
+  .statistics-section__grid strong {
+    font-size: 1.95rem;
+  }
+
+  .statistics-section__grid span {
+    font-size: 0.72rem;
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
+@media (max-width: 980px) {
+  .statistics-section {
+    padding: 44px 0;
+  }
+
+  .statistics-section__grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .statistics-section__grid article {
+    min-height: 104px;
+  }
+
+  .statistics-section__grid article:nth-child(2)::after {
+    display: none;
+  }
+
+  .statistics-section__grid article:nth-child(-n + 2) {
+    border-bottom:
+      1px solid rgba(16, 40, 63, 0.18);
+  }
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media (max-width: 768px) {
+  .statistics-section__grid article {
+    padding: 18px 22px;
+    gap: 14px;
+  }
+
+  .statistics-section__grid svg {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+
+  .statistics-section__grid strong {
+    font-size: 1.8rem;
+  }
+
+  .statistics-section__grid span {
+    font-size: 0.7rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  .statistics-section {
+    padding: 34px 0;
+  }
+
+  .statistics-section::before {
+    width: 240px;
+    height: 240px;
+
+    top: -160px;
+    right: -120px;
+  }
+
+  .statistics-section__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .statistics-section__grid article {
+    min-height: 92px;
+    padding: 18px 20px;
+  }
+
+  .statistics-section__grid article::after {
+    display: none;
+  }
+
+  .statistics-section__grid article:not(:last-child) {
+    border-bottom:
+      1px solid rgba(16, 40, 63, 0.18);
+  }
+
+  .statistics-section__grid article:nth-child(-n + 2) {
+    border-bottom:
+      1px solid rgba(16, 40, 63, 0.18);
+  }
+
+  .statistics-section__grid svg {
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+  }
+
+  .statistics-section__grid strong {
+    font-size: 1.7rem;
+  }
+
+  .statistics-section__grid span {
+    margin-top: 5px;
+
+    font-size: 0.68rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .statistics-section__grid article {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .statistics-section__grid svg {
+    width: 39px;
+    height: 39px;
+    padding: 8px;
+  }
+
+  .statistics-section__grid strong {
+    font-size: 1.55rem;
+  }
+
+  .statistics-section__grid span {
+    font-size: 0.64rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 340px) {
+  .statistics-section__grid article {
+    padding-inline: 13px;
+  }
+
+  .statistics-section__grid strong {
+    font-size: 1.45rem;
+  }
+
+  .statistics-section__grid span {
+    letter-spacing: 0.03em;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.statistics-section a:focus-visible,
+.statistics-section button:focus-visible {
+  outline: 3px solid rgba(16, 40, 63, 0.28);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .statistics-section *,
+  .statistics-section *::before,
+  .statistics-section *::after {
+    transition: none !important;
+  }
+}

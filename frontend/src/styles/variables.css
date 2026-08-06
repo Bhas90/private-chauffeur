@@ -1,0 +1,231 @@
+:root {
+  /* =======================================================
+     BRAND COLOURS
+  ======================================================= */
+
+  --color-primary: #10283f;
+  --color-primary-dark: #081a2a;
+  --color-primary-light: #1b405f;
+
+  --color-secondary: #c6a66b;
+  --color-secondary-dark: #9e7d43;
+  --color-secondary-light: #dec799;
+
+  /* =======================================================
+     BACKGROUNDS
+  ======================================================= */
+
+  --color-background: #f7f5f0;
+  --color-surface: #ffffff;
+  --color-surface-soft: #eef1f3;
+  --color-surface-muted: #f3f5f6;
+  --color-overlay-dark: rgba(5, 15, 24, 0.82);
+
+  /* =======================================================
+     TEXT
+  ======================================================= */
+
+  --color-text-primary: #17212b;
+  --color-text-secondary: #65717c;
+  --color-text-muted: #8b949d;
+  --color-text-light: #ffffff;
+
+  /* =======================================================
+     STATES
+  ======================================================= */
+
+  --color-border: #dfe4e8;
+  --color-border-strong: #c8d0d6;
+
+  --color-success: #217a57;
+  --color-success-soft: rgba(33, 122, 87, 0.1);
+
+  --color-error: #bd3f3f;
+  --color-error-soft: rgba(189, 63, 63, 0.09);
+
+  --color-warning: #b07a21;
+  --color-warning-soft: rgba(176, 122, 33, 0.1);
+
+  /* =======================================================
+     TYPOGRAPHY
+  ======================================================= */
+
+  --font-heading: "Georgia", "Times New Roman", serif;
+  --font-body: "Inter", "Segoe UI", Arial, sans-serif;
+
+  --font-size-xs: 0.72rem;
+  --font-size-sm: 0.82rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.05rem;
+  --font-size-lg: 1.2rem;
+
+  --line-height-tight: 1.15;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.8;
+
+  /* =======================================================
+     CONTAINER
+  ======================================================= */
+
+  --container-width: 1280px;
+  --container-wide: 1440px;
+  --container-narrow: 980px;
+
+  /* =======================================================
+     SPACING
+  ======================================================= */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-9: 40px;
+  --space-10: 48px;
+  --space-11: 56px;
+  --space-12: 64px;
+  --space-13: 72px;
+  --space-14: 80px;
+  --space-15: 96px;
+
+  /* =======================================================
+     BORDER RADIUS
+  ======================================================= */
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* =======================================================
+     SHADOWS
+  ======================================================= */
+
+  --shadow-xs:
+    0 4px 14px rgba(16, 40, 63, 0.06);
+
+  --shadow-sm:
+    0 8px 24px rgba(16, 40, 63, 0.08);
+
+  --shadow-md:
+    0 18px 50px rgba(16, 40, 63, 0.14);
+
+  --shadow-lg:
+    0 30px 80px rgba(8, 26, 42, 0.2);
+
+  --shadow-xl:
+    0 42px 110px rgba(8, 26, 42, 0.24);
+
+  /* =======================================================
+     TRANSITIONS
+  ======================================================= */
+
+  --transition-fast: 180ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 600ms ease;
+
+  /* =======================================================
+     Z-INDEX
+  ======================================================= */
+
+  --z-base: 1;
+  --z-content: 10;
+  --z-sticky: 100;
+  --z-header: 500;
+  --z-dropdown: 700;
+  --z-modal: 1000;
+  --z-toast: 1200;
+
+  /* =======================================================
+     LAYOUT HEIGHTS
+  ======================================================= */
+
+  --header-height: 88px;
+  --header-height-mobile: 74px;
+  --sticky-offset: 104px;
+
+  /* =======================================================
+     FORM CONTROLS
+  ======================================================= */
+
+  --control-height: 52px;
+  --control-height-mobile: 48px;
+  --control-padding-inline: 16px;
+
+  /* =======================================================
+     FOCUS
+  ======================================================= */
+
+  --focus-ring:
+    0 0 0 3px rgba(198, 166, 107, 0.34);
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1600px) {
+  :root {
+    --container-width: 1360px;
+    --container-wide: 1500px;
+    --sticky-offset: 110px;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1280px) {
+  :root {
+    --container-width: 1180px;
+    --sticky-offset: 96px;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  :root {
+    --header-height: 80px;
+    --sticky-offset: 88px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  :root {
+    --header-height: var(--header-height-mobile);
+    --sticky-offset: 78px;
+
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+
+    --shadow-lg:
+      0 22px 55px rgba(8, 26, 42, 0.17);
+
+    --shadow-xl:
+      0 28px 70px rgba(8, 26, 42, 0.2);
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  :root {
+    --sticky-offset: 72px;
+    --control-height: 48px;
+  }
+}

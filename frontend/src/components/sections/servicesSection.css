@@ -1,0 +1,326 @@
+/* =========================================================
+   SERVICES SECTION
+========================================================= */
+
+.services-section {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(198, 166, 107, 0.025),
+      transparent 240px
+    ),
+    var(--color-background);
+}
+
+/* Decorative shape */
+
+.services-section::before {
+  width: 420px;
+  height: 420px;
+
+  position: absolute;
+  top: -220px;
+  right: -180px;
+
+  border-radius: 50%;
+
+  background: rgba(198, 166, 107, 0.09);
+
+  content: "";
+  pointer-events: none;
+}
+
+/* Additional decorative ring */
+
+.services-section::after {
+  width: 260px;
+  height: 260px;
+
+  position: absolute;
+  bottom: -180px;
+  left: -120px;
+
+  border: 1px solid rgba(198, 166, 107, 0.12);
+  border-radius: 50%;
+
+  content: "";
+  pointer-events: none;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.services-section__header {
+  margin-bottom: 44px;
+
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.services-section__header .section-header {
+  max-width: 780px;
+  margin-bottom: 0;
+}
+
+.services-section__header .section-description {
+  max-width: 720px;
+  line-height: 1.8;
+}
+
+.services-section__header .button {
+  min-height: 52px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.services-section__grid {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 26px;
+
+  align-items: stretch;
+}
+
+.services-section__grid > * {
+  min-width: 0;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+  .services-section__header {
+    margin-bottom: 50px;
+  }
+
+  .services-section__grid {
+    gap: 30px;
+  }
+
+  .services-section::before {
+    width: 480px;
+    height: 480px;
+
+    top: -250px;
+    right: -190px;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1280px) {
+  .services-section__header {
+    gap: 24px;
+  }
+
+  .services-section__grid {
+    gap: 22px;
+  }
+
+  .services-section::before {
+    width: 380px;
+    height: 380px;
+
+    top: -200px;
+    right: -165px;
+  }
+}
+
+/* =========================================================
+   SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 1080px) {
+  .services-section__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .services-section__header .button {
+    width: auto;
+  }
+
+  .services-section__grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
+@media (max-width: 900px) {
+  .services-section__header {
+    margin-bottom: 36px;
+  }
+
+  .services-section__grid {
+    gap: 20px;
+  }
+
+  .services-section::after {
+    width: 210px;
+    height: 210px;
+
+    bottom: -150px;
+    left: -110px;
+  }
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media (max-width: 768px) {
+  .services-section::before {
+    width: 300px;
+    height: 300px;
+
+    top: -170px;
+    right: -150px;
+  }
+
+  .services-section::after {
+    display: none;
+  }
+
+  .services-section__header {
+    margin-bottom: 32px;
+    gap: 20px;
+  }
+
+  .services-section__header .button {
+    width: 100%;
+  }
+
+  .services-section__grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .services-section__grid > * {
+    width: 100%;
+    max-width: 680px;
+    margin-inline: auto;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  .services-section::before {
+    width: 240px;
+    height: 240px;
+
+    top: -145px;
+    right: -130px;
+  }
+
+  .services-section__header {
+    margin-bottom: 28px;
+    gap: 17px;
+  }
+
+  .services-section__header .section-description {
+    font-size: 0.9rem;
+    line-height: 1.72;
+  }
+
+  .services-section__header .button {
+    min-height: 50px;
+  }
+
+  .services-section__grid {
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .services-section::before {
+    width: 200px;
+    height: 200px;
+
+    top: -125px;
+    right: -115px;
+  }
+
+  .services-section__header {
+    margin-bottom: 25px;
+  }
+
+  .services-section__header .button {
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 340px) {
+  .services-section__header .section-title {
+    font-size: 1.8rem;
+  }
+
+  .services-section__header .button {
+    padding-inline: 16px;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+  .services-section__header .button:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.services-section a:focus-visible,
+.services-section button:focus-visible {
+  outline: 3px solid rgba(198, 166, 107, 0.35);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .services-section *,
+  .services-section *::before,
+  .services-section *::after {
+    transition: none !important;
+  }
+}

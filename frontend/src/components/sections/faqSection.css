@@ -1,0 +1,458 @@
+/* =========================================================
+   FAQ SECTION
+========================================================= */
+
+.faq-section {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(198, 166, 107, 0.03),
+      transparent 240px
+    ),
+    var(--color-background);
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.faq-section__layout {
+  display: grid;
+  grid-template-columns:
+    minmax(300px, 0.72fr)
+    minmax(0, 1.28fr);
+  gap: clamp(38px, 5vw, 70px);
+  align-items: start;
+}
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.faq-section__intro {
+  min-width: 0;
+
+  position: sticky;
+  top: 110px;
+}
+
+.faq-section__intro .section-title {
+  max-width: 560px;
+}
+
+.faq-section__intro .section-description {
+  max-width: 540px;
+  line-height: 1.78;
+}
+
+/* =========================================================
+   SUPPORT CARD
+========================================================= */
+
+.faq-section__support {
+  min-width: 0;
+  margin: 28px 0;
+  padding: 20px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.faq-section__support:hover {
+  border-color: rgba(198, 166, 107, 0.4);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.faq-section__support > svg {
+  width: 46px;
+  height: 46px;
+  padding: 11px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: rgba(198, 166, 107, 0.12);
+  color: var(--color-secondary-dark);
+
+  font-size: 1.45rem;
+}
+
+.faq-section__support div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-section__support strong {
+  color: var(--color-primary);
+
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.faq-section__support span {
+  margin-top: 3px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.8rem;
+  line-height: 1.55;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   FAQ LIST
+========================================================= */
+
+.faq-section__list {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================================================
+   FAQ ITEM
+========================================================= */
+
+.faq-section__item {
+  overflow: hidden;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.faq-section__item:hover {
+  border-color: rgba(198, 166, 107, 0.34);
+  box-shadow: var(--shadow-md);
+}
+
+.faq-section__item--open {
+  border-color: rgba(198, 166, 107, 0.7);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================================================
+   QUESTION BUTTON
+========================================================= */
+
+.faq-section__item > button {
+  width: 100%;
+  min-height: 76px;
+  padding: 18px 22px;
+
+  border: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  background: transparent;
+  color: var(--color-primary);
+
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.5;
+  text-align: left;
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.faq-section__item > button:hover {
+  background: rgba(198, 166, 107, 0.055);
+}
+
+.faq-section__item--open > button {
+  background: rgba(198, 166, 107, 0.075);
+}
+
+.faq-section__item > button span {
+  min-width: 0;
+
+  overflow-wrap: anywhere;
+}
+
+.faq-section__item > button svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+
+  color: var(--color-secondary-dark);
+
+  transition: transform var(--transition-fast);
+}
+
+.faq-section__item--open > button svg {
+  transform: rotate(180deg);
+}
+
+/* =========================================================
+   ANSWER
+========================================================= */
+
+.faq-section__answer {
+  max-height: 0;
+  overflow: hidden;
+
+  opacity: 0;
+
+  transition:
+    max-height var(--transition-normal),
+    opacity var(--transition-fast);
+}
+
+.faq-section__item--open .faq-section__answer {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.faq-section__answer p {
+  padding: 0 22px 22px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+  .faq-section__layout {
+    grid-template-columns:
+      minmax(270px, 0.7fr)
+      minmax(0, 1.3fr);
+    gap: 46px;
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
+@media (max-width: 980px) {
+  .faq-section__layout {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .faq-section__intro {
+    position: static;
+  }
+
+  .faq-section__intro .section-title,
+  .faq-section__intro .section-description {
+    max-width: 760px;
+  }
+
+  .faq-section__support {
+    max-width: 620px;
+  }
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
+@media (max-width: 768px) {
+  .faq-section__layout {
+    gap: 28px;
+  }
+
+  .faq-section__support {
+    margin: 24px 0;
+  }
+
+  .faq-section__item > button {
+    min-height: 70px;
+    padding: 17px 19px;
+
+    font-size: 0.9rem;
+  }
+
+  .faq-section__answer p {
+    padding: 0 19px 20px;
+
+    font-size: 0.89rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  .faq-section__support {
+    padding: 17px;
+
+    align-items: flex-start;
+  }
+
+  .faq-section__support > svg {
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+  }
+
+  .faq-section__list {
+    gap: 10px;
+  }
+
+  .faq-section__item > button {
+    min-height: 64px;
+    padding: 15px 16px;
+    gap: 14px;
+
+    font-size: 0.86rem;
+  }
+
+  .faq-section__item > button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .faq-section__answer p {
+    padding: 0 16px 18px;
+
+    font-size: 0.85rem;
+    line-height: 1.68;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .faq-section__support {
+    padding: 15px;
+    gap: 11px;
+  }
+
+  .faq-section__support > svg {
+    width: 39px;
+    height: 39px;
+    padding: 9px;
+  }
+
+  .faq-section__support strong {
+    font-size: 0.84rem;
+  }
+
+  .faq-section__support span {
+    font-size: 0.75rem;
+  }
+
+  .faq-section__item > button {
+    padding: 14px;
+    gap: 12px;
+
+    font-size: 0.82rem;
+  }
+
+  .faq-section__answer p {
+    padding: 0 14px 16px;
+
+    font-size: 0.82rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 340px) {
+  .faq-section__support {
+    flex-direction: column;
+  }
+
+  .faq-section__item > button {
+    padding-inline: 12px;
+  }
+
+  .faq-section__answer p {
+    padding-inline: 12px;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+  .faq-section__support:hover,
+  .faq-section__item:hover {
+    box-shadow: var(--shadow-sm);
+    transform: none;
+  }
+
+  .faq-section__item > button:hover {
+    background: transparent;
+  }
+
+  .faq-section__item--open > button:hover {
+    background: rgba(198, 166, 107, 0.075);
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.faq-section button:focus-visible,
+.faq-section a:focus-visible {
+  outline: 3px solid rgba(198, 166, 107, 0.35);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-section__support,
+  .faq-section__item,
+  .faq-section__item > button,
+  .faq-section__item > button svg,
+  .faq-section__answer {
+    transition: none;
+  }
+
+  .faq-section__support:hover,
+  .faq-section__item:hover,
+  .faq-section__item--open > button svg {
+    transform: none;
+  }
+}
