@@ -21,7 +21,7 @@ import {
 import InnerPageHero from "../../components/hero/InnerPageHero";
 import { siteConfig } from "../../config/siteConfig";
 import { routePaths } from "../../routes/routePaths";
-import "./reportProblemPage.css";
+import "./ReportProblemPage.css";
 
 type PreferredContactMethod =
   | "phone"
