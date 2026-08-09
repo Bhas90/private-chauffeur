@@ -13,6 +13,10 @@ import {
 
 import InnerPageHero from "../../components/hero/InnerPageHero";
 
+import {
+  fleetData,
+} from "../../data/fleetData";
+
 import "./aboutPage.css";
 
 /* =========================================================
@@ -81,6 +85,27 @@ const servicePoints = [
 ========================================================= */
 
 export default function AboutPage() {
+  /* =======================================================
+     APPROVED FLEET IMAGES
+
+     These images come directly from fleetData.ts.
+     No unrelated vehicle images are used.
+  ======================================================= */
+
+  const bmw7Series =
+    fleetData.find(
+      (vehicle) =>
+        vehicle.slug ===
+        "bmw-7-series",
+    );
+
+  const mercedesSClass =
+    fleetData.find(
+      (vehicle) =>
+        vehicle.slug ===
+        "mercedes-benz-s-class",
+    );
+
   return (
     <main>
       {/* ===================================================
@@ -103,7 +128,7 @@ export default function AboutPage() {
       />
 
       {/* ===================================================
-          ABOUT
+          ABOUT PAGE
       =================================================== */}
 
       <section className="about-page section">
@@ -139,13 +164,13 @@ export default function AboutPage() {
               <p>
                 Every booking is planned
                 according to the customer's
-                pickup location, destination,
-                schedule, passenger number,
-                luggage requirements and
-                preferred vehicle. The aim
-                is to provide a
-                straightforward and
-                professional experience
+                pickup location,
+                destination, schedule,
+                passenger number, luggage
+                requirements and preferred
+                vehicle. The aim is to
+                provide a straightforward
+                and professional experience
                 from the first enquiry
                 through to the final
                 destination.
@@ -169,16 +194,24 @@ export default function AboutPage() {
             </div>
 
             {/* ===============================================
-                ABOUT IMAGE
+                BMW 7 SERIES IMAGE
             =============================================== */}
 
             <div className="about-page__image">
-              <img
-                src="https://images.unsplash.com/photo-1620144319044-7204a28a9e17?auto=format&fit=crop&w=1500&q=85"
-                alt="Professional Melbourne chauffeur service"
-                loading="lazy"
-                decoding="async"
-              />
+              {bmw7Series ? (
+                <img
+                  src={
+                    bmw7Series.image
+                  }
+                  alt={`${bmw7Series.name} private chauffeur vehicle in Melbourne`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div className="about-page__image-placeholder">
+                  BMW 7 Series
+                </div>
+              )}
 
               <div className="about-page__badge">
                 <FiStar
@@ -279,13 +312,25 @@ export default function AboutPage() {
           ================================================= */}
 
           <div className="about-page__fleet">
+            {/* ===============================================
+                MERCEDES-BENZ S-CLASS IMAGE
+            =============================================== */}
+
             <div className="about-page__fleet-image">
-              <img
-                src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1500&q=85"
-                alt="Luxury chauffeur vehicle in Melbourne"
-                loading="lazy"
-                decoding="async"
-              />
+              {mercedesSClass ? (
+                <img
+                  src={
+                    mercedesSClass.image
+                  }
+                  alt={`${mercedesSClass.name} luxury chauffeur vehicle in Melbourne`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div className="about-page__image-placeholder">
+                  Mercedes-Benz S-Class
+                </div>
+              )}
             </div>
 
             <div className="about-page__fleet-content">
