@@ -1,8 +1,10 @@
 import {
-  FormEvent,
   useEffect,
-  useMemo,
   useState,
+} from "react";
+
+import type {
+  FormEvent,
 } from "react";
 import {
   FiArrowLeft,
