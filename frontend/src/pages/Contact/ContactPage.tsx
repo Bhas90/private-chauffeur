@@ -153,73 +153,175 @@ export default function ContactPage() {
     }
   };
 
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>,
-  ) => {
-    event.preventDefault();
+const handleSubmit = async (
+  event: FormEvent<HTMLFormElement>,
+) => {
+  event.preventDefault();
+
+  if (isSubmitting) {
+    return;
+  }
+
+  if (!formData.privacyAccepted) {
+    setSubmitStatus("error");
+    return;
+  }
+
+  setIsSubmitting(true);
+  setSubmitStatus("idle");
+
+  try {
+    /* =====================================================
+       API URL FROM FRONTEND .ENV
+    ===================================================== */
+
+    const apiUrl =
+      import.meta.env.VITE_API_URL;
+
+    if (!apiUrl) {
+      throw new Error(
+        "Frontend API URL is not configured.",
+      );
+    }
+
+    /* =====================================================
+       SERVICE DISPLAY NAME
+    ===================================================== */
+
+    const selectedService =
+      serviceOptions.find(
+        (service) =>
+          service.value ===
+          formData.service,
+      );
+
+    let serviceLabel =
+      selectedService?.label || "";
 
     if (
-      isSubmitting ||
-      !formData.privacyAccepted
+      formData.service === "general"
     ) {
-      if (!formData.privacyAccepted) {
-        setSubmitStatus("error");
-      }
-
-      return;
+      serviceLabel =
+        "General Enquiry";
     }
 
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
+    if (
+      formData.service ===
+      "existing-booking"
+    ) {
+      serviceLabel =
+        "Existing Booking Support";
+    }
+
+    if (
+      formData.service === "business"
+    ) {
+      serviceLabel =
+        "Business or Partnership";
+    }
+
+    /* =====================================================
+       PREPARE PAYLOAD
+    ===================================================== */
+
+    const payload = {
+      fullName:
+        formData.fullName.trim(),
+
+      email:
+        formData.email
+          .trim()
+          .toLowerCase(),
+
+      mobile:
+        formData.mobile.trim(),
+
+      subject:
+        formData.subject.trim(),
+
+      service:
+        serviceLabel ||
+        "General Enquiry",
+
+      preferredContact:
+        formData.preferredContact,
+
+      message:
+        formData.message.trim(),
+    };
+
+    /* =====================================================
+       SEND CONTACT ENQUIRY
+    ===================================================== */
+
+    const response =
+      await fetch(
+        `${apiUrl}/mail/contact`,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+
+          body:
+            JSON.stringify(payload),
+        },
+      );
+
+    /* =====================================================
+       READ RESPONSE
+    ===================================================== */
+
+    let responseData:
+      | {
+          success?: boolean;
+          message?: string;
+        }
+      | null = null;
 
     try {
-      /*
-       * Replace this temporary delay with
-       * the backend API request.
-       *
-       * Example:
-       *
-       * const response = await fetch(
-       *   "http://localhost:3000/api/v1/contact",
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json",
-       *     },
-       *     body: JSON.stringify(formData),
-       *   },
-       * );
-       *
-       * if (!response.ok) {
-       *   throw new Error(
-       *     "Contact enquiry failed",
-       *   );
-       * }
-       */
-
-      await new Promise((resolve) =>
-        window.setTimeout(resolve, 700),
-      );
-
-      setSubmitStatus("success");
-      setFormData(initialFormData);
-
-      window.setTimeout(() => {
-        navigate(
-          `${routePaths.thankYou}?type=contact`,
-        );
-      }, 900);
-    } catch (error) {
-      console.error(
-        "Contact form submission failed:",
-        error,
-      );
-
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
+      responseData =
+        await response.json();
+    } catch {
+      responseData = null;
     }
-  };
+
+    if (!response.ok) {
+      throw new Error(
+        responseData?.message ||
+          "Unable to send your enquiry.",
+      );
+    }
+
+    /* =====================================================
+       SUCCESS
+    ===================================================== */
+
+    setSubmitStatus("success");
+
+    setFormData(initialFormData);
+
+    window.setTimeout(() => {
+      navigate(
+        `${routePaths.thankYou}?type=contact`,
+        {
+          replace: true,
+        },
+      );
+    }, 900);
+  } catch (error) {
+    console.error(
+      "Contact form submission failed:",
+      error,
+    );
+
+    setSubmitStatus("error");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <main>

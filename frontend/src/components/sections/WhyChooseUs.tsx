@@ -6,6 +6,7 @@ import {
   FiStar,
   FiUserCheck,
 } from "react-icons/fi";
+
 import { Link } from "react-router-dom";
 
 import "./whyChooseUs.css";
@@ -50,77 +51,136 @@ export default function WhyChooseUs() {
   return (
     <section className="why-choose-us section">
       <div className="container why-choose-us__layout">
+        {/* =================================================
+            VISUAL
+        ================================================= */}
+
         <div className="why-choose-us__visual">
+          {/* MAIN IMAGE */}
+
           <div className="why-choose-us__main-image">
             <img
-              src="https://images.unsplash.com/photo-1620144319044-7204a28a9e17?auto=format&fit=crop&w=1400&q=85"
-              alt="Professional chauffeur opening a luxury vehicle"
+              src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1400&q=85"
+              alt="Premium black Mercedes-Benz chauffeur vehicle"
               loading="lazy"
+              decoding="async"
             />
           </div>
+
+          {/* SMALL IMAGE */}
 
           <div className="why-choose-us__small-image">
             <img
               src="https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?auto=format&fit=crop&w=900&q=85"
               alt="Luxury chauffeur vehicle interior"
               loading="lazy"
+              decoding="async"
             />
           </div>
 
+          {/* EXPERIENCE BADGE */}
+
           <div className="why-choose-us__experience">
-            <FiStar />
+            <FiStar
+              aria-hidden="true"
+            />
 
             <div>
-              <strong>Premium Service</strong>
-              <span>From booking to destination</span>
+              <strong>
+                Premium Service
+              </strong>
+
+              <span>
+                From booking to destination
+              </span>
             </div>
           </div>
         </div>
 
+        {/* =================================================
+            CONTENT
+        ================================================= */}
+
         <div className="why-choose-us__content">
-          <span className="eyebrow">Why Travel With Us</span>
+          <span className="eyebrow">
+            Why Travel With Us
+          </span>
 
           <h2 className="section-title">
-            A chauffeur experience built around reliability and care.
+            A chauffeur experience built
+            around reliability and care.
           </h2>
 
           <p className="section-description">
-            Whether you are travelling to Melbourne Airport, attending
-            an important meeting or planning a private event, our
-            service is designed to make every part of your journey
-            straightforward, comfortable and professional.
+            Whether you are travelling to
+            Melbourne Airport, attending an
+            important meeting or planning a
+            private event, our service is
+            designed to make every part of
+            your journey straightforward,
+            comfortable and professional.
           </p>
 
-          <div className="why-choose-us__benefits">
-            {benefits.map(({ icon: Icon, title, description }) => (
-              <article key={title}>
-                <span>
-                  <Icon />
-                </span>
+          {/* BENEFITS */}
 
-                <div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
-                </div>
-              </article>
-            ))}
+          <div className="why-choose-us__benefits">
+            {benefits.map(
+              ({
+                icon: Icon,
+                title,
+                description,
+              }) => (
+                <article key={title}>
+                  <span>
+                    <Icon
+                      aria-hidden="true"
+                    />
+                  </span>
+
+                  <div>
+                    <h3>
+                      {title}
+                    </h3>
+
+                    <p>
+                      {description}
+                    </p>
+                  </div>
+                </article>
+              ),
+            )}
           </div>
 
+          {/* INCLUDED */}
+
           <ul className="why-choose-us__included">
-            {includedItems.map((item) => (
-              <li key={item}>
-                <FiCheck />
-                {item}
-              </li>
-            ))}
+            {includedItems.map(
+              (item) => (
+                <li key={item}>
+                  <FiCheck
+                    aria-hidden="true"
+                  />
+
+                  {item}
+                </li>
+              ),
+            )}
           </ul>
 
+          {/* CTA */}
+
           <div className="why-choose-us__actions">
-            <Link className="button button--dark" to="/about">
+            <Link
+              className="button button--dark"
+              to="/about"
+            >
               Discover Our Service
             </Link>
 
-            <Link className="button why-choose-us__quote" to="/get-a-quote">
+            <Link
+              className="button why-choose-us__quote"
+              to="/get-a-quote"
+            >
               Request a Quote
             </Link>
           </div>

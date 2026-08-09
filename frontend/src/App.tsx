@@ -1,6 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 
+/* =========================================================
+   PUBLIC LAYOUT
+========================================================= */
+
 import PublicLayout from "./layouts/PublicLayout";
+
+/* =========================================================
+   PUBLIC PAGES
+========================================================= */
 
 import HomePage from "./pages/Home/HomePage";
 import AboutPage from "./pages/About/AboutPage";
@@ -32,25 +40,99 @@ import NotFoundPage from "./pages/NotFound/NotFoundPage";
 
 import PlaceholderPage from "./pages/PlaceholderPage/PlaceholderPage";
 
+/* =========================================================
+   ADMIN
+========================================================= */
+
+import AdminLayout from "./admin/components/AdminLayout";
+import AdminDashboardPage from "./admin/pages/AdminDashboardPage";
+import AdminLoginPage from "./admin/pages/AdminLoginPage";
+import AdminBlogsPage from "./admin/pages/AdminBlogsPage";
+import AdminBlogFormPage from "./admin/pages/AdminBlogFormPage";
+import AdminMailSettingsPage from "./admin/pages/AdminMailSettingsPage";
+/* =========================================================
+   ROUTE PATHS
+========================================================= */
+
 import { routePaths } from "./routes/routePaths";
 
 export default function App() {
   return (
     <Routes>
+      {/* =====================================================
+          ADMIN ROUTES
+          Important:
+          Keep admin outside PublicLayout.
+      ===================================================== */}
+
+      <Route
+        path="/admin/login"
+        element={<AdminLoginPage />}
+      />
+
+      <Route
+        path="/admin"
+        element={<AdminLayout />}
+      >
+        <Route
+          index
+          element={<AdminDashboardPage />}
+        />
+          <Route
+            path="blogs"
+            element={<AdminBlogsPage />}
+          />
+          <Route
+            path="blogs/new"
+            element={<AdminBlogFormPage />}
+          />
+
+          <Route
+            path="blogs/:id/edit"
+            element={<AdminBlogFormPage />}
+          />
+          <Route
+          path="mail-settings"
+          element={<AdminMailSettingsPage />}
+        />
+        {/*
+          Blog CMS routes will be added next:
+
+          /admin/blogs
+          /admin/blogs/new
+          /admin/blogs/:id/edit
+
+          Mail route:
+
+          /admin/mail-settings
+        */}
+      </Route>
+
+      {/* =====================================================
+          PUBLIC WEBSITE
+      ===================================================== */}
+
       <Route element={<PublicLayout />}>
         {/* Home */}
+
         <Route
           index
           element={<HomePage />}
         />
 
-        {/* About */}
+        {/* ===================================================
+            ABOUT
+        =================================================== */}
+
         <Route
           path={routePaths.about}
           element={<AboutPage />}
         />
 
-        {/* Services */}
+        {/* ===================================================
+            SERVICES
+        =================================================== */}
+
         <Route
           path={routePaths.services}
           element={<ServicesPage />}
@@ -61,7 +143,10 @@ export default function App() {
           element={<ServiceDetailPage />}
         />
 
-        {/* Fleet */}
+        {/* ===================================================
+            FLEET
+        =================================================== */}
+
         <Route
           path={routePaths.fleet}
           element={<FleetPage />}
@@ -72,7 +157,10 @@ export default function App() {
           element={<FleetDetailPage />}
         />
 
-        {/* Service Areas */}
+        {/* ===================================================
+            SERVICE AREAS
+        =================================================== */}
+
         <Route
           path={routePaths.serviceAreas}
           element={<ServiceAreasPage />}
@@ -83,19 +171,28 @@ export default function App() {
           element={<ServiceAreaDetailPage />}
         />
 
-        {/* Quote */}
+        {/* ===================================================
+            QUOTE
+        =================================================== */}
+
         <Route
           path={routePaths.quote}
           element={<QuotePage />}
         />
 
-        {/* Contact */}
+        {/* ===================================================
+            CONTACT
+        =================================================== */}
+
         <Route
           path={routePaths.contact}
           element={<ContactPage />}
         />
 
-        {/* Blog */}
+        {/* ===================================================
+            BLOG
+        =================================================== */}
+
         <Route
           path={routePaths.blog}
           element={<BlogPage />}
@@ -106,7 +203,10 @@ export default function App() {
           element={<BlogDetailPage />}
         />
 
-        {/* FAQ */}
+        {/* ===================================================
+            FAQ
+        =================================================== */}
+
         <Route
           path={routePaths.faq}
           element={
@@ -117,7 +217,10 @@ export default function App() {
           }
         />
 
-        {/* Legal Pages */}
+        {/* ===================================================
+            LEGAL
+        =================================================== */}
+
         <Route
           path={routePaths.privacy}
           element={<PrivacyPolicyPage />}
@@ -138,25 +241,37 @@ export default function App() {
           element={<CookiePolicyPage />}
         />
 
-        {/* Support */}
+        {/* ===================================================
+            SUPPORT
+        =================================================== */}
+
         <Route
           path={routePaths.reportProblem}
           element={<ReportProblemPage />}
         />
 
-        {/* Submission Confirmation */}
+        {/* ===================================================
+            SUBMISSION CONFIRMATION
+        =================================================== */}
+
         <Route
           path={routePaths.thankYou}
           element={<ThankYouPage />}
         />
 
-        {/* Optional direct 404 route */}
+        {/* ===================================================
+            OPTIONAL DIRECT 404
+        =================================================== */}
+
         <Route
           path={routePaths.notFound}
           element={<NotFoundPage />}
         />
 
-        {/* Unknown URLs */}
+        {/* ===================================================
+            UNKNOWN PUBLIC URLS
+        =================================================== */}
+
         <Route
           path="*"
           element={<NotFoundPage />}

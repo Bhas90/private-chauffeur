@@ -7,308 +7,540 @@ export interface FleetVehicle {
   name: string;
   slug: string;
   category: string;
+
   heroDescription: string;
   description: string;
+
   image: string;
   gallery: string[];
+
+  imageCredit?: string;
+  imageSource?: string;
+  imageLicense?: string;
+
   passengers: number;
   largeBags: number;
   cabinBags: number;
+
   featured?: boolean;
+
   suitableFor: string[];
   features: FleetFeature[];
 }
 
+/* =========================================================
+   PRIVATE CHAUFFEUR MELBOURNE — APPROVED FLEET
+   Only executive/luxury chauffeur vehicles.
+   No sports cars.
+========================================================= */
+
 export const fleetData: FleetVehicle[] = [
+  /* =======================================================
+     BMW 7 SERIES
+  ======================================================= */
+
   {
-    name: "Mercedes-Benz E-Class",
-    slug: "mercedes-benz-e-class",
-    category: "Executive Sedan",
+    name: "BMW 7 Series",
+    slug: "bmw-7-series",
+
+    category: "Luxury Executive Sedan",
+
     heroDescription:
-      "A refined executive chauffeur vehicle for Melbourne Airport transfers, corporate travel and private journeys.",
+      "Premium BMW chauffeur travel for executive appointments, Melbourne Airport transfers, VIP guests and private journeys.",
+
     description:
-      "The Mercedes-Benz E-Class combines elegant styling, a comfortable cabin and a professional executive presence. It is well suited to airport transfers, business appointments and private chauffeur travel across Melbourne.",
+      "The BMW 7 Series combines refined luxury, spacious rear-seat comfort and a polished executive presence. It is an excellent chauffeur vehicle for airport transfers, corporate travel, VIP guests, hotel transfers and premium private journeys throughout Melbourne.",
+
     image:
-      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1800&q=85",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW%207%20Series%20G12%20LCI%20black%20(1).jpg",
+
     gallery: [
-      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1616788494672-ec7ca25b98c8?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=1500&q=85",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW%207%20Series%20G12%20LCI%20black%20(1).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW%207%20Series%20G12%20black%20(2).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW%207%20Series%20G12%20black%20(1).jpg",
     ],
+
+    imageCredit: "Damian B Oh / Wikimedia Commons",
+    imageSource:
+      "https://commons.wikimedia.org/wiki/File:BMW_7_Series_G12_LCI_black_(1).jpg",
+    imageLicense: "CC BY-SA 4.0",
+
     passengers: 4,
     largeBags: 2,
     cabinBags: 2,
+
     featured: true,
+
     suitableFor: [
       "Melbourne Airport transfers",
-      "Corporate travel",
+      "Corporate chauffeur travel",
+      "Executive meetings",
+      "VIP guest transport",
       "Hotel transfers",
-      "Private chauffeur hire",
-      "Business appointments",
+      "Wedding chauffeur service",
+      "Private Melbourne journeys",
     ],
+
     features: [
       {
-        title: "Executive comfort",
+        title: "Flagship executive comfort",
         description:
-          "A refined passenger cabin suitable for professional and private journeys.",
+          "A spacious premium cabin designed for relaxed chauffeur-driven travel.",
       },
       {
         title: "Professional presentation",
         description:
-          "An elegant vehicle choice for business travellers and corporate guests.",
+          "A polished luxury sedan for executives, VIP guests and corporate clients.",
       },
       {
-        title: "Airport suitability",
+        title: "Premium rear-seat experience",
         description:
-          "Suitable for individuals or small groups travelling with moderate luggage.",
+          "Comfort-focused passenger seating suited to business and private journeys.",
       },
       {
-        title: "Smooth Melbourne travel",
+        title: "Versatile chauffeur use",
         description:
-          "Well suited to Melbourne CBD, airport and suburban chauffeur journeys.",
+          "Suitable for airport, hotel, corporate, wedding and private transport.",
       },
     ],
   },
+
+  /* =======================================================
+     MERCEDES-BENZ S-CLASS
+  ======================================================= */
+
   {
-    name: "Audi A8 L",
-    slug: "audi-a8-l",
-    category: "Luxury Sedan",
+    name: "Mercedes-Benz S-Class",
+    slug: "mercedes-benz-s-class",
+
+    category: "Flagship Luxury Sedan",
+
     heroDescription:
-      "Flagship luxury chauffeur travel offering generous space, privacy and executive comfort.",
+      "Flagship Mercedes-Benz chauffeur travel offering exceptional comfort, privacy and refined executive presentation.",
+
     description:
-      "The Audi A8 L is designed for passengers who prefer a spacious and discreet luxury experience. Its long-wheelbase cabin makes it a premium option for executives, corporate guests and special private journeys.",
+      "The Mercedes-Benz S-Class is a premium chauffeur sedan designed for passengers who value comfort, discretion and sophisticated presentation. It is especially suited to VIP transfers, executive travel, Melbourne Airport journeys, weddings and luxury hotel transfers.",
+
     image:
-      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1800&q=85",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes-Benz%20S-Class%20W223%20black.jpg",
+
     gallery: [
-      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1500&q=85",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes-Benz%20S-Class%20W223%20black.jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes%20s-class%20w223%20black%20(1).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes%20s-class%20w223%20black%20(2).jpg",
     ],
+
+    imageCredit: "Damian B Oh / Wikimedia Commons",
+    imageSource:
+      "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_S-Class_W223_black.jpg",
+    imageLicense: "Creative Commons Attribution-ShareAlike",
+
     passengers: 4,
     largeBags: 2,
     cabinBags: 2,
+
     featured: true,
+
     suitableFor: [
-      "Executive airport transfers",
-      "Corporate roadshows",
-      "VIP transport",
-      "Wedding chauffeur service",
+      "VIP airport transfers",
+      "Senior executive travel",
+      "Corporate chauffeur service",
+      "Wedding chauffeur transport",
+      "Luxury hotel transfers",
       "Special events",
+      "Private chauffeur journeys",
     ],
+
     features: [
       {
-        title: "Long-wheelbase comfort",
+        title: "Flagship Mercedes-Benz luxury",
         description:
-          "Additional rear passenger space for a relaxed luxury journey.",
+          "Premium chauffeur presentation for executive and VIP passengers.",
+      },
+      {
+        title: "Exceptional passenger comfort",
+        description:
+          "A refined rear cabin suited to important and longer chauffeur journeys.",
       },
       {
         title: "Discreet executive travel",
         description:
-          "Ideal for senior executives, business guests and private clients.",
+          "Ideal for senior executives, corporate guests and private clients.",
       },
       {
-        title: "Premium interior",
+        title: "Premium special-event choice",
         description:
-          "A refined cabin designed around comfort and quiet travel.",
-      },
-      {
-        title: "Luxury presentation",
-        description:
-          "Suitable for corporate, wedding and special-event chauffeur bookings.",
+          "A sophisticated option for weddings, formal events and luxury transfers.",
       },
     ],
   },
+
+  /* =======================================================
+     MERCEDES-BENZ E-CLASS
+  ======================================================= */
+
   {
-    name: "BMW 7 Series",
-    slug: "bmw-7-series",
-    category: "Luxury Sedan",
+    name: "Mercedes-Benz E-Class",
+    slug: "mercedes-benz-e-class",
+
+    category: "Executive Sedan",
+
     heroDescription:
-      "A flagship chauffeur sedan combining sophisticated design, comfort and premium road presence.",
+      "Refined executive chauffeur travel for Melbourne Airport transfers, business appointments, hotels and private journeys.",
+
     description:
-      "The BMW 7 Series offers a polished luxury experience for airport travel, executive appointments, weddings and private Melbourne journeys.",
+      "The Mercedes-Benz E-Class offers a balanced combination of executive comfort, elegant presentation and practical luxury. It is a strong choice for airport transfers, business travel, hotel transfers and private chauffeur bookings throughout Melbourne.",
+
     image:
-      "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1800&q=85",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes%20E%20class%20W213%20Exclusive%20black%20(1).jpg",
+
     gallery: [
-      "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?auto=format&fit=crop&w=1500&q=85",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes%20E%20class%20W213%20Exclusive%20black%20(1).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes%20E%20class%20W213%20Exclusive%20black%20(2).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes-Benz-E-Class-Black.JPG",
     ],
+
+    imageCredit: "Damian B Oh / Wikimedia Commons",
+    imageSource:
+      "https://commons.wikimedia.org/wiki/File:Mercedes_E_class_W213_Exclusive_black_(1).jpg",
+    imageLicense: "Creative Commons Attribution-ShareAlike",
+
     passengers: 4,
     largeBags: 2,
     cabinBags: 2,
+
     featured: true,
+
     suitableFor: [
-      "Luxury airport transfers",
-      "Corporate chauffeur service",
-      "Wedding transport",
-      "Event transfers",
-      "Private travel",
+      "Melbourne Airport transfers",
+      "Corporate travel",
+      "Business appointments",
+      "Hotel transfers",
+      "Conference transfers",
+      "Hourly chauffeur hire",
+      "Private journeys",
     ],
+
     features: [
       {
-        title: "Flagship luxury",
+        title: "Executive comfort",
         description:
-          "Premium styling and passenger comfort for important journeys.",
+          "A refined passenger cabin suitable for business and private travel.",
       },
       {
-        title: "Executive suitability",
+        title: "Professional presentation",
         description:
-          "A professional option for meetings, airport travel and corporate events.",
+          "Elegant styling suited to corporate clients and visiting executives.",
       },
       {
-        title: "Special-event appeal",
+        title: "Airport suitability",
         description:
-          "An elegant choice for weddings, celebrations and private occasions.",
+          "Well suited to individuals and small groups with moderate luggage.",
       },
       {
-        title: "Comfortable cabin",
+        title: "Everyday premium travel",
         description:
-          "Designed for relaxed travel across Melbourne and surrounding areas.",
+          "Ideal for CBD, airport, suburban and hotel chauffeur journeys.",
       },
     ],
   },
+
+  /* =======================================================
+     MERCEDES-BENZ GLE
+  ======================================================= */
+
   {
-    name: "Holden Caprice",
-    slug: "holden-caprice",
-    category: "Executive Sedan",
+    name: "Mercedes-Benz GLE",
+    slug: "mercedes-benz-gle",
+
+    category: "Luxury SUV",
+
     heroDescription:
-      "A spacious long-wheelbase chauffeur vehicle for comfortable airport, business and private travel.",
+      "Premium Mercedes-Benz SUV travel with additional passenger comfort and luggage flexibility for Melbourne chauffeur journeys.",
+
     description:
-      "The Holden Caprice provides generous passenger space and practical luggage capacity, making it suitable for airport transfers and longer Melbourne or regional journeys.",
+      "The Mercedes-Benz GLE provides spacious luxury SUV comfort with excellent passenger access and useful luggage capacity. It is suited to airport transfers, family travel, executive journeys, private tours and regional chauffeur bookings.",
+
     image:
-      "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1800&q=85",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes%20gle%20w167%20black%20(1).jpg",
+
     gallery: [
-      "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1500&q=85",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes%20gle%20w167%20black%20(1).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mercedes%20gle%20w167%20black%20(2).jpg",
+      "https://images.unsplash.com/photo-1732347700493-44e8e1e79c9a?auto=format&fit=crop&w=1600&q=85",
     ],
+
+    imageCredit: "Damian B Oh / Wikimedia Commons",
+    imageSource:
+      "https://commons.wikimedia.org/wiki/File:Mercedes_gle_w167_black_(1).jpg",
+    imageLicense: "Creative Commons Attribution-ShareAlike",
+
     passengers: 4,
     largeBags: 3,
     cabinBags: 2,
+
+    featured: true,
+
     suitableFor: [
-      "Airport transfers",
-      "Regional journeys",
-      "Hotel transfers",
-      "Group travel",
-      "Private chauffeur bookings",
-    ],
-    features: [
-      {
-        title: "Generous passenger space",
-        description:
-          "Long-wheelbase seating suitable for comfortable longer journeys.",
-      },
-      {
-        title: "Practical luggage room",
-        description:
-          "Useful for airport transfers with multiple bags.",
-      },
-      {
-        title: "Regional suitability",
-        description:
-          "A comfortable choice for travel beyond Melbourne.",
-      },
-      {
-        title: "Flexible use",
-        description:
-          "Suitable for airport, private and business chauffeur requirements.",
-      },
-    ],
-  },
-  {
-    name: "Chrysler 300C",
-    slug: "chrysler-300c",
-    category: "Premium Sedan",
-    heroDescription:
-      "Distinctive premium chauffeur travel for weddings, events and private Melbourne journeys.",
-    description:
-      "The Chrysler 300C offers a bold road presence and spacious interior, making it a popular vehicle choice for weddings, special events and premium private travel.",
-    image:
-      "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1800&q=85",
-    gallery: [
-      "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1500&q=85",
-    ],
-    passengers: 4,
-    largeBags: 2,
-    cabinBags: 2,
-    suitableFor: [
-      "Wedding chauffeur service",
-      "Event transfers",
-      "Private celebrations",
-      "Hotel transfers",
-      "Premium chauffeur hire",
-    ],
-    features: [
-      {
-        title: "Distinctive styling",
-        description:
-          "A strong visual presence for weddings and special occasions.",
-      },
-      {
-        title: "Comfortable interior",
-        description:
-          "Spacious seating for relaxed chauffeur-driven travel.",
-      },
-      {
-        title: "Event suitability",
-        description:
-          "A popular option for ceremonies, receptions and private events.",
-      },
-      {
-        title: "Premium travel",
-        description:
-          "Suitable for customers seeking a distinctive chauffeur experience.",
-      },
-    ],
-  },
-  {
-    name: "Hyundai Genesis",
-    slug: "hyundai-genesis",
-    category: "Executive Sedan",
-    heroDescription:
-      "Smooth and comfortable executive chauffeur travel for business, airport and private journeys.",
-    description:
-      "The Hyundai Genesis provides a refined and comfortable chauffeur experience for airport transfers, business travel and private journeys throughout Melbourne.",
-    image:
-      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1800&q=85",
-    gallery: [
-      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1500&q=85",
-      "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1500&q=85",
-    ],
-    passengers: 4,
-    largeBags: 2,
-    cabinBags: 2,
-    suitableFor: [
-      "Airport transfers",
+      "Melbourne Airport transfers",
+      "Family chauffeur travel",
       "Corporate travel",
-      "Hourly chauffeur hire",
+      "Private touring",
+      "Regional Victoria travel",
       "Hotel transfers",
-      "Private journeys",
+      "Long-distance transfers",
     ],
+
     features: [
       {
-        title: "Smooth passenger experience",
+        title: "Luxury SUV comfort",
         description:
-          "Comfortable ride quality for city and regional chauffeur travel.",
+          "A spacious premium cabin with elevated seating and easy passenger access.",
       },
       {
-        title: "Executive presentation",
+        title: "Additional luggage room",
         description:
-          "Suitable for corporate appointments and business airport transfers.",
+          "Useful for airport passengers carrying larger or multiple bags.",
       },
       {
-        title: "Flexible chauffeur use",
+        title: "Flexible passenger experience",
         description:
-          "A practical choice for airport, hotel and private journeys.",
+          "Suitable for families, executives and private travellers.",
       },
       {
-        title: "Comfort-focused cabin",
+        title: "Regional journey comfort",
         description:
-          "Designed to provide relaxed travel for up to four passengers.",
+          "Well suited to longer chauffeur journeys beyond Melbourne CBD.",
+      },
+    ],
+  },
+
+  /* =======================================================
+     MERCEDES-BENZ GL
+  ======================================================= */
+
+  {
+    name: "Mercedes-Benz GL",
+    slug: "mercedes-benz-gl",
+
+    category: "Large Luxury SUV",
+
+    heroDescription:
+      "Spacious Mercedes-Benz luxury SUV chauffeur travel for airport transfers, families, groups and longer journeys.",
+
+    description:
+      "The Mercedes-Benz GL offers generous interior space, premium SUV comfort and practical versatility for passengers requiring additional room. It is suited to family airport transfers, small groups, private travel and regional chauffeur journeys.",
+
+    image:
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Moscow,%20Mercedes-Benz%20X164%20(GL-class)%20black,%20Mar%202026%2002.jpg",
+
+    gallery: [
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Moscow,%20Mercedes-Benz%20X164%20(GL-class)%20black,%20Mar%202026%2002.jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Moscow,%20Mercedes-Benz%20X164%20(GL-class)%20black,%20Mar%202026%2002.jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Black%20mercedes%20benz%20steering%20wheel-Uxc9SiOB7U8.jpg",
+    ],
+
+    imageCredit: "Wikimedia Commons contributors",
+    imageSource:
+      "https://commons.wikimedia.org/wiki/File:Moscow,_Mercedes-Benz_X164_(GL-class)_black,_Mar_2026_02.jpg",
+    imageLicense: "See Wikimedia Commons file page for licence details",
+
+    passengers: 6,
+    largeBags: 3,
+    cabinBags: 3,
+
+    featured: false,
+
+    suitableFor: [
+      "Family airport transfers",
+      "Small group travel",
+      "Private chauffeur journeys",
+      "Regional Victoria travel",
+      "Hotel transfers",
+      "Event transportation",
+      "Long-distance transfers",
+    ],
+
+    features: [
+      {
+        title: "Large SUV cabin",
+        description:
+          "Additional passenger space for families and small groups.",
+      },
+      {
+        title: "Flexible passenger capacity",
+        description:
+          "A useful option when greater interior room is required.",
+      },
+      {
+        title: "Practical luggage space",
+        description:
+          "Suitable for airport and longer journeys with additional baggage.",
+      },
+      {
+        title: "Comfortable regional travel",
+        description:
+          "Designed for relaxed chauffeur journeys across Melbourne and Victoria.",
+      },
+    ],
+  },
+
+  /* =======================================================
+     BMW X7
+  ======================================================= */
+
+  {
+    name: "BMW X7",
+    slug: "bmw-x7",
+
+    category: "Luxury Large SUV",
+
+    heroDescription:
+      "Spacious BMW luxury SUV chauffeur travel for airport transfers, families, executives, groups and regional journeys.",
+
+    description:
+      "The BMW X7 combines generous passenger space, premium comfort and strong luxury presentation. It is ideal for Melbourne Airport transfers, family chauffeur travel, executive groups, private touring and longer regional journeys.",
+
+    image:
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW%20X7%20G07%20black%20(1).jpg",
+
+    gallery: [
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW%20X7%20G07%20black%20(1).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW%20X7%20G07%20black%20(2).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW%20X7%20Xdrive%2040i%20G07%20Black%20Diplomatic%20(1).jpg",
+    ],
+
+    imageCredit: "Damian B Oh / Wikimedia Commons",
+    imageSource:
+      "https://commons.wikimedia.org/wiki/File:BMW_X7_G07_black_(1).jpg",
+    imageLicense: "CC BY-SA",
+
+    passengers: 6,
+    largeBags: 3,
+    cabinBags: 3,
+
+    featured: true,
+
+    suitableFor: [
+      "Melbourne Airport transfers",
+      "Family chauffeur travel",
+      "Executive group travel",
+      "Private tours",
+      "Regional Victoria transfers",
+      "Hotel transfers",
+      "Premium event transport",
+    ],
+
+    features: [
+      {
+        title: "Spacious luxury cabin",
+        description:
+          "Generous passenger room for executive, family and private group travel.",
+      },
+      {
+        title: "Premium SUV presentation",
+        description:
+          "A refined and commanding vehicle suited to luxury chauffeur service.",
+      },
+      {
+        title: "Flexible luggage capacity",
+        description:
+          "Useful for airport and longer journeys requiring additional baggage room.",
+      },
+      {
+        title: "Regional travel comfort",
+        description:
+          "Well suited to longer journeys throughout Melbourne and Victoria.",
+      },
+    ],
+  },
+
+  /* =======================================================
+     AUDI Q7
+  ======================================================= */
+
+  {
+    name: "Audi Q7",
+    slug: "audi-q7",
+
+    category: "Executive Luxury SUV",
+
+    heroDescription:
+      "Refined Audi SUV chauffeur travel offering premium passenger comfort, space and luggage flexibility.",
+
+    description:
+      "The Audi Q7 combines understated executive styling with versatile SUV space. It is suitable for Melbourne Airport transfers, corporate journeys, family travel, hotel transfers, private tours and regional chauffeur bookings.",
+
+    image:
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Audi%20Q7%204M%20black%20(2).jpg",
+
+    gallery: [
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Audi%20Q7%204M%20black%20(2).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Audi%20Q7%204L%20Brilliant%20Black%20(2).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Audi%20Q7%204L%20Brilliant%20Black%20(4).jpg",
+    ],
+
+    imageCredit: "Damian B Oh / Wikimedia Commons",
+    imageSource:
+      "https://commons.wikimedia.org/wiki/File:Audi_Q7_4M_black_(2).jpg",
+    imageLicense: "Creative Commons Attribution-ShareAlike",
+
+    passengers: 6,
+    largeBags: 3,
+    cabinBags: 3,
+
+    featured: false,
+
+    suitableFor: [
+      "Melbourne Airport transfers",
+      "Corporate chauffeur travel",
+      "Family journeys",
+      "Hotel transfers",
+      "Private Melbourne tours",
+      "Regional transfers",
+      "Conference travel",
+    ],
+
+    features: [
+      {
+        title: "Executive SUV comfort",
+        description:
+          "A refined cabin suitable for corporate, airport and private travel.",
+      },
+      {
+        title: "Flexible passenger space",
+        description:
+          "Well suited to families and small groups requiring additional room.",
+      },
+      {
+        title: "Practical luggage capacity",
+        description:
+          "A useful choice for airport transfers and longer journeys.",
+      },
+      {
+        title: "Professional presentation",
+        description:
+          "Understated premium styling appropriate for chauffeur service.",
       },
     ],
   },
 ];
+
+/* =========================================================
+   FLEET HELPERS
+========================================================= */
+
+export const getFleetVehicleBySlug = (
+  slug?: string,
+): FleetVehicle | undefined =>
+  fleetData.find((vehicle) => vehicle.slug === slug);
+
+export const getFeaturedFleet = (): FleetVehicle[] =>
+  fleetData.filter((vehicle) => vehicle.featured);
+
+export const getFleetBySlugs = (
+  slugs: string[],
+): FleetVehicle[] =>
+  fleetData.filter((vehicle) =>
+    slugs.includes(vehicle.slug),
+  );

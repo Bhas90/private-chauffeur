@@ -5,7 +5,18 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
 
 import App from "./App";
+
+/* =========================================================
+   GLOBAL STYLES
+========================================================= */
+
 import "./styles/global.css";
+
+/* =========================================================
+   ADMIN STYLES
+========================================================= */
+
+import "./admin/styles/admin.css";
 
 const rootElement = document.getElementById("root");
 

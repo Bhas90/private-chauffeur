@@ -19,63 +19,102 @@ import {
 import { fleetData } from "../../data/fleetData";
 import { servicesData } from "../../data/servicesData";
 import { routePaths } from "../../routes/routePaths";
+
 import "./tailoredQuoteForm.css";
 
-type TripType = "one-way" | "return";
+type TripType =
+  | "one-way"
+  | "return";
 
 interface TailoredQuoteFormProps {
   defaultService?: string;
   defaultVehicle?: string;
+
   defaultPickup?: string;
   defaultDestination?: string;
+
   defaultPickupDate?: string;
   defaultPickupTime?: string;
+
   defaultPassengers?: string;
+
   defaultTripType?: TripType;
 }
 
 interface QuoteFormState {
   fullName: string;
+
   email: string;
+
   mobile: string;
+
   serviceRequired: string;
+
   preferredVehicle: string;
+
   luggageRequirements: string;
+
   flightNumber: string;
+
   additionalRequirements: string;
+
   marketingConsent: boolean;
+
   privacyAccepted: boolean;
 }
 
 interface JourneyDetails {
   pickupLocation: string;
+
   destination: string;
+
   pickupDate: string;
+
   pickupTime: string;
+
   passengers: string;
+
   tripType: TripType;
 }
 
-const baseInitialState: QuoteFormState = {
+interface QuoteApiResponse {
+  success?: boolean;
+  message?: string;
+}
+
+const baseInitialState:
+  QuoteFormState = {
   fullName: "",
+
   email: "",
+
   mobile: "",
+
   serviceRequired: "",
+
   preferredVehicle: "",
+
   luggageRequirements: "",
+
   flightNumber: "",
+
   additionalRequirements: "",
+
   marketingConsent: false,
+
   privacyAccepted: false,
 };
 
 function getTodayDate(): string {
   const today = new Date();
+
   const timezoneOffset =
-    today.getTimezoneOffset() * 60_000;
+    today.getTimezoneOffset() *
+    60_000;
 
   return new Date(
-    today.getTime() - timezoneOffset,
+    today.getTime() -
+      timezoneOffset,
   )
     .toISOString()
     .split("T")[0];
@@ -84,18 +123,25 @@ function getTodayDate(): string {
 function normalisePassengerCount(
   value?: string,
 ): string {
-  const passengerCount = Number(value);
+  const passengerCount =
+    Number(value);
 
   if (
     !value ||
-    Number.isNaN(passengerCount) ||
+    Number.isNaN(
+      passengerCount,
+    ) ||
     passengerCount < 1 ||
     passengerCount > 16
   ) {
     return "1";
   }
 
-  return String(Math.floor(passengerCount));
+  return String(
+    Math.floor(
+      passengerCount,
+    ),
+  );
 }
 
 function normaliseTripType(
@@ -120,81 +166,125 @@ function hasCompleteJourney(
 export default function TailoredQuoteForm({
   defaultService = "",
   defaultVehicle = "",
+
   defaultPickup = "",
   defaultDestination = "",
+
   defaultPickupDate = "",
   defaultPickupTime = "",
+
   defaultPassengers = "1",
+
   defaultTripType = "one-way",
 }: TailoredQuoteFormProps) {
-  const navigate = useNavigate();
+  const navigate =
+    useNavigate();
 
-  const minimumPickupDate = useMemo(
-    () => getTodayDate(),
-    [],
-  );
+  const minimumPickupDate =
+    useMemo(
+      () => getTodayDate(),
+      [],
+    );
 
   const createJourneyState =
     (): JourneyDetails => ({
-      pickupLocation: defaultPickup,
-      destination: defaultDestination,
-      pickupDate: defaultPickupDate,
-      pickupTime: defaultPickupTime,
+      pickupLocation:
+        defaultPickup,
+
+      destination:
+        defaultDestination,
+
+      pickupDate:
+        defaultPickupDate,
+
+      pickupTime:
+        defaultPickupTime,
+
       passengers:
         normalisePassengerCount(
           defaultPassengers,
         ),
+
       tripType:
         normaliseTripType(
           defaultTripType,
         ),
     });
 
-  const [formData, setFormData] =
-    useState<QuoteFormState>({
-      ...baseInitialState,
-      serviceRequired: defaultService,
-      preferredVehicle: defaultVehicle,
-    });
+  const [
+    formData,
+    setFormData,
+  ] = useState<QuoteFormState>({
+    ...baseInitialState,
 
-  const [journeyDetails, setJourneyDetails] =
+    serviceRequired:
+      defaultService,
+
+    preferredVehicle:
+      defaultVehicle,
+  });
+
+  const [
+    journeyDetails,
+    setJourneyDetails,
+  ] =
     useState<JourneyDetails>(
       createJourneyState,
     );
 
-  const [isEditingJourney, setIsEditingJourney] =
-    useState(
-      !hasCompleteJourney(
-        createJourneyState(),
-      ),
-    );
+  const [
+    isEditingJourney,
+    setIsEditingJourney,
+  ] = useState(
+    !hasCompleteJourney(
+      createJourneyState(),
+    ),
+  );
 
-  const [isSubmitting, setIsSubmitting] =
-    useState(false);
+  const [
+    isSubmitting,
+    setIsSubmitting,
+  ] = useState(false);
+
+  /* =======================================================
+     DEFAULT SERVICE / VEHICLE
+  ======================================================= */
 
   useEffect(() => {
-    setFormData((current) => ({
-      ...current,
-      serviceRequired:
-        defaultService ||
-        current.serviceRequired,
-      preferredVehicle:
-        defaultVehicle ||
-        current.preferredVehicle,
-    }));
+    setFormData(
+      (current) => ({
+        ...current,
+
+        serviceRequired:
+          defaultService ||
+          current.serviceRequired,
+
+        preferredVehicle:
+          defaultVehicle ||
+          current.preferredVehicle,
+      }),
+    );
   }, [
     defaultService,
     defaultVehicle,
   ]);
 
+  /* =======================================================
+     DEFAULT JOURNEY
+  ======================================================= */
+
   useEffect(() => {
     const nextJourney =
       createJourneyState();
 
-    setJourneyDetails(nextJourney);
+    setJourneyDetails(
+      nextJourney,
+    );
 
     setIsEditingJourney(
-      !hasCompleteJourney(nextJourney),
+      !hasCompleteJourney(
+        nextJourney,
+      ),
     );
   }, [
     defaultDestination,
@@ -205,44 +295,74 @@ export default function TailoredQuoteForm({
     defaultTripType,
   ]);
 
+  /* =======================================================
+     FIELD HELPERS
+  ======================================================= */
+
   const updateField = <
     K extends keyof QuoteFormState,
   >(
     field: K,
-    value: QuoteFormState[K],
+    value:
+      QuoteFormState[K],
   ) => {
-    setFormData((current) => ({
-      ...current,
-      [field]: value,
-    }));
+    setFormData(
+      (current) => ({
+        ...current,
+
+        [field]: value,
+      }),
+    );
   };
 
   const updateJourneyField = <
     K extends keyof JourneyDetails,
   >(
     field: K,
-    value: JourneyDetails[K],
+    value:
+      JourneyDetails[K],
   ) => {
-    setJourneyDetails((current) => ({
-      ...current,
-      [field]: value,
-    }));
+    setJourneyDetails(
+      (current) => ({
+        ...current,
+
+        [field]: value,
+      }),
+    );
   };
+
+  /* =======================================================
+     AIRPORT SERVICE
+  ======================================================= */
 
   const isAirportTransfer =
     formData.serviceRequired ===
     "airport-transfers-melbourne";
 
-  const resetCustomerFields = () => {
-    setFormData({
-      ...baseInitialState,
-      serviceRequired: defaultService,
-      preferredVehicle: defaultVehicle,
-    });
-  };
+  /* =======================================================
+     RESET
+  ======================================================= */
+
+  const resetCustomerFields =
+    () => {
+      setFormData({
+        ...baseInitialState,
+
+        serviceRequired:
+          defaultService,
+
+        preferredVehicle:
+          defaultVehicle,
+      });
+    };
+
+  /* =======================================================
+     SUBMIT
+  ======================================================= */
 
   const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>,
+    event:
+      FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
 
@@ -250,7 +370,9 @@ export default function TailoredQuoteForm({
       return;
     }
 
-    if (!formData.privacyAccepted) {
+    if (
+      !formData.privacyAccepted
+    ) {
       toast.error(
         "Please accept the Privacy Policy before submitting.",
       );
@@ -263,7 +385,9 @@ export default function TailoredQuoteForm({
         journeyDetails,
       )
     ) {
-      setIsEditingJourney(true);
+      setIsEditingJourney(
+        true,
+      );
 
       toast.error(
         "Please complete your pickup, destination, date and time.",
@@ -275,6 +399,25 @@ export default function TailoredQuoteForm({
     setIsSubmitting(true);
 
     try {
+      const apiUrl =
+        import.meta.env
+          .VITE_API_URL ||
+        "http://localhost:3000/api";
+
+      const selectedService =
+        servicesData.find(
+          (service) =>
+            service.slug ===
+            formData.serviceRequired,
+        );
+
+      const selectedVehicle =
+        fleetData.find(
+          (vehicle) =>
+            vehicle.slug ===
+            formData.preferredVehicle,
+        );
+
       const payload = {
         fullName:
           formData.fullName.trim(),
@@ -288,13 +431,33 @@ export default function TailoredQuoteForm({
           formData.mobile.trim(),
 
         serviceRequired:
+          selectedService?.title ||
           formData.serviceRequired,
 
-        preferredVehicle:
-          formData.preferredVehicle,
+        pickupDate:
+          journeyDetails.pickupDate,
+
+        pickupTime:
+          journeyDetails.pickupTime,
+
+        pickupLocation:
+          journeyDetails.pickupLocation.trim(),
+
+        destination:
+          journeyDetails.destination.trim(),
+
+        passengers:
+          journeyDetails.passengers,
+
+        tripType:
+          journeyDetails.tripType,
 
         luggageRequirements:
           formData.luggageRequirements.trim(),
+
+        preferredVehicle:
+          selectedVehicle?.name ||
+          formData.preferredVehicle,
 
         flightNumber:
           isAirportTransfer
@@ -305,73 +468,57 @@ export default function TailoredQuoteForm({
 
         additionalRequirements:
           formData.additionalRequirements.trim(),
-
-        marketingConsent:
-          formData.marketingConsent,
-
-        privacyAccepted:
-          formData.privacyAccepted,
-
-        pickupLocation:
-          journeyDetails.pickupLocation.trim(),
-
-        destination:
-          journeyDetails.destination.trim(),
-
-        pickupDate:
-          journeyDetails.pickupDate,
-
-        pickupTime:
-          journeyDetails.pickupTime,
-
-        passengers:
-          journeyDetails.passengers,
-
-        tripType:
-          journeyDetails.tripType,
       };
 
-      /*
-       * Replace the temporary delay with:
-       *
-       * const response = await fetch(
-       *   "http://localhost:3000/api/v1/quotes",
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json",
-       *     },
-       *     body: JSON.stringify(payload),
-       *   },
-       * );
-       *
-       * if (!response.ok) {
-       *   throw new Error(
-       *     "Quote request failed",
-       *   );
-       * }
-       */
+      const response =
+        await fetch(
+          `${apiUrl}/mail/quote`,
+          {
+            method: "POST",
 
-      console.log(
-        "Quote request payload:",
-        payload,
-      );
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
 
-      await new Promise((resolve) =>
-        window.setTimeout(resolve, 700),
-      );
+            body:
+              JSON.stringify(
+                payload,
+              ),
+          },
+        );
+
+      let responseData:
+        QuoteApiResponse | null =
+        null;
+
+      try {
+        responseData =
+          await response.json();
+      } catch {
+        responseData = null;
+      }
+
+      if (!response.ok) {
+        throw new Error(
+          responseData?.message ||
+            "We could not submit your quote request.",
+        );
+      }
 
       toast.success(
-        "Your quote request has been received.",
+        responseData?.message ||
+          "Your quote request has been received.",
       );
 
       resetCustomerFields();
 
-      window.setTimeout(() => {
-        navigate(
-          `${routePaths.thankYou}?type=quote`,
-        );
-      }, 900);
+      navigate(
+        `${routePaths.thankYou}?type=quote`,
+        {
+          replace: true,
+        },
+      );
     } catch (error) {
       console.error(
         "Quote form submission failed:",
@@ -379,12 +526,18 @@ export default function TailoredQuoteForm({
       );
 
       toast.error(
-        "We could not submit your request. Please try again.",
+        error instanceof Error
+          ? error.message
+          : "We could not submit your request. Please try again.",
       );
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  /* =======================================================
+     RENDER
+  ======================================================= */
 
   return (
     <section
@@ -398,19 +551,28 @@ export default function TailoredQuoteForm({
         </span>
 
         <h2 id="tailored-quote-form-title">
-          Add your contact and travel
-          preferences.
+          Add your contact and
+          travel preferences.
         </h2>
 
         <p>
-          Complete the remaining information
-          and our booking team will review your
-          journey and prepare a tailored
+          Complete the remaining
+          information and our booking
+          team will review your journey
+          and prepare a tailored
           quotation.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={
+          handleSubmit
+        }
+      >
+        {/* =================================================
+            JOURNEY
+        ================================================= */}
+
         {isEditingJourney ? (
           <section className="tailored-quote-form__journey-editor">
             <div className="tailored-quote-form__journey-heading">
@@ -420,13 +582,16 @@ export default function TailoredQuoteForm({
                 </span>
 
                 <h3>
-                  Tell us about your journey.
+                  Tell us about
+                  your journey.
                 </h3>
 
                 <p>
-                  Complete the required travel
-                  information before submitting
-                  your quotation request.
+                  Complete the
+                  required travel
+                  information before
+                  submitting your
+                  quotation request.
                 </p>
               </div>
 
@@ -447,10 +612,13 @@ export default function TailoredQuoteForm({
                   value={
                     journeyDetails.pickupLocation
                   }
-                  onChange={(event) =>
+                  onChange={(
+                    event,
+                  ) =>
                     updateJourneyField(
                       "pickupLocation",
-                      event.target.value,
+                      event.target
+                        .value,
                     )
                   }
                   placeholder="Enter the full pickup address"
@@ -460,7 +628,9 @@ export default function TailoredQuoteForm({
               </label>
 
               <label className="tailored-quote-form__wide">
-                <span>Destination*</span>
+                <span>
+                  Destination*
+                </span>
 
                 <input
                   type="text"
@@ -468,10 +638,13 @@ export default function TailoredQuoteForm({
                   value={
                     journeyDetails.destination
                   }
-                  onChange={(event) =>
+                  onChange={(
+                    event,
+                  ) =>
                     updateJourneyField(
                       "destination",
-                      event.target.value,
+                      event.target
+                        .value,
                     )
                   }
                   placeholder="Enter the destination address"
@@ -480,38 +653,26 @@ export default function TailoredQuoteForm({
               </label>
 
               <label>
-                <span>Pick-up Date*</span>
+                <span>
+                  Pick-up Date*
+                </span>
 
                 <input
                   type="date"
                   name="pickupDate"
-                  min={minimumPickupDate}
+                  min={
+                    minimumPickupDate
+                  }
                   value={
                     journeyDetails.pickupDate
                   }
-                  onChange={(event) =>
+                  onChange={(
+                    event,
+                  ) =>
                     updateJourneyField(
                       "pickupDate",
-                      event.target.value,
-                    )
-                  }
-                  required
-                />
-              </label>
-
-              <label>
-                <span>Pick-up Time*</span>
-
-                <input
-                  type="time"
-                  name="pickupTime"
-                  value={
-                    journeyDetails.pickupTime
-                  }
-                  onChange={(event) =>
-                    updateJourneyField(
-                      "pickupTime",
-                      event.target.value,
+                      event.target
+                        .value,
                     )
                   }
                   required
@@ -520,7 +681,32 @@ export default function TailoredQuoteForm({
 
               <label>
                 <span>
-                  Number of Passengers*
+                  Pick-up Time*
+                </span>
+
+                <input
+                  type="time"
+                  name="pickupTime"
+                  value={
+                    journeyDetails.pickupTime
+                  }
+                  onChange={(
+                    event,
+                  ) =>
+                    updateJourneyField(
+                      "pickupTime",
+                      event.target
+                        .value,
+                    )
+                  }
+                  required
+                />
+              </label>
+
+              <label>
+                <span>
+                  Number of
+                  Passengers*
                 </span>
 
                 <select
@@ -528,10 +714,13 @@ export default function TailoredQuoteForm({
                   value={
                     journeyDetails.passengers
                   }
-                  onChange={(event) =>
+                  onChange={(
+                    event,
+                  ) =>
                     updateJourneyField(
                       "passengers",
-                      event.target.value,
+                      event.target
+                        .value,
                     )
                   }
                   required
@@ -543,14 +732,20 @@ export default function TailoredQuoteForm({
                     (_, index) =>
                       index + 1,
                   ).map(
-                    (passengerCount) => (
+                    (
+                      passengerCount,
+                    ) => (
                       <option
-                        key={passengerCount}
+                        key={
+                          passengerCount
+                        }
                         value={String(
                           passengerCount,
                         )}
                       >
-                        {passengerCount}
+                        {
+                          passengerCount
+                        }
                       </option>
                     ),
                   )}
@@ -587,7 +782,9 @@ export default function TailoredQuoteForm({
                       }
                     />
 
-                    <span>One Way</span>
+                    <span>
+                      One Way
+                    </span>
                   </label>
 
                   <label
@@ -629,10 +826,13 @@ export default function TailoredQuoteForm({
                 type="button"
                 className="tailored-quote-form__save-journey"
                 onClick={() =>
-                  setIsEditingJourney(false)
+                  setIsEditingJourney(
+                    false,
+                  )
                 }
               >
                 Save Journey Details
+
                 <FiCheckCircle
                   aria-hidden="true"
                 />
@@ -648,13 +848,20 @@ export default function TailoredQuoteForm({
 
               <span>
                 <strong>
-                  Journey details completed
+                  Journey details
+                  completed
                 </strong>
 
                 <small>
-                  {journeyDetails.pickupLocation}
+                  {
+                    journeyDetails.pickupLocation
+                  }
+
                   {" → "}
-                  {journeyDetails.destination}
+
+                  {
+                    journeyDetails.destination
+                  }
                 </small>
               </span>
             </div>
@@ -662,16 +869,23 @@ export default function TailoredQuoteForm({
             <button
               type="button"
               onClick={() =>
-                setIsEditingJourney(true)
+                setIsEditingJourney(
+                  true,
+                )
               }
             >
               <FiEdit3
                 aria-hidden="true"
               />
+
               Edit Journey
             </button>
           </section>
         )}
+
+        {/* =================================================
+            CUSTOMER DETAILS
+        ================================================= */}
 
         <div className="tailored-quote-form__customer-section">
           <div className="tailored-quote-form__section-heading">
@@ -680,19 +894,26 @@ export default function TailoredQuoteForm({
             </span>
 
             <h3>
-              How should we contact you?
+              How should we
+              contact you?
             </h3>
           </div>
 
           <div className="tailored-quote-form__grid">
             <label>
-              <span>Full Name*</span>
+              <span>
+                Full Name*
+              </span>
 
               <input
                 type="text"
                 name="fullName"
-                value={formData.fullName}
-                onChange={(event) =>
+                value={
+                  formData.fullName
+                }
+                onChange={(
+                  event,
+                ) =>
                   updateField(
                     "fullName",
                     event.target.value,
@@ -705,13 +926,19 @@ export default function TailoredQuoteForm({
             </label>
 
             <label>
-              <span>Email Address*</span>
+              <span>
+                Email Address*
+              </span>
 
               <input
                 type="email"
                 name="email"
-                value={formData.email}
-                onChange={(event) =>
+                value={
+                  formData.email
+                }
+                onChange={(
+                  event,
+                ) =>
                   updateField(
                     "email",
                     event.target.value,
@@ -724,13 +951,19 @@ export default function TailoredQuoteForm({
             </label>
 
             <label>
-              <span>Mobile Number*</span>
+              <span>
+                Mobile Number*
+              </span>
 
               <input
                 type="tel"
                 name="mobile"
-                value={formData.mobile}
-                onChange={(event) =>
+                value={
+                  formData.mobile
+                }
+                onChange={(
+                  event,
+                ) =>
                   updateField(
                     "mobile",
                     event.target.value,
@@ -744,14 +977,18 @@ export default function TailoredQuoteForm({
             </label>
 
             <label>
-              <span>Service Required*</span>
+              <span>
+                Service Required*
+              </span>
 
               <select
                 name="serviceRequired"
                 value={
                   formData.serviceRequired
                 }
-                onChange={(event) =>
+                onChange={(
+                  event,
+                ) =>
                   updateField(
                     "serviceRequired",
                     event.target.value,
@@ -766,10 +1003,16 @@ export default function TailoredQuoteForm({
                 {servicesData.map(
                   (service) => (
                     <option
-                      key={service.slug}
-                      value={service.slug}
+                      key={
+                        service.slug
+                      }
+                      value={
+                        service.slug
+                      }
                     >
-                      {service.title}
+                      {
+                        service.title
+                      }
                     </option>
                   ),
                 )}
@@ -786,7 +1029,9 @@ export default function TailoredQuoteForm({
                 value={
                   formData.preferredVehicle
                 }
-                onChange={(event) =>
+                onChange={(
+                  event,
+                ) =>
                   updateField(
                     "preferredVehicle",
                     event.target.value,
@@ -800,10 +1045,16 @@ export default function TailoredQuoteForm({
                 {fleetData.map(
                   (vehicle) => (
                     <option
-                      key={vehicle.slug}
-                      value={vehicle.slug}
+                      key={
+                        vehicle.slug
+                      }
+                      value={
+                        vehicle.slug
+                      }
                     >
-                      {vehicle.name}
+                      {
+                        vehicle.name
+                      }
                     </option>
                   ),
                 )}
@@ -821,7 +1072,9 @@ export default function TailoredQuoteForm({
                 value={
                   formData.luggageRequirements
                 }
-                onChange={(event) =>
+                onChange={(
+                  event,
+                ) =>
                   updateField(
                     "luggageRequirements",
                     event.target.value,
@@ -843,7 +1096,9 @@ export default function TailoredQuoteForm({
                   value={
                     formData.flightNumber
                   }
-                  onChange={(event) =>
+                  onChange={(
+                    event,
+                  ) =>
                     updateField(
                       "flightNumber",
                       event.target.value.toUpperCase(),
@@ -857,8 +1112,8 @@ export default function TailoredQuoteForm({
 
             <label className="tailored-quote-form__full">
               <span>
-                Additional Requirements /
-                Special Requests
+                Additional Requirements
+                / Special Requests
               </span>
 
               <textarea
@@ -867,7 +1122,9 @@ export default function TailoredQuoteForm({
                 value={
                   formData.additionalRequirements
                 }
-                onChange={(event) =>
+                onChange={(
+                  event,
+                ) =>
                   updateField(
                     "additionalRequirements",
                     event.target.value,
@@ -879,6 +1136,10 @@ export default function TailoredQuoteForm({
           </div>
         </div>
 
+        {/* =================================================
+            CONSENT
+        ================================================= */}
+
         <label className="tailored-quote-form__consent">
           <input
             type="checkbox"
@@ -886,7 +1147,9 @@ export default function TailoredQuoteForm({
             checked={
               formData.marketingConsent
             }
-            onChange={(event) =>
+            onChange={(
+              event,
+            ) =>
               updateField(
                 "marketingConsent",
                 event.target.checked,
@@ -895,9 +1158,10 @@ export default function TailoredQuoteForm({
           />
 
           <span>
-            I would like to receive occasional
-            service updates and offers by email
-            or SMS. I understand I can
+            I would like to receive
+            occasional service updates
+            and offers by email or SMS.
+            I understand I can
             unsubscribe at any time.
           </span>
         </label>
@@ -909,7 +1173,9 @@ export default function TailoredQuoteForm({
             checked={
               formData.privacyAccepted
             }
-            onChange={(event) =>
+            onChange={(
+              event,
+            ) =>
               updateField(
                 "privacyAccepted",
                 event.target.checked,
@@ -919,20 +1185,32 @@ export default function TailoredQuoteForm({
           />
 
           <span>
-            I agree that my information may be
-            used to review and respond to this
-            quote request in accordance with
+            I agree that my information
+            may be used to review and
+            respond to this quote
+            request in accordance with
             the{" "}
-            <Link to={routePaths.privacy}>
+
+            <Link
+              to={
+                routePaths.privacy
+              }
+            >
               Privacy Policy
             </Link>
             .
           </span>
         </label>
 
+        {/* =================================================
+            SUBMIT
+        ================================================= */}
+
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={
+            isSubmitting
+          }
         >
           {isSubmitting
             ? "Submitting..."
@@ -951,10 +1229,11 @@ export default function TailoredQuoteForm({
           />
 
           <span>
-            Submission does not confirm the
-            booking. Your journey, vehicle
-            availability and final price will
-            be confirmed separately.
+            Submission does not confirm
+            the booking. Your journey,
+            vehicle availability and
+            final price will be
+            confirmed separately.
           </span>
         </div>
       </form>

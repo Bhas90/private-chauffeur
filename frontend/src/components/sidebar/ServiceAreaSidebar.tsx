@@ -45,7 +45,7 @@ export default function ServiceAreaSidebar() {
         <span>Not seeing your location?</span>
 
         <h3>
-          We also serve nearby Melbourne and Victorian areas.
+         Serving Melbourne & Victoria.
         </h3>
 
         <a href={siteConfig.phoneHref}>

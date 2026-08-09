@@ -1,13 +1,84 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model AdminUser {
+  id           Int     @id @default(autoincrement())
+  name         String
+  email        String  @unique
+  passwordHash String
+  isActive     Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Blog {
+  id Int @id @default(autoincrement())
+
+  title    String
+  slug     String @unique
+  excerpt  String
+  category String
+  author   String
+
+  publishedAt DateTime?
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now())
+
+  readingTime String
+
+  image String?
+
+  featured Boolean    @default(false)
+  status   BlogStatus @default(DRAFT)
+
+  tags     Json
+  sections Json
+  faqs     Json?
+
+  seoTitle       String
+  seoDescription String
+
+  relatedServiceSlugs String[]
+  relatedFleetSlugs   String[]
+  relatedAreaSlugs    String[]
+}
+model MailSettings {
+  id            Int      @id @default(1)
+
+  smtpHost      String?
+  smtpPort      Int?
+  smtpSecure    Boolean  @default(false)
+
+  smtpUsername  String?
+  smtpPassword  String?
+
+  fromName      String?
+  fromEmail     String?
+  replyToEmail  String?
+  adminEmail    String?
+
+  enabled       Boolean  @default(false)
+
+  businessPhone  String?
+  whatsappNumber String?
+  websiteUrl     String?
+  businessAddress String?
+
+  sendAdminEmail           Boolean @default(true)
+  sendCustomerAutoReply    Boolean @default(true)
+  sendWhatsappNotification Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

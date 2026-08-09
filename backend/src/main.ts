@@ -1,21 +1,16 @@
-import { ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import helmet from 'helmet';
+import {
+  ValidationPipe,
+} from "@nestjs/common";
+import { NestFactory } from "@nestjs/core";
 
-import { AppModule } from './app.module';
+import { AppModule } from "./app.module";
 
-async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
+async function bootstrap() {
+  const app = await NestFactory.create(
+    AppModule,
+  );
 
-  app.setGlobalPrefix('api/v1');
-
-  app.enableCors({
-    origin: ['http://localhost:5173'],
-    credentials: true,
-  });
-
-  app.use(helmet());
+  app.setGlobalPrefix("api");
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -25,25 +20,22 @@ async function bootstrap(): Promise<void> {
     }),
   );
 
-  const swaggerConfig = new DocumentBuilder()
-    .setTitle('Private Chauffeur Melbourne API')
-    .setDescription(
-      'Backend API for bookings, quotes, fleet, blogs, pricing and website administration.',
-    )
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
+  app.enableCors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+    ],
+    credentials: true,
+  });
 
-  const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
-
-  SwaggerModule.setup('api/docs', app, swaggerDocument);
-
-  const port = process.env.PORT ?? 3000;
+  const port =
+    Number(process.env.PORT) || 3000;
 
   await app.listen(port);
 
-  console.log(`API running at http://localhost:${port}/api/v1`);
-  console.log(`Swagger available at http://localhost:${port}/api/docs`);
+  console.log(
+    `Private Chauffeur Melbourne API running on http://localhost:${port}/api`,
+  );
 }
 
-void bootstrap();
+bootstrap();
