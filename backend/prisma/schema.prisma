@@ -11,6 +11,13 @@ enum BlogStatus {
   PUBLISHED
 }
 
+enum FleetMediaType {
+  COVER
+  EXTERIOR
+  INTERIOR
+  VIDEO
+}
+
 model AdminUser {
   id           Int     @id @default(autoincrement())
   name         String
@@ -53,31 +60,124 @@ model Blog {
   relatedFleetSlugs   String[]
   relatedAreaSlugs    String[]
 }
+
 model MailSettings {
-  id            Int      @id @default(1)
+  id Int @id @default(1)
 
-  smtpHost      String?
-  smtpPort      Int?
-  smtpSecure    Boolean  @default(false)
+  smtpHost   String?
+  smtpPort   Int?
+  smtpSecure Boolean @default(false)
 
-  smtpUsername  String?
-  smtpPassword  String?
+  smtpUsername String?
+  smtpPassword String?
 
-  fromName      String?
-  fromEmail     String?
-  replyToEmail  String?
-  adminEmail    String?
+  fromName     String?
+  fromEmail    String?
+  replyToEmail String?
+  adminEmail   String?
 
-  enabled       Boolean  @default(false)
+  enabled Boolean @default(false)
 
-  businessPhone  String?
-  whatsappNumber String?
-  websiteUrl     String?
+  businessPhone   String?
+  whatsappNumber  String?
+  websiteUrl      String?
   businessAddress String?
 
   sendAdminEmail           Boolean @default(true)
   sendCustomerAutoReply    Boolean @default(true)
   sendWhatsappNotification Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FleetVehicle {
+  id              Int     @id @default(autoincrement())
+  name            String
+  slug            String  @unique
+  category        String
+  heroDescription String
+  description     String
+  coverImage      String?
+
+  passengers Int
+  largeBags  Int
+  cabinBags  Int
+
+  active       Boolean @default(true)
+  featured     Boolean @default(false)
+  displayOrder Int     @default(0)
+
+  seoTitle       String
+  seoDescription String
+
+  features      FleetFeature[]
+  journeys      FleetJourney[]
+  media         FleetMedia[]
+  popupSettings FleetPopupSettings[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([active, displayOrder])
+  @@index([featured, active, displayOrder])
+}
+
+model FleetFeature {
+  id           Int    @id @default(autoincrement())
+  vehicleId    Int
+  title        String
+  description  String
+  displayOrder Int    @default(0)
+
+  vehicle FleetVehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vehicleId, displayOrder])
+}
+
+model FleetJourney {
+  id           Int    @id @default(autoincrement())
+  vehicleId    Int
+  title        String
+  displayOrder Int    @default(0)
+
+  vehicle FleetVehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vehicleId, displayOrder])
+}
+
+model FleetMedia {
+  id           Int            @id @default(autoincrement())
+  vehicleId    Int
+  type         FleetMediaType
+  url          String
+  altText      String?
+  displayOrder Int            @default(0)
+
+  vehicle FleetVehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vehicleId, type, displayOrder])
+}
+
+model FleetPopupSettings {
+  id Int @id @default(1)
+
+  enabled        Boolean @default(false)
+  fleetVehicleId Int?
+
+  eyebrow     String?
+  heading     String?
+  description String?
+  image       String?
+  video       String?
+  ctaText     String?
+  ctaLink     String?
+
+  showDelay       Int     @default(5000)
+  displayDuration Int     @default(7000)
+  oncePerSession  Boolean @default(true)
+
+  fleetVehicle FleetVehicle? @relation(fields: [fleetVehicleId], references: [id], onDelete: SetNull)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

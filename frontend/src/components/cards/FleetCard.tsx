@@ -5,7 +5,7 @@ import {
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-import type { FleetVehicle } from "../../data/fleetData";
+import type { FleetVehicle } from "../../services/fleetApi";
 import { routePaths } from "../../routes/routePaths";
 
 import "./fleetCard.css";
@@ -34,7 +34,7 @@ export default function FleetCard({
       >
         <img
           className="fleet-card__image"
-          src={vehicle.image}
+          src={vehicle.coverImage}
           alt={`${vehicle.name} chauffeur vehicle`}
           loading="lazy"
         />

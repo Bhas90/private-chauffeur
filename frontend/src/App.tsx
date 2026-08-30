@@ -50,6 +50,9 @@ import AdminLoginPage from "./admin/pages/AdminLoginPage";
 import AdminBlogsPage from "./admin/pages/AdminBlogsPage";
 import AdminBlogFormPage from "./admin/pages/AdminBlogFormPage";
 import AdminMailSettingsPage from "./admin/pages/AdminMailSettingsPage";
+import AdminFleetPage from "./admin/pages/AdminFleetPage";
+import AdminFleetFormPage from "./admin/pages/AdminFleetFormPage";
+import AdminFleetPopupPage from "./admin/pages/AdminFleetPopupPage";
 /* =========================================================
    ROUTE PATHS
 ========================================================= */
@@ -94,6 +97,22 @@ export default function App() {
           <Route
           path="mail-settings"
           element={<AdminMailSettingsPage />}
+        />
+        <Route
+          path="fleet"
+          element={<AdminFleetPage />}
+        />
+        <Route
+          path="fleet/new"
+          element={<AdminFleetFormPage />}
+        />
+        <Route
+          path="fleet/:id/edit"
+          element={<AdminFleetFormPage />}
+        />
+        <Route
+          path="fleet-popup"
+          element={<AdminFleetPopupPage />}
         />
         {/*
           Blog CMS routes will be added next:

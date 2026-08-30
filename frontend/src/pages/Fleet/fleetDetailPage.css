@@ -332,6 +332,158 @@
 }
 
 /* =========================================================
+   CMS MEDIA GALLERY
+========================================================= */
+
+.fleet-detail__loading {
+  min-height: 45vh;
+  display: grid;
+  place-items: center;
+  color: var(--color-text-secondary);
+}
+
+.fleet-media {
+  margin-top: 42px;
+}
+
+.fleet-media__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.fleet-media__tabs button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: white;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.fleet-media__tabs button.fleet-media__tab--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: white;
+}
+
+.fleet-media__stage {
+  min-height: 420px;
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.fleet-media__stage img,
+.fleet-media__stage video {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  display: block;
+  object-fit: cover;
+}
+
+.fleet-media__stage video {
+  object-fit: contain;
+}
+
+.fleet-media__previous,
+.fleet-media__next,
+.fleet-media__expand {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 50%;
+  background: rgba(4, 15, 24, 0.78);
+  color: white;
+  transform: translateY(-50%);
+}
+
+.fleet-media__previous {
+  left: 14px;
+}
+
+.fleet-media__next {
+  right: 14px;
+}
+
+.fleet-media__expand {
+  top: 16px;
+  right: 16px;
+  transform: none;
+}
+
+.fleet-media__thumbnails {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.fleet-media__thumbnails button {
+  width: 92px;
+  height: 66px;
+  flex: 0 0 92px;
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  background: var(--color-surface-soft);
+  color: var(--color-secondary-dark);
+}
+
+.fleet-media__thumbnails button.fleet-media__thumbnail--active {
+  border-color: var(--color-secondary);
+}
+
+.fleet-media__thumbnails img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fleet-media__lightbox {
+  padding: 32px;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: rgba(1, 7, 12, 0.94);
+}
+
+.fleet-media__lightbox img {
+  max-width: min(1200px, 92vw);
+  max-height: 88vh;
+  object-fit: contain;
+}
+
+.fleet-media__lightbox-close {
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: white;
+}
+
+/* =========================================================
    LARGE DESKTOP
 ========================================================= */
 
@@ -681,5 +833,149 @@
   .fleet-detail__features article:hover {
     filter: none;
     transform: none;
+  }
+}
+
+/* =========================================================
+   VEHICLE QUOTE SECTION
+========================================================= */
+
+.fleet-detail__quote {
+  margin-top: 58px;
+  padding: clamp(16px, 4vw, 24px);
+
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid rgba(198, 166, 107, 0.28);
+  border-radius: var(--radius-lg);
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(198, 166, 107, 0.13),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #07131d,
+      #0d2231
+    );
+
+  box-shadow:
+    0 24px 60px
+    rgba(4, 15, 24, 0.16);
+}
+
+.fleet-detail__quote::before {
+  width: 90px;
+  height: 3px;
+
+  position: absolute;
+  top: 0;
+  left: clamp(26px, 4vw, 44px);
+
+  content: "";
+
+  background:
+    var(--color-secondary);
+}
+
+.fleet-detail__quote > .eyebrow {
+  display: block;
+
+  color:
+    var(--color-secondary);
+
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.fleet-detail__quote > h2 {
+  max-width: 760px;
+  margin: 9px 0 0;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(1.9rem, 3.5vw, 3rem);
+
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.fleet-detail__quote > p {
+  max-width: 720px;
+  margin: 14px 0 0;
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+.fleet-detail__quote
+  .tailored-quote-form {
+  margin-top: 30px;
+
+  border-radius:
+    var(--radius-md);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 16px 45px
+    rgba(0, 0, 0, 0.18);
+}
+
+/* =========================================================
+   QUOTE SECTION — TABLET
+========================================================= */
+
+@media (max-width: 700px) {
+  .fleet-detail__quote {
+    margin-top: 44px;
+    padding: 27px 20px;
+  }
+
+  .fleet-detail__quote::before {
+    left: 20px;
+  }
+
+  .fleet-detail__quote > h2 {
+    font-size:
+      clamp(1.7rem, 7vw, 2.2rem);
+  }
+
+  .fleet-detail__quote > p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .fleet-detail__quote
+    .tailored-quote-form {
+    margin-top: 24px;
+  }
+}
+
+/* =========================================================
+   QUOTE SECTION — SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .fleet-detail__quote {
+    padding: 24px 16px;
+  }
+
+  .fleet-detail__quote::before {
+    left: 16px;
+  }
+
+  .fleet-detail__quote > h2 {
+    font-size: 1.65rem;
   }
 }

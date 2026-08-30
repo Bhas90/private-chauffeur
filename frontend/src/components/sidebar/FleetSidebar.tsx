@@ -1,11 +1,23 @@
+import { useEffect, useState } from "react";
 import { FiArrowRight, FiPhone } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 
 import { siteConfig } from "../../config/siteConfig";
-import { fleetData } from "../../data/fleetData";
+import { getFleet } from "../../services/fleetApi";
+import type {
+  FleetVehicle,
+} from "../../services/fleetApi";
 import "./fleetSidebar.css";
 
 export default function FleetSidebar() {
+  const [fleet, setFleet] = useState<FleetVehicle[]>(
+    [],
+  );
+
+  useEffect(() => {
+    void getFleet().then(setFleet);
+  }, []);
+
   return (
     <aside className="fleet-sidebar">
       <div className="fleet-sidebar__menu">
@@ -14,7 +26,7 @@ export default function FleetSidebar() {
         <h2>Choose a Vehicle</h2>
 
         <nav>
-          {fleetData.map((vehicle) => (
+          {fleet.map((vehicle) => (
             <NavLink
               key={vehicle.slug}
               to={`/fleet/${vehicle.slug}`}

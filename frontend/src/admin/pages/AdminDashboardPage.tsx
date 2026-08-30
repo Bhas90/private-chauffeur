@@ -3,6 +3,7 @@ import {
   FiEdit3,
   FiMail,
   FiPlusCircle,
+  FiTruck,
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -113,6 +114,29 @@ export default function AdminDashboardPage() {
 
           <Link to="/admin/mail-settings">
             Mail Settings
+          </Link>
+        </article>
+
+        <article>
+          <span>
+            <FiTruck aria-hidden="true" />
+          </span>
+
+          <div>
+            <small>Fleet CMS</small>
+
+            <strong>
+              Manage Vehicles
+            </strong>
+
+            <p>
+              Add chauffeur vehicles, media,
+              capacity and popup settings.
+            </p>
+          </div>
+
+          <Link to="/admin/fleet">
+            Open Fleet
           </Link>
         </article>
       </div>

@@ -48,7 +48,7 @@ export const servicesData: ServiceItem[] = [
     shortDescription:
       "Reliable airport pickups and drop-offs with flight monitoring, meet-and-greet assistance and door-to-door chauffeur travel.",
     image:
-      "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1800&q=85",
+      "https://res.cloudinary.com/vbr0vyzb/image/upload/v1788008696/Melbourne_Airport_Transfers.png",
     icon: FiTruck,
     featured: true,
     benefits: [
@@ -179,7 +179,7 @@ export const servicesData: ServiceItem[] = [
     shortDescription:
       "Elegant chauffeur-driven transport for wedding ceremonies, receptions, bridal parties and special-day journeys.",
     image:
-      "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1800&q=85",
+      "https://res.cloudinary.com/vbr0vyzb/image/upload/v1788010062/wedding-chauffeur-melbourne.png",
     icon: FiStar,
     featured: true,
     benefits: [
@@ -321,7 +321,7 @@ export const servicesData: ServiceItem[] = [
     shortDescription:
       "Flexible chauffeur and vehicle availability for meetings, events, shopping and multi-stop private travel.",
     image:
-      "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1800&q=85",
+      "https://res.cloudinary.com/vbr0vyzb/image/upload/v1788010363/hourly-chauffeur-hire-melbourne.png",
     icon: FiClock,
     benefits: [
       "Flexible multiple-stop travel",
@@ -363,7 +363,7 @@ export const servicesData: ServiceItem[] = [
     shortDescription:
       "Flexible chauffeur-driven tours around Melbourne and selected regional Victorian destinations.",
     image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85",
+      "https://res.cloudinary.com/vbr0vyzb/image/upload/v1788010198/private-car-tours-melbourne.png",
     icon: FiMap,
     benefits: [
       "Private flexible itinerary",
@@ -404,7 +404,7 @@ export const servicesData: ServiceItem[] = [
     shortDescription:
       "Coordinated chauffeur transport for families, events, celebrations and corporate groups.",
     image:
-      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1800&q=85",
+      "https://res.cloudinary.com/vbr0vyzb/image/upload/v1788010061/group-transfers-melbourne-people-mover.png",
     icon: FiUsers,
     benefits: [
       "Family and group journeys",

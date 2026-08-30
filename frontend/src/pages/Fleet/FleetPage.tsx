@@ -1,11 +1,23 @@
+import { useEffect, useState } from "react";
 import { FiArrowRight, FiBriefcase, FiUsers } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 import InnerPageHero from "../../components/hero/InnerPageHero";
-import { fleetData } from "../../data/fleetData";
+import { getFleet } from "../../services/fleetApi";
+import type {
+  FleetVehicle,
+} from "../../services/fleetApi";
 import "./fleetPage.css";
 
 export default function FleetPage() {
+  const [fleet, setFleet] = useState<FleetVehicle[]>(
+    [],
+  );
+
+  useEffect(() => {
+    void getFleet().then(setFleet);
+  }, []);
+
   return (
     <main>
       <InnerPageHero
@@ -35,14 +47,14 @@ export default function FleetPage() {
           </div>
 
           <div className="fleet-page__grid">
-            {fleetData.map((vehicle) => (
+            {fleet.map((vehicle) => (
               <article className="fleet-page__card" key={vehicle.slug}>
                 <Link
                   className="fleet-page__image"
                   to={`/fleet/${vehicle.slug}`}
                 >
                   <img
-                    src={vehicle.image}
+                    src={vehicle.coverImage}
                     alt={`${vehicle.name} chauffeur vehicle`}
                     loading="lazy"
                   />

@@ -4,6 +4,7 @@ import {
   FiLogOut,
   FiMail,
   FiPlusCircle,
+  FiTruck,
 } from "react-icons/fi";
 import {
   NavLink,
@@ -133,6 +134,24 @@ export default function AdminSidebar({
           >
             <FiPlusCircle aria-hidden="true" />
             <span>Add Blog</span>
+          </NavLink>
+
+          <NavLink
+            to="/admin/fleet"
+            onClick={onClose}
+            className={getNavLinkClass}
+          >
+            <FiTruck aria-hidden="true" />
+            <span>Fleet</span>
+          </NavLink>
+
+          <NavLink
+            to="/admin/fleet-popup"
+            onClick={onClose}
+            className={getNavLinkClass}
+          >
+            <FiPlusCircle aria-hidden="true" />
+            <span>Fleet Popup</span>
           </NavLink>
 
           <span className="admin-sidebar__label">

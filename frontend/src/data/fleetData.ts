@@ -3,6 +3,12 @@ export interface FleetFeature {
   description: string;
 }
 
+export interface FleetMedia {
+  exterior: string[];
+  interior: string[];
+  videos?: string[];
+}
+
 export interface FleetVehicle {
   name: string;
   slug: string;
@@ -13,6 +19,7 @@ export interface FleetVehicle {
 
   image: string;
   gallery: string[];
+  media?: FleetMedia;
 
   imageCredit?: string;
   imageSource?: string;
@@ -525,6 +532,44 @@ export const fleetData: FleetVehicle[] = [
     ],
   },
 ];
+
+// Structured media used by the CMS import and the Exterior / Interior /
+// Video tabs. Gallery remains available for backwards compatibility.
+for (const vehicle of fleetData) {
+  vehicle.media = {
+    exterior: [...vehicle.gallery],
+    interior: [],
+    videos: [],
+  };
+}
+
+const mercedesGl = fleetData.find(
+  (vehicle) => vehicle.slug === "mercedes-benz-gl",
+);
+if (mercedesGl) {
+  mercedesGl.media = {
+    exterior: [mercedesGl.gallery[0]],
+    interior: [mercedesGl.gallery[2]],
+    videos: [],
+  };
+}
+
+const bmwX7 = fleetData.find(
+  (vehicle) => vehicle.slug === "bmw-x7",
+);
+if (bmwX7) {
+  bmwX7.media = {
+    exterior: [
+      "/fleet/bmw-x7/exterior/bmw-x7-front.jpg",
+      "/fleet/bmw-x7/exterior/bmw-x7-rear.jpg",
+    ],
+    interior: [
+      "/fleet/bmw-x7/interior/bmw-x7-front-cabin.jpg",
+      "/fleet/bmw-x7/interior/bmw-x7-passenger-cabin.jpg",
+    ],
+    videos: ["/fleet/bmw-x7/video/video-clip.mp4"],
+  };
+}
 
 /* =========================================================
    FLEET HELPERS

@@ -60,7 +60,7 @@ export default function WhyChooseUs() {
 
           <div className="why-choose-us__main-image">
             <img
-              src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1400&q=85"
+              src="https://res.cloudinary.com/vbr0vyzb/image/upload/v1788001073/private-chaufer-services-mercedes-gle-melborne_1-100kb_5.jpg"
               alt="Premium black Mercedes-Benz chauffeur vehicle"
               loading="lazy"
               decoding="async"
@@ -71,7 +71,7 @@ export default function WhyChooseUs() {
 
           <div className="why-choose-us__small-image">
             <img
-              src="https://images.unsplash.com/photo-1515569067071-ec3b51335dd0?auto=format&fit=crop&w=900&q=85"
+              src="https://res.cloudinary.com/vbr0vyzb/image/upload/v1788001094/private-chaufer-services-mercedes-gle-melborne_-100kb_4.jpg"
               alt="Luxury chauffeur vehicle interior"
               loading="lazy"
               decoding="async"

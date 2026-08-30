@@ -5,76 +5,65 @@
 .fleet-section {
   position: relative;
   overflow: hidden;
-
   background:
-    radial-gradient(
-      circle at 86% 12%,
-      rgba(198,166,107,.14),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #07131e 0%,
-      #10283f 55%,
-      #081a2a 100%
-    );
+    radial-gradient(circle at 86% 12%, rgba(198, 166, 107, 0.14), transparent 30%),
+    linear-gradient(135deg, #07131e 0%, #10283f 55%, #081a2a 100%);
 }
 
-/* Decorative Circle */
+.fleet-section.section {
+  padding-bottom: 34px;
+}
 
 .fleet-section::before {
   width: 500px;
   height: 500px;
-
   position: absolute;
   left: -220px;
   bottom: -320px;
-
-  border: 1px solid rgba(198,166,107,.16);
+  border: 1px solid rgba(198, 166, 107, 0.16);
   border-radius: 50%;
-
   content: "";
   pointer-events: none;
 }
 
-.fleet-section .section-title{
-  color:var(--color-text-light);
+.fleet-section .container {
+  position: relative;
+  z-index: 1;
 }
 
-.fleet-section .section-description{
-  color:rgba(255,255,255,.66);
-  line-height:1.8;
+.fleet-section .section-title {
+  color: var(--color-text-light);
+}
+
+.fleet-section .section-description {
+  color: rgba(255, 255, 255, 0.66);
+  line-height: 1.8;
 }
 
 /* =========================================================
    HEADER
 ========================================================= */
 
-.fleet-section__header{
-  margin-bottom:48px;
-
-  position:relative;
-
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:30px;
+.fleet-section__header {
+  margin-bottom: 48px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
 }
 
-.fleet-section__header .section-header{
-  max-width:760px;
-  margin-bottom:0;
+.fleet-section__header .section-header {
+  max-width: 760px;
+  margin-bottom: 0;
 }
 
-.fleet-section__button{
-  min-height:54px;
-  flex-shrink:0;
-
-  border:1px solid rgba(255,255,255,.32);
-
-  background:transparent;
-  color:var(--color-text-light);
-
+.fleet-section__button {
+  min-height: 54px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: transparent;
+  color: var(--color-text-light);
   transition:
     border-color var(--transition-fast),
     background var(--transition-fast),
@@ -82,195 +71,182 @@
     transform var(--transition-fast);
 }
 
-.fleet-section__button:hover{
-  border-color:var(--color-secondary);
-
-  background:var(--color-secondary);
-  color:var(--color-primary-dark);
-
-  transform:translateY(-2px);
+.fleet-section__button:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-secondary);
+  color: var(--color-primary-dark);
+  transform: translateY(-2px);
 }
 
 /* =========================================================
-   GRID
+   SWIPER CAROUSEL
 ========================================================= */
 
-.fleet-section__grid{
-  position:relative;
+.fleet-section__carousel {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
 
-  display:grid;
-  grid-template-columns:
-    repeat(3,minmax(0,1fr));
+.fleet-section__swiper {
+  width: 100%;
+  overflow: hidden !important;
+  padding: 4px 2px 12px;
+}
 
-  gap:26px;
+.fleet-section__swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.fleet-section__swiper .swiper-slide {
+  height: auto;
+  display: flex;
+}
+
+.fleet-section__swiper .fleet-card {
+  width: 100%;
+  height: 92%;
+}
+
+/* There is intentionally no overflow-x:auto and no scrollbar. */
+.fleet-section__swiper::-webkit-scrollbar,
+.fleet-section__swiper .swiper-wrapper::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 /* =========================================================
-   LARGE DESKTOP
+   CUSTOM LEFT / RIGHT CONTROLS
 ========================================================= */
 
-@media (min-width:1500px){
-
-.fleet-section__grid{
-gap:30px;
+.fleet-section__nav {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  z-index: 30;
+  border: 1px solid rgba(198, 166, 107, 0.72);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #0a1b2a;
+  color: #c6a66b;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
+.fleet-section__nav svg {
+  width: 19px;
+  height: 19px;
+}
+
+.fleet-section__nav--previous {
+  left: -47px;
+}
+
+.fleet-section__nav--next {
+  right: -47px;
+}
+
+.fleet-section__nav:hover {
+  background: #c6a66b;
+  color: #07131e;
+  transform: translateY(-50%) scale(1.05);
 }
 
 /* =========================================================
-   LAPTOP
+   RESPONSIVE
 ========================================================= */
 
-@media (max-width:1280px){
+@media (max-width: 1100px) {
+  .fleet-section::before {
+    width: 420px;
+    height: 420px;
+    left: -180px;
+    bottom: -260px;
+  }
 
-.fleet-section__header{
-gap:24px;
+  .fleet-section__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fleet-section__button {
+    width: auto;
+  }
 }
 
-.fleet-section__grid{
-gap:22px;
+@media (max-width: 900px) {
+  .fleet-section__header {
+    margin-bottom: 38px;
+  }
 }
 
+@media (max-width: 768px) {
+  .fleet-section {
+    background: linear-gradient(135deg, #07131e, #10283f);
+  }
+
+  .fleet-section::before {
+    display: none;
+  }
+
+  .fleet-section__header {
+    margin-bottom: 32px;
+  }
+
+  .fleet-section__button {
+    width: 100%;
+  }
+
+  .fleet-section.section {
+    padding-bottom: 42px;
+  }
+
+  .fleet-section__nav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .fleet-section__nav--previous { left: 8px; }
+  .fleet-section__nav--next { right: 8px; }
 }
 
-/* =========================================================
-   SMALL LAPTOP
-========================================================= */
+@media (max-width: 560px) {
+  .fleet-section__header {
+    gap: 18px;
+  }
 
-@media (max-width:1100px){
+  .fleet-section .section-description {
+    font-size: 0.9rem;
+  }
 
-.fleet-section::before{
-width:420px;
-height:420px;
-
-left:-180px;
-bottom:-260px;
+  .fleet-section__button {
+    min-height: 50px;
+  }
 }
 
-.fleet-section__header{
-align-items:flex-start;
-flex-direction:column;
+@media (max-width: 390px) {
+  .fleet-section__header {
+    margin-bottom: 28px;
+  }
+
+  .fleet-section__button {
+    font-size: 0.82rem;
+  }
 }
 
-.fleet-section__button{
-width:auto;
-}
-
-.fleet-section__grid{
-grid-template-columns:
-repeat(2,minmax(0,1fr));
-}
-
-}
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width:900px){
-
-.fleet-section__header{
-margin-bottom:38px;
-}
-
-.fleet-section__grid{
-gap:20px;
-}
-
-}
-
-/* =========================================================
-   TABLET PORTRAIT
-========================================================= */
-
-@media (max-width:768px){
-
-.fleet-section{
-background:
-linear-gradient(
-135deg,
-#07131e,
-#10283f
-);
-}
-
-.fleet-section::before{
-display:none;
-}
-
-.fleet-section__header{
-margin-bottom:32px;
-}
-
-.fleet-section__button{
-width:100%;
-}
-
-.fleet-section__grid{
-grid-template-columns:1fr;
-gap:18px;
-}
-
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width:560px){
-
-.fleet-section__header{
-gap:18px;
-}
-
-.fleet-section .section-description{
-font-size:.9rem;
-}
-
-.fleet-section__button{
-min-height:50px;
-}
-
-}
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width:390px){
-
-.fleet-section__header{
-margin-bottom:28px;
-}
-
-.fleet-section__button{
-font-size:.82rem;
-}
-
-}
-
-/* =========================================================
-   VERY SMALL DEVICES
-========================================================= */
-
-@media (max-width:340px){
-
-.fleet-section .section-title{
-font-size:1.8rem;
-}
-
-}
-
-/* =========================================================
-   TOUCH DEVICES
-========================================================= */
-
-@media (hover:none){
-
-.fleet-section__button:hover{
-transform:none;
-}
-
+@media (max-width: 340px) {
+  .fleet-section .section-title {
+    font-size: 1.8rem;
+  }
 }
 
 /* =========================================================
@@ -278,23 +254,19 @@ transform:none;
 ========================================================= */
 
 .fleet-section a:focus-visible,
-.fleet-section button:focus-visible{
-outline:3px solid rgba(198,166,107,.35);
-outline-offset:3px;
+.fleet-section button:focus-visible {
+  outline: 3px solid rgba(198, 166, 107, 0.45);
+  outline-offset: 3px;
 }
 
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion:reduce){
-
-.fleet-section *{
-transition:none!important;
+@media (hover: none) {
+  .fleet-section__button:hover {
+    transform: none;
+  }
 }
 
-.fleet-section__button:hover{
-transform:none;
-}
-
+@media (prefers-reduced-motion: reduce) {
+  .fleet-section * {
+    transition-duration: 0.01ms !important;
+  }
 }
