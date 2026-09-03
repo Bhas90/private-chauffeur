@@ -207,7 +207,7 @@ table {
 
 .container {
   width: min(
-    calc(100% - clamp(32px, 4vw, 64px)),
+    calc(100% - clamp(20px, 2.5vw, 24px)),
     var(--container-width)
   );
 

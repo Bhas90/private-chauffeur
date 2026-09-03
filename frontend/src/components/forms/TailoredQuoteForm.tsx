@@ -4,27 +4,43 @@ import {
   useMemo,
   useState,
 } from "react";
+
 import {
   FiArrowRight,
   FiCheckCircle,
   FiEdit3,
   FiMapPin,
 } from "react-icons/fi";
+
 import toast from "react-hot-toast";
+
 import {
   Link,
   useNavigate,
 } from "react-router-dom";
 
-import { fleetData } from "../../data/fleetData";
-import { servicesData } from "../../data/servicesData";
-import { routePaths } from "../../routes/routePaths";
+import {
+  servicesData,
+} from "../../data/servicesData";
+
+import {
+  routePaths,
+} from "../../routes/routePaths";
 
 import "./tailoredQuoteForm.css";
+
+/* =========================================================
+   TYPES
+========================================================= */
 
 type TripType =
   | "one-way"
   | "return";
+
+type ChildSeatType =
+  | ""
+  | "booster-seat"
+  | "child-safety-seat";
 
 interface TailoredQuoteFormProps {
   defaultService?: string;
@@ -39,6 +55,17 @@ interface TailoredQuoteFormProps {
   defaultPassengers?: string;
 
   defaultTripType?: TripType;
+
+  defaultChildSeat?: ChildSeatType;
+}
+
+interface FleetVehicleOption {
+  id?: number | string;
+  name: string;
+  slug: string;
+  active?: boolean;
+  featured?: boolean;
+  displayOrder?: number;
 }
 
 interface QuoteFormState {
@@ -51,6 +78,8 @@ interface QuoteFormState {
   serviceRequired: string;
 
   preferredVehicle: string;
+
+  childSeat: ChildSeatType;
 
   luggageRequirements: string;
 
@@ -82,6 +111,10 @@ interface QuoteApiResponse {
   message?: string;
 }
 
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
 const baseInitialState:
   QuoteFormState = {
   fullName: "",
@@ -94,6 +127,8 @@ const baseInitialState:
 
   preferredVehicle: "",
 
+  childSeat: "",
+
   luggageRequirements: "",
 
   flightNumber: "",
@@ -105,8 +140,13 @@ const baseInitialState:
   privacyAccepted: false,
 };
 
+/* =========================================================
+   HELPERS
+========================================================= */
+
 function getTodayDate(): string {
-  const today = new Date();
+  const today =
+    new Date();
 
   const timezoneOffset =
     today.getTimezoneOffset() *
@@ -152,6 +192,26 @@ function normaliseTripType(
     : "one-way";
 }
 
+function normaliseChildSeat(
+  value?: ChildSeatType,
+): ChildSeatType {
+  if (
+    value ===
+    "booster-seat"
+  ) {
+    return "booster-seat";
+  }
+
+  if (
+    value ===
+    "child-safety-seat"
+  ) {
+    return "child-safety-seat";
+  }
+
+  return "";
+}
+
 function hasCompleteJourney(
   journey: JourneyDetails,
 ): boolean {
@@ -162,6 +222,10 @@ function hasCompleteJourney(
       journey.pickupTime,
   );
 }
+
+/* =========================================================
+   COMPONENT
+========================================================= */
 
 export default function TailoredQuoteForm({
   defaultService = "",
@@ -176,15 +240,164 @@ export default function TailoredQuoteForm({
   defaultPassengers = "1",
 
   defaultTripType = "one-way",
+
+  defaultChildSeat = "",
 }: TailoredQuoteFormProps) {
   const navigate =
     useNavigate();
 
+  /* =======================================================
+     API
+  ======================================================= */
+
+  const apiUrl =
+    import.meta.env
+      .VITE_API_URL ||
+    "http://localhost:3000/api";
+
+  /* =======================================================
+     FLEET FROM ADMIN / BACKEND
+  ======================================================= */
+
+  const [
+    fleetVehicles,
+    setFleetVehicles,
+  ] =
+    useState<
+      FleetVehicleOption[]
+    >([]);
+
+  const [
+    isLoadingFleet,
+    setIsLoadingFleet,
+  ] =
+    useState(true);
+
+  const [
+    fleetLoadError,
+    setFleetLoadError,
+  ] =
+    useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const loadFleet =
+      async () => {
+        try {
+          setIsLoadingFleet(
+            true,
+          );
+
+          setFleetLoadError(
+            false,
+          );
+
+          const response =
+            await fetch(
+              `${apiUrl}/fleet`,
+            );
+
+          if (!response.ok) {
+            throw new Error(
+              "Unable to load fleet.",
+            );
+          }
+
+          const result =
+            await response.json();
+
+          if (!mounted) {
+            return;
+          }
+
+          /*
+           * Supports either:
+           *
+           * [ ...vehicles ]
+           *
+           * or:
+           *
+           * {
+           *   data: [ ...vehicles ]
+           * }
+           */
+          const vehicles:
+            FleetVehicleOption[] =
+            Array.isArray(
+              result,
+            )
+              ? result
+              : Array.isArray(
+                    result?.data,
+                  )
+                ? result.data
+                : [];
+
+          const activeVehicles =
+            vehicles
+              .filter(
+                (
+                  vehicle,
+                ) =>
+                  vehicle.active !==
+                  false,
+              )
+              .sort(
+                (
+                  first,
+                  second,
+                ) =>
+                  (first.displayOrder ??
+                    999) -
+                  (second.displayOrder ??
+                    999),
+              );
+
+          setFleetVehicles(
+            activeVehicles,
+          );
+        } catch (error) {
+          console.error(
+            "Fleet loading failed:",
+            error,
+          );
+
+          if (mounted) {
+            setFleetLoadError(
+              true,
+            );
+          }
+        } finally {
+          if (mounted) {
+            setIsLoadingFleet(
+              false,
+            );
+          }
+        }
+      };
+
+    void loadFleet();
+
+    return () => {
+      mounted = false;
+    };
+  }, [apiUrl]);
+
+  /* =======================================================
+     MINIMUM DATE
+  ======================================================= */
+
   const minimumPickupDate =
     useMemo(
-      () => getTodayDate(),
+      () =>
+        getTodayDate(),
       [],
     );
+
+  /* =======================================================
+     JOURNEY INITIAL STATE
+  ======================================================= */
 
   const createJourneyState =
     (): JourneyDetails => ({
@@ -211,18 +424,28 @@ export default function TailoredQuoteForm({
         ),
     });
 
+  /* =======================================================
+     FORM STATE
+  ======================================================= */
+
   const [
     formData,
     setFormData,
-  ] = useState<QuoteFormState>({
-    ...baseInitialState,
+  ] =
+    useState<QuoteFormState>({
+      ...baseInitialState,
 
-    serviceRequired:
-      defaultService,
+      serviceRequired:
+        defaultService,
 
-    preferredVehicle:
-      defaultVehicle,
-  });
+      preferredVehicle:
+        defaultVehicle,
+
+      childSeat:
+        normaliseChildSeat(
+          defaultChildSeat,
+        ),
+    });
 
   const [
     journeyDetails,
@@ -235,19 +458,21 @@ export default function TailoredQuoteForm({
   const [
     isEditingJourney,
     setIsEditingJourney,
-  ] = useState(
-    !hasCompleteJourney(
-      createJourneyState(),
-    ),
-  );
+  ] =
+    useState(
+      !hasCompleteJourney(
+        createJourneyState(),
+      ),
+    );
 
   const [
     isSubmitting,
     setIsSubmitting,
-  ] = useState(false);
+  ] =
+    useState(false);
 
   /* =======================================================
-     DEFAULT SERVICE / VEHICLE
+     DEFAULT SERVICE / VEHICLE / CHILD SEAT
   ======================================================= */
 
   useEffect(() => {
@@ -262,9 +487,14 @@ export default function TailoredQuoteForm({
         preferredVehicle:
           defaultVehicle ||
           current.preferredVehicle,
+
+        childSeat:
+          defaultChildSeat ||
+          current.childSeat,
       }),
     );
   }, [
+    defaultChildSeat,
     defaultService,
     defaultVehicle,
   ]);
@@ -353,6 +583,11 @@ export default function TailoredQuoteForm({
 
         preferredVehicle:
           defaultVehicle,
+
+        childSeat:
+          normaliseChildSeat(
+            defaultChildSeat,
+          ),
       });
     };
 
@@ -399,10 +634,9 @@ export default function TailoredQuoteForm({
     setIsSubmitting(true);
 
     try {
-      const apiUrl =
-        import.meta.env
-          .VITE_API_URL ||
-        "http://localhost:3000/api";
+      /* ===================================================
+         SERVICE NAME
+      =================================================== */
 
       const selectedService =
         servicesData.find(
@@ -411,12 +645,33 @@ export default function TailoredQuoteForm({
             formData.serviceRequired,
         );
 
+      /* ===================================================
+         VEHICLE NAME
+      =================================================== */
+
       const selectedVehicle =
-        fleetData.find(
+        fleetVehicles.find(
           (vehicle) =>
             vehicle.slug ===
             formData.preferredVehicle,
         );
+
+      /* ===================================================
+         CHILD SEAT LABEL
+      =================================================== */
+
+      const childSeatLabel =
+        formData.childSeat ===
+        "booster-seat"
+          ? "Booster Seat"
+          : formData.childSeat ===
+              "child-safety-seat"
+            ? "Child Safety Seat"
+            : "";
+
+      /* ===================================================
+         PAYLOAD
+      =================================================== */
 
       const payload = {
         fullName:
@@ -459,6 +714,9 @@ export default function TailoredQuoteForm({
           selectedVehicle?.name ||
           formData.preferredVehicle,
 
+        childSeat:
+          childSeatLabel,
+
         flightNumber:
           isAirportTransfer
             ? formData.flightNumber
@@ -469,6 +727,10 @@ export default function TailoredQuoteForm({
         additionalRequirements:
           formData.additionalRequirements.trim(),
       };
+
+      /* ===================================================
+         SEND
+      =================================================== */
 
       const response =
         await fetch(
@@ -705,8 +967,7 @@ export default function TailoredQuoteForm({
 
               <label>
                 <span>
-                  Number of
-                  Passengers*
+                  Number of Passengers*
                 </span>
 
                 <select
@@ -976,6 +1237,10 @@ export default function TailoredQuoteForm({
               />
             </label>
 
+            {/* =============================================
+                9 SERVICES
+            ============================================= */}
+
             <label>
               <span>
                 Service Required*
@@ -1019,6 +1284,10 @@ export default function TailoredQuoteForm({
               </select>
             </label>
 
+            {/* =============================================
+                DYNAMIC ADMIN FLEET
+            ============================================= */}
+
             <label>
               <span>
                 Preferred Vehicle
@@ -1037,15 +1306,21 @@ export default function TailoredQuoteForm({
                     event.target.value,
                   )
                 }
+                disabled={
+                  isLoadingFleet
+                }
               >
                 <option value="">
-                  No preference
+                  {isLoadingFleet
+                    ? "Loading vehicles..."
+                    : "No preference"}
                 </option>
 
-                {fleetData.map(
+                {fleetVehicles.map(
                   (vehicle) => (
                     <option
                       key={
+                        vehicle.id ??
                         vehicle.slug
                       }
                       value={
@@ -1058,6 +1333,55 @@ export default function TailoredQuoteForm({
                     </option>
                   ),
                 )}
+              </select>
+
+              {fleetLoadError && (
+                <small>
+                  Vehicle options are
+                  temporarily unavailable.
+                  You can still submit
+                  your enquiry without
+                  selecting a vehicle.
+                </small>
+              )}
+            </label>
+
+            {/* =============================================
+                CHILD SEAT
+            ============================================= */}
+
+            <label>
+              <span>
+                Child Seat
+              </span>
+
+              <select
+                name="childSeat"
+                value={
+                  formData.childSeat
+                }
+                onChange={(
+                  event,
+                ) =>
+                  updateField(
+                    "childSeat",
+                    event.target
+                      .value as
+                      ChildSeatType,
+                  )
+                }
+              >
+                <option value="">
+                  No child seat required
+                </option>
+
+                <option value="booster-seat">
+                  Booster Seat
+                </option>
+
+                <option value="child-safety-seat">
+                  Child Safety Seat
+                </option>
               </select>
             </label>
 
@@ -1130,7 +1454,7 @@ export default function TailoredQuoteForm({
                     event.target.value,
                   )
                 }
-                placeholder="Add return details, additional stops, child-seat requests, accessibility requirements or other useful information."
+                placeholder="Add return details, additional stops, accessibility requirements or other useful information."
               />
             </label>
           </div>

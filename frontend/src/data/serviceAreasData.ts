@@ -1,3 +1,7 @@
+/* =========================================================
+   TYPES
+========================================================= */
+
 export interface ServiceAreaFaq {
   question: string;
   answer: string;
@@ -7,14 +11,39 @@ export interface ServiceAreaItem {
   name: string;
   slug: string;
   region: string;
+
   heroDescription: string;
   introduction: string;
+
   image: string;
+
   services: string[];
   highlights: string[];
   nearbyAreas: string[];
+
   faqs: ServiceAreaFaq[];
 }
+
+/* =========================================================
+   SHARED CHILD TRAVEL CONTENT
+========================================================= */
+
+const childTravelHighlights = [
+  "Booster Seat requests available",
+  "Child Safety Seat requests available",
+  "Family-friendly journey planning",
+];
+
+const childTravelFaq: ServiceAreaFaq = {
+  question:
+    "Can I request a Booster Seat or Child Safety Seat?",
+  answer:
+    "Yes. Booster Seat and Child Safety Seat requests can be included with your chauffeur enquiry. Please provide relevant child, passenger, pram and luggage information so the booking team can review availability, vehicle suitability and your journey requirements.",
+};
+
+/* =========================================================
+   COMMON SERVICES
+========================================================= */
 
 const commonAirportServices = [
   "Melbourne Airport transfers",
@@ -23,19 +52,37 @@ const commonAirportServices = [
   "Wedding and event transport",
   "Hourly chauffeur hire",
   "Return journey bookings",
+  "Family travel with child-seat requests",
 ];
 
+/* =========================================================
+   SERVICE AREAS
+========================================================= */
+
 export const serviceAreasData: ServiceAreaItem[] = [
+  /* =======================================================
+     MELBOURNE CBD
+  ======================================================= */
+
   {
-    name: "Melbourne CBD",
-    slug: "melbourne-cbd",
-    region: "Central Melbourne",
+    name:
+      "Melbourne CBD",
+
+    slug:
+      "melbourne-cbd",
+
+    region:
+      "Central Melbourne",
+
     heroDescription:
-      "Private chauffeur services for Melbourne CBD airport transfers, corporate travel, hotels, events and private journeys.",
+      "Private chauffeur services for Melbourne CBD airport transfers, corporate travel, hotels, events and private journeys, with Booster Seat and Child Safety Seat requests available for younger passengers.",
+
     introduction:
-      "Travel throughout Melbourne CBD with a professional chauffeur service tailored to airport transfers, business appointments, hotels, events and private travel.",
+      "Travel throughout Melbourne CBD with a professional chauffeur service tailored to airport transfers, business appointments, hotels, events, private travel and journeys with babies or children.",
+
     image:
       "https://images.unsplash.com/photo-1514395462725-fb4566210144?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Melbourne Airport transfers",
       "Corporate chauffeur travel",
@@ -43,7 +90,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Conference transfers",
       "Event transport",
       "Hourly chauffeur hire",
+      "Family travel with child-seat requests",
     ],
+
     highlights: [
       "Door-to-door CBD travel",
       "Airport and hotel pickups",
@@ -51,7 +100,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Available for early and late journeys",
       "Suitable for private and corporate customers",
       "Regional travel from Melbourne CBD",
+      ...childTravelHighlights,
     ],
+
     nearbyAreas: [
       "South Melbourne",
       "North Melbourne",
@@ -60,30 +111,49 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Richmond",
       "South Yarra",
     ],
+
     faqs: [
       {
-        question: "Can I book a chauffeur from Melbourne CBD to the airport?",
+        question:
+          "Can I book a chauffeur from Melbourne CBD to the airport?",
         answer:
           "Yes. Melbourne CBD airport transfers can be requested for domestic and international flights.",
       },
+
       {
-        question: "Do you provide hotel pickups in Melbourne CBD?",
+        question:
+          "Do you provide hotel pickups in Melbourne CBD?",
         answer:
           "Yes. Add the hotel name, pickup time and destination when requesting your quote.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     LANCEFIELD
+  ======================================================= */
+
   {
-    name: "Lancefield",
-    slug: "lancefield",
-    region: "Macedon Ranges",
+    name:
+      "Lancefield",
+
+    slug:
+      "lancefield",
+
+    region:
+      "Macedon Ranges",
+
     heroDescription:
-      "Private chauffeur transfers between Lancefield, Melbourne Airport, Melbourne CBD and surrounding Victorian destinations.",
+      "Private chauffeur transfers between Lancefield, Melbourne Airport, Melbourne CBD and surrounding Victorian destinations, with Booster Seat and Child Safety Seat requests available for family journeys.",
+
     introduction:
-      "Arrange professional chauffeur travel from Lancefield for airport journeys, private appointments, weddings, events and Melbourne transfers.",
+      "Arrange professional chauffeur travel from Lancefield for airport journeys, private appointments, weddings, events and Melbourne transfers. Families travelling with babies or children can include child-seat requirements in their booking enquiry.",
+
     image:
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Melbourne CBD transfers",
@@ -91,7 +161,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Wedding chauffeur service",
       "Event transfers",
       "Regional journeys",
+      "Family travel",
     ],
+
     highlights: [
       "Direct travel to Melbourne Airport",
       "Regional pickup and drop-off",
@@ -99,7 +171,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Flexible vehicle selection",
       "Return journey requests",
       "Pre-arranged chauffeur service",
+      ...childTravelHighlights,
     ],
+
     nearbyAreas: [
       "Romsey",
       "Kilmore",
@@ -108,30 +182,49 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Wallan",
       "Gisborne",
     ],
+
     faqs: [
       {
-        question: "Can I book a Lancefield to Melbourne Airport transfer?",
+        question:
+          "Can I book a Lancefield to Melbourne Airport transfer?",
         answer:
           "Yes. Provide your flight number, pickup time, passenger count and luggage details.",
       },
+
       {
-        question: "Can I arrange a return journey to Lancefield?",
+        question:
+          "Can I arrange a return journey to Lancefield?",
         answer:
           "Yes. Add both outbound and return travel information to your quote request.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     CAMBERWELL
+  ======================================================= */
+
   {
-    name: "Camberwell",
-    slug: "camberwell",
-    region: "Eastern Melbourne",
+    name:
+      "Camberwell",
+
+    slug:
+      "camberwell",
+
+    region:
+      "Eastern Melbourne",
+
     heroDescription:
-      "Professional chauffeur travel in Camberwell for airports, corporate appointments, hotels and private journeys.",
+      "Professional chauffeur travel in Camberwell for airports, corporate appointments, hotels and private journeys, with Booster Seat and Child Safety Seat requests available.",
+
     introduction:
-      "Book reliable chauffeur travel in Camberwell for Melbourne Airport transfers, corporate travel, weddings, events and private transport.",
+      "Book reliable chauffeur travel in Camberwell for Melbourne Airport transfers, corporate travel, weddings, events, private transport and family journeys with younger passengers.",
+
     image:
       "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Corporate chauffeur travel",
@@ -139,7 +232,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Wedding transport",
       "Private events",
       "Hotel transfers",
+      "Family travel",
     ],
+
     highlights: [
       "Camberwell door-to-door pickup",
       "Airport and CBD travel",
@@ -147,7 +242,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private events",
       "Return bookings",
       "Professional chauffeur service",
+      ...childTravelHighlights,
     ],
+
     nearbyAreas: [
       "Kew",
       "Richmond",
@@ -155,30 +252,49 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "South Yarra",
       "Melbourne CBD",
     ],
+
     faqs: [
       {
-        question: "Do you provide Camberwell airport transfers?",
+        question:
+          "Do you provide Camberwell airport transfers?",
         answer:
           "Yes. Airport transfers can be requested from Camberwell to Melbourne Airport or Avalon Airport.",
       },
+
       {
-        question: "Can I book an hourly chauffeur in Camberwell?",
+        question:
+          "Can I book an hourly chauffeur in Camberwell?",
         answer:
           "Yes. Hourly chauffeur hire can be requested for meetings, events and multiple-stop journeys.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     SOUTH MELBOURNE
+  ======================================================= */
+
   {
-    name: "South Melbourne",
-    slug: "south-melbourne",
-    region: "Inner Melbourne",
+    name:
+      "South Melbourne",
+
+    slug:
+      "south-melbourne",
+
+    region:
+      "Inner Melbourne",
+
     heroDescription:
-      "Private chauffeur services for South Melbourne airport transfers, business travel, events and hotel journeys.",
+      "Private chauffeur services for South Melbourne airport transfers, business travel, events, hotels and family journeys, with Booster Seat and Child Safety Seat requests available.",
+
     introduction:
-      "Arrange professional chauffeur travel from South Melbourne to airports, Melbourne CBD, hotels, meetings and event venues.",
+      "Arrange professional chauffeur travel from South Melbourne to airports, Melbourne CBD, hotels, meetings, event venues and private destinations. Child-seat requirements can be included when travelling with babies or children.",
+
     image:
       "https://images.unsplash.com/photo-1494522358652-f30e61a60313?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Corporate chauffeur travel",
@@ -186,7 +302,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Event transfers",
       "Hourly hire",
       "Private journeys",
+      "Family chauffeur travel",
     ],
+
     highlights: [
       "South Melbourne pickup",
       "Melbourne Airport transfers",
@@ -194,38 +312,61 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Business appointments",
       "Private event transport",
       "Flexible booking options",
+      ...childTravelHighlights,
     ],
+
     nearbyAreas: [
       "Melbourne CBD",
       "South Yarra",
       "Richmond",
       "West Melbourne",
     ],
+
     faqs: [
       {
-        question: "Can I arrange a South Melbourne hotel transfer?",
+        question:
+          "Can I arrange a South Melbourne hotel transfer?",
         answer:
           "Yes. Provide your hotel or accommodation details when requesting a quote.",
       },
+
       {
-        question: "Do you provide corporate travel from South Melbourne?",
+        question:
+          "Do you provide corporate travel from South Melbourne?",
         answer:
           "Yes. Executive transport can be requested for offices, meetings, conferences and airports.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     NORTH MELBOURNE
+  ======================================================= */
+
   {
-    name: "North Melbourne",
-    slug: "north-melbourne",
-    region: "Inner Melbourne",
+    name:
+      "North Melbourne",
+
+    slug:
+      "north-melbourne",
+
+    region:
+      "Inner Melbourne",
+
     heroDescription:
-      "Professional chauffeur transfers from North Melbourne to airports, Melbourne CBD and surrounding destinations.",
+      "Professional chauffeur transfers from North Melbourne to airports, Melbourne CBD and surrounding destinations, including family travel with Booster Seat and Child Safety Seat requests.",
+
     introduction:
-      "Book chauffeur travel in North Melbourne for airport pickups, corporate appointments, events and private journeys.",
+      "Book chauffeur travel in North Melbourne for airport pickups, corporate appointments, events, private journeys and family transport with child-seat requirements.",
+
     image:
       "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1800&q=85",
-    services: commonAirportServices,
+
+    services:
+      commonAirportServices,
+
     highlights: [
       "North Melbourne pickup",
       "Airport travel",
@@ -233,37 +374,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Corporate bookings",
       "Return journeys",
       "Private travel",
+      ...childTravelHighlights,
     ],
+
     nearbyAreas: [
       "Melbourne CBD",
       "West Melbourne",
       "East Melbourne",
       "Richmond",
     ],
+
     faqs: [
       {
-        question: "Are early-morning airport pickups available?",
+        question:
+          "Are early-morning airport pickups available?",
         answer:
           "Yes. Early journeys may be requested, subject to confirmation and vehicle availability.",
       },
+
       {
-        question: "Can I book a chauffeur for several appointments?",
+        question:
+          "Can I book a chauffeur for several appointments?",
         answer:
           "Yes. Add all intended stops and expected waiting time to the quote request.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     RICHMOND
+  ======================================================= */
+
   {
-    name: "Richmond",
-    slug: "richmond",
-    region: "Inner East",
+    name:
+      "Richmond",
+
+    slug:
+      "richmond",
+
+    region:
+      "Inner East",
+
     heroDescription:
-      "Private chauffeur services in Richmond for airports, events, corporate travel and Melbourne journeys.",
+      "Private chauffeur services in Richmond for airports, sporting events, corporate travel and private Melbourne journeys, with child-seat requests available for younger passengers.",
+
     introduction:
-      "Travel from Richmond with a professional chauffeur for airport transfers, events, business appointments and private bookings.",
+      "Travel from Richmond with a professional chauffeur for airport transfers, sporting events, business appointments, hotels, private bookings and family journeys.",
+
     image:
       "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Corporate chauffeur travel",
@@ -271,7 +433,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Hotel transfers",
       "Hourly chauffeur hire",
       "Private travel",
+      "Family event travel",
     ],
+
     highlights: [
       "Richmond pickup",
       "Airport transfers",
@@ -279,7 +443,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Corporate appointments",
       "Hotel travel",
       "Private journeys",
+      ...childTravelHighlights,
     ],
+
     nearbyAreas: [
       "Melbourne CBD",
       "Kew",
@@ -287,30 +453,49 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Toorak",
       "Camberwell",
     ],
+
     faqs: [
       {
-        question: "Can I book chauffeur travel for a Richmond event?",
+        question:
+          "Can I book chauffeur travel for a Richmond event?",
         answer:
           "Yes. Add the venue, event time and return requirements to your quote request.",
       },
+
       {
-        question: "Can you collect passengers after a sporting event?",
+        question:
+          "Can you collect passengers after a sporting event?",
         answer:
           "Yes. Include the venue, expected finish time and preferred collection point.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     MICKLEHAM
+  ======================================================= */
+
   {
-    name: "Mickleham",
-    slug: "mickleham",
-    region: "Northern Melbourne",
+    name:
+      "Mickleham",
+
+    slug:
+      "mickleham",
+
+    region:
+      "Northern Melbourne",
+
     heroDescription:
-      "Private chauffeur transfers from Mickleham to Melbourne Airport, Melbourne CBD and regional destinations.",
+      "Private chauffeur transfers from Mickleham to Melbourne Airport, Melbourne CBD and regional destinations, with Booster Seat and Child Safety Seat requests available.",
+
     introduction:
-      "Arrange chauffeur travel from Mickleham for airport transfers, private journeys, weddings, events and Melbourne appointments.",
+      "Arrange chauffeur travel from Mickleham for airport transfers, private journeys, weddings, events, Melbourne appointments and family trips with babies or children.",
+
     image:
       "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Melbourne CBD travel",
@@ -318,7 +503,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Event transfers",
       "Wedding transport",
       "Regional transfers",
+      "Family chauffeur travel",
     ],
+
     highlights: [
       "Mickleham pickup",
       "Airport transfers",
@@ -326,32 +513,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private bookings",
       "Regional journeys",
       "Return transport",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["Wallan", "Wandong", "Kilmore", "Melbourne CBD"],
+
+    nearbyAreas: [
+      "Wallan",
+      "Wandong",
+      "Kilmore",
+      "Melbourne CBD",
+    ],
+
     faqs: [
       {
-        question: "Can I arrange a Mickleham airport transfer?",
+        question:
+          "Can I arrange a Mickleham airport transfer?",
         answer:
           "Yes. Include your flight and luggage information when requesting the booking.",
       },
+
       {
-        question: "Can I book transport from Mickleham to Melbourne CBD?",
+        question:
+          "Can I book transport from Mickleham to Melbourne CBD?",
         answer:
           "Yes. Private and corporate Melbourne CBD transfers can be arranged.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     SOUTH YARRA
+  ======================================================= */
+
   {
-    name: "South Yarra",
-    slug: "south-yarra",
-    region: "Inner South-East",
+    name:
+      "South Yarra",
+
+    slug:
+      "south-yarra",
+
+    region:
+      "Inner South-East",
+
     heroDescription:
-      "Premium chauffeur services in South Yarra for airport, hotel, corporate and private Melbourne travel.",
+      "Premium chauffeur services in South Yarra for airport, hotel, corporate and private Melbourne travel, with Booster Seat and Child Safety Seat requests available for family journeys.",
+
     introduction:
-      "Book chauffeur travel in South Yarra for airports, hotels, corporate appointments, weddings, events and private journeys.",
+      "Book chauffeur travel in South Yarra for airports, hotels, corporate appointments, weddings, events, private journeys and comfortable travel with younger passengers.",
+
     image:
       "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Hotel chauffeur service",
@@ -359,7 +572,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private events",
       "Hourly chauffeur hire",
       "Wedding transport",
+      "Family travel",
     ],
+
     highlights: [
       "South Yarra pickup",
       "Premium hotel transfers",
@@ -367,37 +582,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Corporate appointments",
       "Private events",
       "Flexible chauffeur hire",
+      ...childTravelHighlights,
     ],
+
     nearbyAreas: [
       "Toorak",
       "Richmond",
       "Melbourne CBD",
       "South Melbourne",
     ],
+
     faqs: [
       {
-        question: "Can I book a hotel transfer from South Yarra?",
+        question:
+          "Can I book a hotel transfer from South Yarra?",
         answer:
           "Yes. Hotel, airport and event transfers can be requested from South Yarra.",
       },
+
       {
-        question: "Can I request a premium vehicle?",
+        question:
+          "Can I request a premium vehicle?",
         answer:
           "Yes. Add your preferred vehicle when requesting the quote. Confirmation depends on availability.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     TOORAK
+  ======================================================= */
+
   {
-    name: "Toorak",
-    slug: "toorak",
-    region: "Inner South-East",
+    name:
+      "Toorak",
+
+    slug:
+      "toorak",
+
+    region:
+      "Inner South-East",
+
     heroDescription:
-      "Premium private chauffeur services for Toorak airport transfers, corporate appointments and special events.",
+      "Premium private chauffeur services for Toorak airport transfers, corporate appointments, weddings and special events, with child-seat requests available for family travel.",
+
     introduction:
-      "Arrange discreet and professional chauffeur travel in Toorak for airports, business travel, weddings and private events.",
+      "Arrange discreet and professional chauffeur travel in Toorak for airports, business travel, weddings, private events and journeys with babies or children.",
+
     image:
       "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Corporate chauffeur service",
@@ -405,7 +641,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private events",
       "Hourly chauffeur hire",
       "Hotel transfers",
+      "Family chauffeur travel",
     ],
+
     highlights: [
       "Private Toorak pickup",
       "Luxury airport travel",
@@ -413,32 +651,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Wedding bookings",
       "Event chauffeur service",
       "Vehicle preference requests",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["South Yarra", "Richmond", "Camberwell", "Kew"],
+
+    nearbyAreas: [
+      "South Yarra",
+      "Richmond",
+      "Camberwell",
+      "Kew",
+    ],
+
     faqs: [
       {
-        question: "Can I request a luxury vehicle in Toorak?",
+        question:
+          "Can I request a luxury vehicle in Toorak?",
         answer:
           "Yes. Add your preferred vehicle to the quote form. Confirmation depends on availability.",
       },
+
       {
-        question: "Do you provide wedding chauffeur services in Toorak?",
+        question:
+          "Do you provide wedding chauffeur services in Toorak?",
         answer:
           "Yes. Wedding transport can be planned around the ceremony, photography and reception schedule.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     GISBORNE
+  ======================================================= */
+
   {
-    name: "Gisborne",
-    slug: "gisborne",
-    region: "Macedon Ranges",
+    name:
+      "Gisborne",
+
+    slug:
+      "gisborne",
+
+    region:
+      "Macedon Ranges",
+
     heroDescription:
-      "Private chauffeur transfers from Gisborne to Melbourne Airport, Melbourne CBD and regional destinations.",
+      "Private chauffeur transfers from Gisborne to Melbourne Airport, Melbourne CBD and regional destinations, including family travel with Booster Seat and Child Safety Seat requests.",
+
     introduction:
-      "Book professional chauffeur travel in Gisborne for airports, weddings, private events and Melbourne appointments.",
+      "Book professional chauffeur travel in Gisborne for airports, weddings, private events, Melbourne appointments, tours and family journeys.",
+
     image:
       "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Wedding chauffeur service",
@@ -446,7 +710,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private tours",
       "Event transfers",
       "Regional journeys",
+      "Family travel",
     ],
+
     highlights: [
       "Gisborne pickup",
       "Airport travel",
@@ -454,32 +720,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Wedding transport",
       "Private bookings",
       "Return transfers",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["Woodend", "Kyneton", "Romsey", "Lancefield"],
+
+    nearbyAreas: [
+      "Woodend",
+      "Kyneton",
+      "Romsey",
+      "Lancefield",
+    ],
+
     faqs: [
       {
-        question: "Can you provide Gisborne to Melbourne Airport transfers?",
+        question:
+          "Can you provide Gisborne to Melbourne Airport transfers?",
         answer:
           "Yes. Submit your pickup time, flight details, passenger count and luggage requirements.",
       },
+
       {
-        question: "Can I arrange a private day trip from Gisborne?",
+        question:
+          "Can I arrange a private day trip from Gisborne?",
         answer:
           "Yes. Share your planned destinations and timing for a tailored quotation.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     KYNETON
+  ======================================================= */
+
   {
-    name: "Kyneton",
-    slug: "kyneton",
-    region: "Macedon Ranges",
+    name:
+      "Kyneton",
+
+    slug:
+      "kyneton",
+
+    region:
+      "Macedon Ranges",
+
     heroDescription:
-      "Private chauffeur travel from Kyneton to Melbourne Airport, Melbourne CBD and Victorian destinations.",
+      "Private chauffeur travel from Kyneton to Melbourne Airport, Melbourne CBD and Victorian destinations, with Booster Seat and Child Safety Seat requests available.",
+
     introduction:
-      "Arrange chauffeur travel in Kyneton for airports, events, private tours, weddings and Melbourne journeys.",
+      "Arrange chauffeur travel in Kyneton for airports, events, private tours, weddings, Melbourne journeys and family travel with younger passengers.",
+
     image:
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Private tours",
@@ -487,7 +779,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Event transfers",
       "Melbourne CBD transfers",
       "Regional travel",
+      "Family chauffeur travel",
     ],
+
     highlights: [
       "Kyneton pickup",
       "Airport transfers",
@@ -495,32 +789,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private day journeys",
       "Event transport",
       "Return bookings",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["Woodend", "Gisborne", "Lancefield", "Romsey"],
+
+    nearbyAreas: [
+      "Woodend",
+      "Gisborne",
+      "Lancefield",
+      "Romsey",
+    ],
+
     faqs: [
       {
-        question: "Can I arrange a private journey from Kyneton?",
+        question:
+          "Can I arrange a private journey from Kyneton?",
         answer:
           "Yes. Provide the pickup, destination and travel schedule for a tailored quote.",
       },
+
       {
-        question: "Can I book Kyneton to Melbourne Airport?",
+        question:
+          "Can I book Kyneton to Melbourne Airport?",
         answer:
           "Yes. Include your flight time, passenger number and luggage information.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     EAST MELBOURNE
+  ======================================================= */
+
   {
-    name: "East Melbourne",
-    slug: "east-melbourne",
-    region: "Inner Melbourne",
+    name:
+      "East Melbourne",
+
+    slug:
+      "east-melbourne",
+
+    region:
+      "Inner Melbourne",
+
     heroDescription:
-      "Professional chauffeur services in East Melbourne for airports, hotels, hospitals, events and corporate travel.",
+      "Professional chauffeur services in East Melbourne for airports, hotels, hospitals, events and corporate travel, with child-seat requests available for family journeys.",
+
     introduction:
-      "Book chauffeur travel in East Melbourne for airport transfers, hotels, events, medical appointments and private journeys.",
+      "Book chauffeur travel in East Melbourne for airport transfers, hotels, events, appointments, business journeys and private family transport.",
+
     image:
       "https://images.unsplash.com/photo-1514395462725-fb4566210144?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Hotel transfers",
@@ -528,7 +848,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Event transport",
       "Private chauffeur hire",
       "Hourly travel",
+      "Family chauffeur travel",
     ],
+
     highlights: [
       "East Melbourne pickup",
       "Airport travel",
@@ -536,38 +858,61 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Corporate appointments",
       "Private bookings",
       "Return journeys",
+      ...childTravelHighlights,
     ],
+
     nearbyAreas: [
       "Melbourne CBD",
       "Richmond",
       "North Melbourne",
       "Kew",
     ],
+
     faqs: [
       {
-        question: "Can I book a chauffeur for an East Melbourne appointment?",
+        question:
+          "Can I book a chauffeur for an East Melbourne appointment?",
         answer:
           "Yes. Add your pickup location, appointment address and preferred collection time.",
       },
+
       {
-        question: "Do you provide hotel pickups in East Melbourne?",
+        question:
+          "Do you provide hotel pickups in East Melbourne?",
         answer:
           "Yes. Hotel, airport and event transfers can be arranged.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     WEST MELBOURNE
+  ======================================================= */
+
   {
-    name: "West Melbourne",
-    slug: "west-melbourne",
-    region: "Inner Melbourne",
+    name:
+      "West Melbourne",
+
+    slug:
+      "west-melbourne",
+
+    region:
+      "Inner Melbourne",
+
     heroDescription:
-      "Private chauffeur transfers from West Melbourne to airports, hotels, business venues and surrounding suburbs.",
+      "Private chauffeur transfers from West Melbourne to airports, hotels, business venues and surrounding suburbs, with Booster Seat and Child Safety Seat requests available.",
+
     introduction:
-      "Arrange professional chauffeur travel in West Melbourne for airport transfers, corporate travel, events and private journeys.",
+      "Arrange professional chauffeur travel in West Melbourne for airport transfers, corporate travel, events, private journeys and family transport.",
+
     image:
       "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1800&q=85",
-    services: commonAirportServices,
+
+    services:
+      commonAirportServices,
+
     highlights: [
       "West Melbourne pickup",
       "Airport transfers",
@@ -575,37 +920,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Corporate appointments",
       "Hotel transfers",
       "Private chauffeur bookings",
+      ...childTravelHighlights,
     ],
+
     nearbyAreas: [
       "Melbourne CBD",
       "North Melbourne",
       "South Melbourne",
       "East Melbourne",
     ],
+
     faqs: [
       {
-        question: "Can I book an airport transfer from West Melbourne?",
+        question:
+          "Can I book an airport transfer from West Melbourne?",
         answer:
           "Yes. Airport pickups and drop-offs can be arranged for domestic and international flights.",
       },
+
       {
-        question: "Can I request a return transfer?",
+        question:
+          "Can I request a return transfer?",
         answer:
           "Yes. Add your return date and pickup time when submitting the request.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     KILMORE
+  ======================================================= */
+
   {
-    name: "Kilmore",
-    slug: "kilmore",
-    region: "Northern Victoria",
+    name:
+      "Kilmore",
+
+    slug:
+      "kilmore",
+
+    region:
+      "Northern Victoria",
+
     heroDescription:
-      "Professional chauffeur transfers from Kilmore to Melbourne Airport, Melbourne CBD and regional destinations.",
+      "Professional chauffeur transfers from Kilmore to Melbourne Airport, Melbourne CBD and regional destinations, including family journeys with Booster Seat and Child Safety Seat requests.",
+
     introduction:
-      "Book chauffeur travel from Kilmore for airport transfers, private appointments, weddings, events and Melbourne journeys.",
+      "Book chauffeur travel from Kilmore for airport transfers, private appointments, weddings, events, Melbourne journeys and family travel.",
+
     image:
       "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Melbourne CBD travel",
@@ -613,7 +979,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private journeys",
       "Event transfers",
       "Regional travel",
+      "Family chauffeur travel",
     ],
+
     highlights: [
       "Kilmore pickup",
       "Melbourne Airport travel",
@@ -621,32 +989,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private and family bookings",
       "Return travel",
       "Pre-arranged chauffeur service",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["Wallan", "Wandong", "Lancefield", "Romsey"],
+
+    nearbyAreas: [
+      "Wallan",
+      "Wandong",
+      "Lancefield",
+      "Romsey",
+    ],
+
     faqs: [
       {
-        question: "Can I book Kilmore to Melbourne Airport?",
+        question:
+          "Can I book Kilmore to Melbourne Airport?",
         answer:
           "Yes. Provide the flight time, luggage details and preferred pickup time.",
       },
+
       {
-        question: "Do you provide wedding transport in Kilmore?",
+        question:
+          "Do you provide wedding transport in Kilmore?",
         answer:
           "Yes. Wedding journeys can be tailored around the ceremony and reception itinerary.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     WOODEND
+  ======================================================= */
+
   {
-    name: "Woodend",
-    slug: "woodend",
-    region: "Macedon Ranges",
+    name:
+      "Woodend",
+
+    slug:
+      "woodend",
+
+    region:
+      "Macedon Ranges",
+
     heroDescription:
-      "Private chauffeur services from Woodend to Melbourne Airport, Melbourne CBD and Macedon Ranges destinations.",
+      "Private chauffeur services from Woodend to Melbourne Airport, Melbourne CBD and Macedon Ranges destinations, with child-seat options available for family journeys.",
+
     introduction:
-      "Arrange chauffeur travel from Woodend for airport transfers, weddings, private tours, events and Melbourne appointments.",
+      "Arrange chauffeur travel from Woodend for airport transfers, weddings, private tours, events, Melbourne appointments and family trips with babies or children.",
+
     image:
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Private tours",
@@ -654,7 +1048,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Event transport",
       "Melbourne CBD travel",
       "Regional journeys",
+      "Family travel",
     ],
+
     highlights: [
       "Woodend pickup",
       "Airport transfers",
@@ -662,32 +1058,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Wedding and event transport",
       "Private day trips",
       "Return journey requests",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["Gisborne", "Kyneton", "Lancefield", "Romsey"],
+
+    nearbyAreas: [
+      "Gisborne",
+      "Kyneton",
+      "Lancefield",
+      "Romsey",
+    ],
+
     faqs: [
       {
-        question: "Can I arrange a Woodend airport transfer?",
+        question:
+          "Can I arrange a Woodend airport transfer?",
         answer:
           "Yes. Melbourne Airport transfers can be requested from Woodend.",
       },
+
       {
-        question: "Can I book a private chauffeur tour from Woodend?",
+        question:
+          "Can I book a private chauffeur tour from Woodend?",
         answer:
           "Yes. Provide the destinations, stops and expected journey duration.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     WALLAN
+  ======================================================= */
+
   {
-    name: "Wallan",
-    slug: "wallan",
-    region: "Northern Victoria",
+    name:
+      "Wallan",
+
+    slug:
+      "wallan",
+
+    region:
+      "Northern Victoria",
+
     heroDescription:
-      "Private chauffeur transfers from Wallan to Melbourne Airport, Melbourne CBD and surrounding Victorian destinations.",
+      "Private chauffeur transfers from Wallan to Melbourne Airport, Melbourne CBD and surrounding Victorian destinations, with Booster Seat and Child Safety Seat requests available.",
+
     introduction:
-      "Book professional chauffeur travel in Wallan for airport journeys, private appointments, events and Melbourne transfers.",
+      "Book professional chauffeur travel in Wallan for airport journeys, private appointments, events, Melbourne transfers and family travel.",
+
     image:
       "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Melbourne CBD transfers",
@@ -695,7 +1117,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Wedding transport",
       "Private journeys",
       "Regional transfers",
+      "Family chauffeur travel",
     ],
+
     highlights: [
       "Wallan pickup",
       "Airport transfers",
@@ -703,32 +1127,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private and business bookings",
       "Return journeys",
       "Regional chauffeur travel",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["Wandong", "Kilmore", "Mickleham", "Lancefield"],
+
+    nearbyAreas: [
+      "Wandong",
+      "Kilmore",
+      "Mickleham",
+      "Lancefield",
+    ],
+
     faqs: [
       {
-        question: "Can you provide Wallan to Melbourne Airport transfers?",
+        question:
+          "Can you provide Wallan to Melbourne Airport transfers?",
         answer:
           "Yes. Submit your flight, pickup and luggage details for a tailored quote.",
       },
+
       {
-        question: "Can I book a chauffeur from Wallan to Melbourne CBD?",
+        question:
+          "Can I book a chauffeur from Wallan to Melbourne CBD?",
         answer:
           "Yes. One-way, return and hourly bookings can be requested.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     KEW
+  ======================================================= */
+
   {
-    name: "Kew",
-    slug: "kew",
-    region: "Eastern Melbourne",
+    name:
+      "Kew",
+
+    slug:
+      "kew",
+
+    region:
+      "Eastern Melbourne",
+
     heroDescription:
-      "Premium chauffeur services in Kew for Melbourne Airport, corporate appointments, weddings and private travel.",
+      "Premium chauffeur services in Kew for Melbourne Airport, corporate appointments, weddings and private travel, with Booster Seat and Child Safety Seat requests available.",
+
     introduction:
-      "Travel from Kew with a professional chauffeur for airport transfers, business appointments, weddings, events and private journeys.",
+      "Travel from Kew with a professional chauffeur for airport transfers, business appointments, weddings, events, private journeys and family travel.",
+
     image:
       "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Corporate chauffeur travel",
@@ -736,7 +1186,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Hotel transfers",
       "Event transfers",
       "Hourly chauffeur hire",
+      "Family travel",
     ],
+
     highlights: [
       "Kew door-to-door pickup",
       "Airport and CBD travel",
@@ -744,32 +1196,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Wedding transport",
       "Private events",
       "Premium vehicle requests",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["Richmond", "Camberwell", "Toorak", "East Melbourne"],
+
+    nearbyAreas: [
+      "Richmond",
+      "Camberwell",
+      "Toorak",
+      "East Melbourne",
+    ],
+
     faqs: [
       {
-        question: "Do you provide airport transfers from Kew?",
+        question:
+          "Do you provide airport transfers from Kew?",
         answer:
           "Yes. Melbourne Airport and Avalon Airport transfers can be requested.",
       },
+
       {
-        question: "Can I request a premium vehicle in Kew?",
+        question:
+          "Can I request a premium vehicle in Kew?",
         answer:
           "Yes. Select your preferred vehicle in the quote form, subject to availability.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     WANDONG
+  ======================================================= */
+
   {
-    name: "Wandong",
-    slug: "wandong",
-    region: "Northern Victoria",
+    name:
+      "Wandong",
+
+    slug:
+      "wandong",
+
+    region:
+      "Northern Victoria",
+
     heroDescription:
-      "Private chauffeur transfers from Wandong to Melbourne Airport, Melbourne CBD and northern Victorian destinations.",
+      "Private chauffeur transfers from Wandong to Melbourne Airport, Melbourne CBD and northern Victorian destinations, with child-seat requests available for family travel.",
+
     introduction:
-      "Arrange chauffeur travel from Wandong for airport transfers, Melbourne appointments, events and private journeys.",
+      "Arrange chauffeur travel from Wandong for airport transfers, Melbourne appointments, events, private journeys and family trips with younger passengers.",
+
     image:
       "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Melbourne CBD travel",
@@ -777,7 +1255,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private journeys",
       "Event transfers",
       "Regional travel",
+      "Family chauffeur travel",
     ],
+
     highlights: [
       "Wandong pickup",
       "Airport travel",
@@ -785,32 +1265,58 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private bookings",
       "Wedding and event transport",
       "Return journey requests",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["Kilmore", "Wallan", "Lancefield", "Mickleham"],
+
+    nearbyAreas: [
+      "Kilmore",
+      "Wallan",
+      "Lancefield",
+      "Mickleham",
+    ],
+
     faqs: [
       {
-        question: "Can I arrange a Wandong airport transfer?",
+        question:
+          "Can I arrange a Wandong airport transfer?",
         answer:
           "Yes. Provide your flight information, passenger count and luggage requirements.",
       },
+
       {
-        question: "Can I book a return trip from Melbourne to Wandong?",
+        question:
+          "Can I book a return trip from Melbourne to Wandong?",
         answer:
           "Yes. Add the return date, time and pickup address to the quote request.",
       },
+
+      childTravelFaq,
     ],
   },
 
+  /* =======================================================
+     ROMSEY
+  ======================================================= */
+
   {
-    name: "Romsey",
-    slug: "romsey",
-    region: "Macedon Ranges",
+    name:
+      "Romsey",
+
+    slug:
+      "romsey",
+
+    region:
+      "Macedon Ranges",
+
     heroDescription:
-      "Professional chauffeur travel from Romsey to Melbourne Airport, Melbourne CBD and Macedon Ranges destinations.",
+      "Professional chauffeur travel from Romsey to Melbourne Airport, Melbourne CBD and Macedon Ranges destinations, with Booster Seat and Child Safety Seat requests available.",
+
     introduction:
-      "Book chauffeur transport from Romsey for airport transfers, weddings, private travel, events and Melbourne appointments.",
+      "Book chauffeur transport from Romsey for airport transfers, weddings, private travel, events, Melbourne appointments and family journeys.",
+
     image:
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85",
+
     services: [
       "Airport transfers",
       "Melbourne CBD transfers",
@@ -818,7 +1324,9 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Private tours",
       "Event transfers",
       "Regional journeys",
+      "Family chauffeur travel",
     ],
+
     highlights: [
       "Romsey pickup",
       "Airport transfers",
@@ -826,38 +1334,74 @@ export const serviceAreasData: ServiceAreaItem[] = [
       "Wedding and event journeys",
       "Private day trips",
       "Return bookings",
+      ...childTravelHighlights,
     ],
-    nearbyAreas: ["Lancefield", "Gisborne", "Woodend", "Kyneton"],
+
+    nearbyAreas: [
+      "Lancefield",
+      "Gisborne",
+      "Woodend",
+      "Kyneton",
+    ],
+
     faqs: [
       {
-        question: "Can you provide Romsey to Melbourne Airport transfers?",
+        question:
+          "Can you provide Romsey to Melbourne Airport transfers?",
         answer:
           "Yes. Submit your preferred pickup time, flight details and luggage requirements.",
       },
+
       {
-        question: "Can I arrange wedding chauffeur travel in Romsey?",
+        question:
+          "Can I arrange wedding chauffeur travel in Romsey?",
         answer:
           "Yes. Provide the complete wedding itinerary for a tailored quotation.",
       },
+
+      childTravelFaq,
     ],
   },
 ];
 
-export const serviceAreaSlugs = serviceAreasData.map(
-  (area) => area.slug,
-);
+/* =========================================================
+   SERVICE AREA SLUGS
+========================================================= */
+
+export const serviceAreaSlugs =
+  serviceAreasData.map(
+    (area) =>
+      area.slug,
+  );
+
+/* =========================================================
+   FIND AREA BY SLUG
+========================================================= */
 
 export const getServiceAreaBySlug = (
   slug?: string,
 ): ServiceAreaItem | undefined =>
-  serviceAreasData.find((area) => area.slug === slug);
+  serviceAreasData.find(
+    (area) =>
+      area.slug === slug,
+  );
+
+/* =========================================================
+   FIND SLUG BY NAME
+========================================================= */
 
 export const getServiceAreaSlugByName = (
   name: string,
 ): string | undefined =>
   serviceAreasData.find(
-    (area) => area.name.toLowerCase() === name.toLowerCase(),
+    (area) =>
+      area.name.toLowerCase() ===
+      name.toLowerCase(),
   )?.slug;
+
+/* =========================================================
+   GET NEARBY AREAS
+========================================================= */
 
 export const getNearbyServiceAreas = (
   nearbyAreaNames: string[],
@@ -866,9 +1410,13 @@ export const getNearbyServiceAreas = (
     .map((name) =>
       serviceAreasData.find(
         (area) =>
-          area.name.toLowerCase() === name.toLowerCase(),
+          area.name.toLowerCase() ===
+          name.toLowerCase(),
       ),
     )
     .filter(
-      (area): area is ServiceAreaItem => Boolean(area),
+      (
+        area,
+      ): area is ServiceAreaItem =>
+        Boolean(area),
     );

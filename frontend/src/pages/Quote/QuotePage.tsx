@@ -3,16 +3,40 @@ import {
   FiPhone,
   FiShield,
 } from "react-icons/fi";
-import { useSearchParams } from "react-router-dom";
+
+import {
+  useSearchParams,
+} from "react-router-dom";
 
 import TailoredQuoteForm from "../../components/forms/TailoredQuoteForm";
 import InnerPageHero from "../../components/hero/InnerPageHero";
-import { siteConfig } from "../../config/siteConfig";
-import { routePaths } from "../../routes/routePaths";
+
+import {
+  siteConfig,
+} from "../../config/siteConfig";
+
+import {
+  routePaths,
+} from "../../routes/routePaths";
 
 import "./quotePage.css";
 
-type TripType = "one-way" | "return";
+/* =========================================================
+   TYPES
+========================================================= */
+
+type TripType =
+  | "one-way"
+  | "return";
+
+type ChildSeatType =
+  | ""
+  | "booster-seat"
+  | "child-safety-seat";
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function getTripType(
   value: string | null,
@@ -29,7 +53,8 @@ function getPassengerCount(
     return "1";
   }
 
-  const count = Number(value);
+  const count =
+    Number(value);
 
   if (
     Number.isNaN(count) ||
@@ -39,48 +64,119 @@ function getPassengerCount(
     return "1";
   }
 
-  return String(Math.floor(count));
+  return String(
+    Math.floor(count),
+  );
 }
 
+function getChildSeatType(
+  value: string | null,
+): ChildSeatType {
+  if (
+    value === "booster-seat"
+  ) {
+    return "booster-seat";
+  }
+
+  if (
+    value ===
+    "child-safety-seat"
+  ) {
+    return "child-safety-seat";
+  }
+
+  return "";
+}
+
+/* =========================================================
+   QUOTE PAGE
+========================================================= */
+
 export default function QuotePage() {
-  const [searchParams] = useSearchParams();
+  const [
+    searchParams,
+  ] =
+    useSearchParams();
+
+  /* =======================================================
+     QUERY PARAM DEFAULTS
+  ======================================================= */
 
   const defaultService =
-    searchParams.get("service") ?? "";
+    searchParams.get(
+      "service",
+    ) ?? "";
 
   const defaultVehicle =
-    searchParams.get("vehicle") ?? "";
+    searchParams.get(
+      "vehicle",
+    ) ?? "";
 
   const defaultPickup =
-    searchParams.get("pickup") ?? "";
+    searchParams.get(
+      "pickup",
+    ) ?? "";
 
   const defaultDestination =
-    searchParams.get("destination") ?? "";
+    searchParams.get(
+      "destination",
+    ) ?? "";
 
   const defaultPickupDate =
-    searchParams.get("pickupDate") ?? "";
+    searchParams.get(
+      "pickupDate",
+    ) ?? "";
 
   const defaultPickupTime =
-    searchParams.get("pickupTime") ?? "";
+    searchParams.get(
+      "pickupTime",
+    ) ?? "";
 
   const defaultPassengers =
     getPassengerCount(
-      searchParams.get("passengers"),
+      searchParams.get(
+        "passengers",
+      ),
     );
 
   const defaultTripType =
     getTripType(
-      searchParams.get("tripType"),
+      searchParams.get(
+        "tripType",
+      ),
     );
 
+  const defaultChildSeat =
+    getChildSeatType(
+      searchParams.get(
+        "childSeat",
+      ),
+    );
+
+  /* =======================================================
+     JOURNEY STATUS
+  ======================================================= */
+
   const hasCompleteJourney =
-    Boolean(defaultPickup.trim()) &&
-    Boolean(defaultDestination.trim()) &&
-    Boolean(defaultPickupDate) &&
-    Boolean(defaultPickupTime);
+    Boolean(
+      defaultPickup.trim(),
+    ) &&
+    Boolean(
+      defaultDestination.trim(),
+    ) &&
+    Boolean(
+      defaultPickupDate,
+    ) &&
+    Boolean(
+      defaultPickupTime,
+    );
 
   return (
     <main>
+      {/* ===================================================
+          HERO
+      =================================================== */}
+
       <InnerPageHero
         showNavigation={false}
         eyebrow="Tailored Chauffeur Quote"
@@ -93,71 +189,106 @@ export default function QuotePage() {
         breadcrumbs={[
           {
             label: "Home",
-            path: routePaths.home,
+            path:
+              routePaths.home,
           },
           {
-            label: "Get a Quote",
+            label:
+              "Get a Quote",
           },
         ]}
       />
 
+      {/* ===================================================
+          QUOTE PAGE
+      =================================================== */}
+
       <section className="quote-page">
         <div className="container quote-page__layout">
+          {/* =================================================
+              INFORMATION SIDEBAR
+          ================================================= */}
+
           <aside className="quote-page__information">
             <span className="eyebrow">
               Private Chauffeur Melbourne
             </span>
 
             <h2>
-              Plan your journey with our
-              booking team.
+              Plan your journey with
+              our booking team.
             </h2>
 
             <p>
               {hasCompleteJourney
                 ? "Your journey details have been carried across from the homepage. You can review or edit them inside the form before submitting."
-                : "Complete the journey information and tell us your preferred service, vehicle and any special requirements."}
+                : "Complete the journey information and tell us your preferred service, vehicle, child-seat requirements and any special requirements."}
             </p>
 
+            {/* ===============================================
+                CONTACT DETAILS
+            =============================================== */}
+
             <div className="quote-page__contact-list">
-              <a href={siteConfig.phoneHref}>
-                <FiPhone aria-hidden="true" />
+              <a
+                href={
+                  siteConfig.phoneHref
+                }
+              >
+                <FiPhone
+                  aria-hidden="true"
+                />
 
                 <span>
                   <strong>
                     Call or Text
                   </strong>
 
-                  {siteConfig.phone}
+                  {
+                    siteConfig.phone
+                  }
                 </span>
               </a>
 
               <a
                 href={`mailto:${siteConfig.email}`}
               >
-                <FiMail aria-hidden="true" />
+                <FiMail
+                  aria-hidden="true"
+                />
 
                 <span>
-                  <strong>Email</strong>
+                  <strong>
+                    Email
+                  </strong>
 
-                  {siteConfig.email}
+                  {
+                    siteConfig.email
+                  }
                 </span>
               </a>
 
               <div>
-                <FiShield aria-hidden="true" />
+                <FiShield
+                  aria-hidden="true"
+                />
 
                 <span>
                   <strong>
                     Private and Secure
                   </strong>
 
-                  Your information is used only
-                  to review and respond to your
+                  Your information is
+                  used only to review
+                  and respond to your
                   chauffeur enquiry.
                 </span>
               </div>
             </div>
+
+            {/* ===============================================
+                NOTICE
+            =============================================== */}
 
             <div className="quote-page__notice">
               <strong>
@@ -165,12 +296,18 @@ export default function QuotePage() {
               </strong>
 
               <p>
-                Submitting this form does not
-                confirm your booking, vehicle
-                availability or final price.
+                Submitting this form
+                does not confirm your
+                booking, vehicle
+                availability or final
+                price.
               </p>
             </div>
           </aside>
+
+          {/* =================================================
+              FORM AREA
+          ================================================= */}
 
           <div className="quote-page__main">
             <div className="quote-page__form-heading">
@@ -189,14 +326,24 @@ export default function QuotePage() {
               <p>
                 {hasCompleteJourney
                   ? "Your pickup, destination, date, time, passengers and journey type are already available below."
-                  : "Add the missing journey information, followed by your contact details and travel preferences."}
+                  : "Add the missing journey information, followed by your contact details, service, preferred vehicle and child-seat requirements."}
               </p>
             </div>
 
+            {/* ===============================================
+                QUOTE FORM
+            =============================================== */}
+
             <TailoredQuoteForm
-              defaultService={defaultService}
-              defaultVehicle={defaultVehicle}
-              defaultPickup={defaultPickup}
+              defaultService={
+                defaultService
+              }
+              defaultVehicle={
+                defaultVehicle
+              }
+              defaultPickup={
+                defaultPickup
+              }
               defaultDestination={
                 defaultDestination
               }
@@ -211,6 +358,9 @@ export default function QuotePage() {
               }
               defaultTripType={
                 defaultTripType
+              }
+              defaultChildSeat={
+                defaultChildSeat
               }
             />
           </div>

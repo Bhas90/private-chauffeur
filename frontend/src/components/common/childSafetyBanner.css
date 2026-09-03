@@ -1,0 +1,185 @@
+.child-safety-banner {
+  position: relative;
+  z-index: 20;
+
+  padding: 10px 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f263c 0%,
+      #10283f 62%,
+      #173550 100%
+    );
+
+  border-bottom:
+    1px solid
+      rgba(198, 166, 107, 0.3);
+}
+
+.child-safety-banner__inner {
+  display: grid;
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      14px,
+      2vw,
+      24px
+    );
+}
+
+.child-safety-banner__icon {
+  width: 48px;
+  height: 48px;
+
+  border:
+    1px solid
+      rgba(198, 166, 107, 0.34);
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background:
+    rgba(198, 166, 107, 0.12);
+
+  color: #c6a66b;
+}
+
+.child-safety-banner__icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.child-safety-banner__content {
+  min-width: 0;
+}
+
+.child-safety-banner__content > span {
+  display: block;
+
+  color: #c6a66b;
+
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.child-safety-banner__content strong {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      0.95rem,
+      1.5vw,
+      1.18rem
+    );
+
+  line-height: 1.35;
+}
+
+.child-safety-banner__content p {
+  margin: 4px 0 0;
+
+  max-width: 760px;
+
+  color: #c2ccd5;
+
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.child-safety-banner__cta {
+  min-height: 42px;
+
+  padding: 0 18px;
+
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  background: #c6a66b;
+
+  color: #10283f;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  font-size: 0.72rem;
+  font-weight: 800;
+
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.child-safety-banner__cta:hover {
+  background: #ffffff;
+
+  transform:
+    translateY(-2px);
+}
+
+@media (max-width: 800px) {
+  .child-safety-banner__inner {
+    grid-template-columns:
+      auto
+      minmax(0, 1fr);
+  }
+
+  .child-safety-banner__cta {
+    grid-column:
+      1 / -1;
+
+    width: fit-content;
+
+    margin-left: 62px;
+  }
+}
+
+@media (max-width: 560px) {
+  .child-safety-banner {
+    padding: 14px 0;
+  }
+
+  .child-safety-banner__inner {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  .child-safety-banner__icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .child-safety-banner__content p {
+    font-size: 0.72rem;
+  }
+
+  .child-safety-banner__cta {
+    grid-column: auto;
+
+    width: 100%;
+
+    margin-left: 0;
+  }
+}

@@ -1,4 +1,10 @@
 import {
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
+import {
   FiCheck,
   FiClock,
   FiMapPin,
@@ -13,14 +19,30 @@ import {
 
 import InnerPageHero from "../../components/hero/InnerPageHero";
 
-import {
-  fleetData,
-} from "../../data/fleetData";
-
 import "./aboutPage.css";
 
 /* =========================================================
-   WHY CHOOSE US VALUES
+   TYPES
+========================================================= */
+
+interface FleetVehicle {
+  id?: number | string;
+
+  name: string;
+  slug: string;
+  category?: string;
+
+  image?: string | null;
+  coverImage?: string | null;
+
+  active?: boolean;
+  featured?: boolean;
+
+  displayOrder?: number;
+}
+
+/* =========================================================
+   VALUES
 ========================================================= */
 
 const values = [
@@ -74,10 +96,11 @@ const servicePoints = [
   "Corporate travel",
   "Wedding chauffeur services",
   "Hotel transfers",
+  "Conference transfers",
   "Hourly chauffeur hire",
   "Private tours",
-  "Events and group transfers",
-  "Regional Victorian travel",
+  "Group and event transfers",
+  "Melbourne event transfers",
 ];
 
 /* =========================================================
@@ -85,26 +108,210 @@ const servicePoints = [
 ========================================================= */
 
 export default function AboutPage() {
-  /* =======================================================
-     APPROVED FLEET IMAGES
+  const [
+    fleetVehicles,
+    setFleetVehicles,
+  ] =
+    useState<FleetVehicle[]>([]);
 
-     These images come directly from fleetData.ts.
-     No unrelated vehicle images are used.
+  const [
+    fleetLoading,
+    setFleetLoading,
+  ] =
+    useState(true);
+
+  /* =======================================================
+     API URL
   ======================================================= */
 
-  const bmw7Series =
-    fleetData.find(
-      (vehicle) =>
-        vehicle.slug ===
-        "bmw-7-series",
-    );
+  const apiUrl =
+    import.meta.env.VITE_API_URL ||
+    "http://localhost:3000/api";
 
-  const mercedesSClass =
-    fleetData.find(
-      (vehicle) =>
-        vehicle.slug ===
-        "mercedes-benz-s-class",
-    );
+  /* =======================================================
+     LOAD FLEET FROM ADMIN / DATABASE
+  ======================================================= */
+
+  useEffect(() => {
+    let mounted = true;
+
+    const loadFleet =
+      async () => {
+        try {
+          setFleetLoading(true);
+
+          const response =
+            await fetch(
+              `${apiUrl}/fleet`,
+            );
+
+          if (!response.ok) {
+            throw new Error(
+              "Unable to load fleet.",
+            );
+          }
+
+          const result =
+            await response.json();
+
+          if (!mounted) {
+            return;
+          }
+
+          /*
+           * Supports either:
+           *
+           * [...]
+           *
+           * or:
+           *
+           * { data: [...] }
+           */
+          const vehicles:
+            FleetVehicle[] =
+            Array.isArray(
+              result,
+            )
+              ? result
+              : Array.isArray(
+                    result?.data,
+                  )
+                ? result.data
+                : [];
+
+          const activeVehicles =
+            vehicles
+              .filter(
+                (vehicle) =>
+                  vehicle.active !==
+                  false,
+              )
+              .sort(
+                (
+                  first,
+                  second,
+                ) =>
+                  (first.displayOrder ??
+                    999) -
+                  (second.displayOrder ??
+                    999),
+              );
+
+          setFleetVehicles(
+            activeVehicles,
+          );
+        } catch (error) {
+          console.error(
+            "About page fleet loading failed:",
+            error,
+          );
+
+          if (mounted) {
+            setFleetVehicles([]);
+          }
+        } finally {
+          if (mounted) {
+            setFleetLoading(false);
+          }
+        }
+      };
+
+    void loadFleet();
+
+    return () => {
+      mounted = false;
+    };
+  }, [apiUrl]);
+
+  /* =======================================================
+     PRIMARY DISPLAY VEHICLES
+  ======================================================= */
+
+  const primaryVehicle =
+    useMemo(() => {
+      return (
+        fleetVehicles.find(
+          (vehicle) =>
+            vehicle.slug ===
+            "bmw-7-series",
+        ) ||
+        fleetVehicles.find(
+          (vehicle) =>
+            vehicle.featured,
+        ) ||
+        fleetVehicles[0]
+      );
+    }, [fleetVehicles]);
+
+  const secondaryVehicle =
+    useMemo(() => {
+      return (
+        fleetVehicles.find(
+          (vehicle) =>
+            vehicle.slug ===
+            "mercedes-benz-s-class",
+        ) ||
+        fleetVehicles.find(
+          (vehicle) =>
+            vehicle.slug !==
+            primaryVehicle?.slug,
+        ) ||
+        fleetVehicles[0]
+      );
+    }, [
+      fleetVehicles,
+      primaryVehicle,
+    ]);
+
+  /* =======================================================
+     IMAGE HELPER
+  ======================================================= */
+
+  const getVehicleImage = (
+    vehicle?: FleetVehicle,
+  ) =>
+    vehicle?.coverImage ||
+    vehicle?.image ||
+    "";
+
+  /* =======================================================
+     DYNAMIC FLEET NAME TEXT
+  ======================================================= */
+
+  const fleetNames =
+    useMemo(() => {
+      const names =
+        fleetVehicles.map(
+          (vehicle) =>
+            vehicle.name,
+        );
+
+      if (
+        names.length === 0
+      ) {
+        return "our executive and luxury chauffeur fleet";
+      }
+
+      if (
+        names.length === 1
+      ) {
+        return names[0];
+      }
+
+      if (
+        names.length === 2
+      ) {
+        return `${names[0]} and ${names[1]}`;
+      }
+
+      return `${names
+        .slice(0, -1)
+        .join(", ")} and ${
+        names[
+          names.length - 1
+        ]
+      }`;
+    }, [fleetVehicles]);
 
   return (
     <main>
@@ -155,10 +362,10 @@ export default function AboutPage() {
                 chauffeur services for
                 airport travel, corporate
                 appointments, weddings,
-                events, hotels and private
-                journeys throughout
-                Melbourne and surrounding
-                Victorian areas.
+                conferences, events, hotels
+                and private journeys
+                throughout Melbourne and
+                surrounding Victorian areas.
               </p>
 
               <p>
@@ -166,9 +373,10 @@ export default function AboutPage() {
                 according to the customer's
                 pickup location,
                 destination, schedule,
-                passenger number, luggage
+                passenger numbers, luggage
+                requirements, child-seat
                 requirements and preferred
-                vehicle. The aim is to
+                vehicle. Our aim is to
                 provide a straightforward
                 and professional experience
                 from the first enquiry
@@ -194,22 +402,35 @@ export default function AboutPage() {
             </div>
 
             {/* ===============================================
-                BMW 7 SERIES IMAGE
+                PRIMARY FLEET IMAGE
             =============================================== */}
 
             <div className="about-page__image">
-              {bmw7Series ? (
-                <img
-                  src={
-                    bmw7Series.image
-                  }
-                  alt={`${bmw7Series.name} private chauffeur vehicle in Melbourne`}
-                  loading="lazy"
-                  decoding="async"
-                />
+              {fleetLoading ? (
+                <div className="about-page__image-placeholder">
+                  Loading Fleet...
+                </div>
+              ) : primaryVehicle &&
+                getVehicleImage(
+                  primaryVehicle,
+                ) ? (
+                <Link
+                  to={`/fleet/${primaryVehicle.slug}`}
+                  aria-label={`View ${primaryVehicle.name}`}
+                >
+                  <img
+                    src={getVehicleImage(
+                      primaryVehicle,
+                    )}
+                    alt={`${primaryVehicle.name} private chauffeur vehicle in Melbourne`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </Link>
               ) : (
                 <div className="about-page__image-placeholder">
-                  BMW 7 Series
+                  Private Chauffeur
+                  Melbourne
                 </div>
               )}
 
@@ -274,17 +495,19 @@ export default function AboutPage() {
 
               <h2 className="section-title">
                 Chauffeur services for
-                business, airport and
-                private travel.
+                business, airport,
+                events and private
+                travel.
               </h2>
 
               <p className="section-description">
                 Customers can request
                 individual journeys,
                 return bookings, hourly
-                chauffeur hire and
-                tailored multi-stop
-                itineraries.
+                chauffeur hire,
+                conference transport,
+                tours and tailored
+                multi-stop itineraries.
               </p>
             </div>
 
@@ -313,25 +536,41 @@ export default function AboutPage() {
 
           <div className="about-page__fleet">
             {/* ===============================================
-                MERCEDES-BENZ S-CLASS IMAGE
+                SECONDARY FLEET IMAGE
             =============================================== */}
 
             <div className="about-page__fleet-image">
-              {mercedesSClass ? (
-                <img
-                  src={
-                    mercedesSClass.image
-                  }
-                  alt={`${mercedesSClass.name} luxury chauffeur vehicle in Melbourne`}
-                  loading="lazy"
-                  decoding="async"
-                />
+              {fleetLoading ? (
+                <div className="about-page__image-placeholder">
+                  Loading Fleet...
+                </div>
+              ) : secondaryVehicle &&
+                getVehicleImage(
+                  secondaryVehicle,
+                ) ? (
+                <Link
+                  to={`/fleet/${secondaryVehicle.slug}`}
+                  aria-label={`View ${secondaryVehicle.name}`}
+                >
+                  <img
+                    src={getVehicleImage(
+                      secondaryVehicle,
+                    )}
+                    alt={`${secondaryVehicle.name} luxury chauffeur vehicle in Melbourne`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </Link>
               ) : (
                 <div className="about-page__image-placeholder">
-                  Mercedes-Benz S-Class
+                  Luxury Chauffeur Fleet
                 </div>
               )}
             </div>
+
+            {/* ===============================================
+                FLEET CONTENT
+            =============================================== */}
 
             <div className="about-page__fleet-content">
               <span className="eyebrow">
@@ -346,24 +585,21 @@ export default function AboutPage() {
               </h2>
 
               <p className="section-description">
-                Our chauffeur fleet
-                includes the BMW 7 Series,
-                Mercedes-Benz S-Class,
-                Mercedes-Benz E-Class,
-                Mercedes-Benz GLE,
-                Mercedes-Benz GL, BMW X7
-                and Audi Q7.
+                {fleetLoading
+                  ? "Loading our current chauffeur fleet..."
+                  : `Our current chauffeur fleet includes ${fleetNames}.`}
               </p>
 
               <p>
-                From executive sedans to
-                spacious luxury SUVs,
+                From flagship executive
+                sedans to luxury SUVs and
+                premium people movers,
                 vehicle requests are
                 arranged according to
                 availability, passenger
-                numbers, luggage
-                requirements and the type
-                of journey.
+                numbers, luggage,
+                child-seat requirements
+                and the type of journey.
               </p>
 
               <Link

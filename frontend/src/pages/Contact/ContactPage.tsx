@@ -104,7 +104,7 @@ Thank you.`,
 );
 
 const whatsappUrl =
-  `https://wa.me/61452600001?text=${whatsappMessage}`;
+  `https://wa.me/61435354585?text=${whatsappMessage}`;
 
 const googleBusinessUrl =
   "https://maps.app.goo.gl/G2JeLntYdgEuqky57";
