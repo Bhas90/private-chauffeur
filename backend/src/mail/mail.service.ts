@@ -3035,6 +3035,10 @@ export class MailService {
                   dto.preferredVehicle,
                 ],
                 [
+                  "Child Seat",
+                  dto.childSeat,
+                ],
+                [
                   "Luggage",
                   dto.luggageRequirements,
                 ],
@@ -3427,6 +3431,10 @@ export class MailService {
                     [
                       "Preferred Vehicle",
                       dto.preferredVehicle,
+                    ],
+                    [
+                      "Child Seat",
+                      dto.childSeat,
                     ],
                     [
                       "Flight Number",
@@ -3910,6 +3918,12 @@ export class MailService {
       );
     }
 
+    if (dto.childSeat) {
+      lines.push(
+        `Child Seat: ${dto.childSeat}`,
+      );
+    }
+
     if (dto.luggageRequirements) {
       lines.push(
         `Luggage: ${dto.luggageRequirements}`,
@@ -3972,6 +3986,12 @@ export class MailService {
     if (dto.preferredVehicle) {
       lines.push(
         `Preferred Vehicle: ${dto.preferredVehicle}`,
+      );
+    }
+
+    if (dto.childSeat) {
+      lines.push(
+        `Child Seat: ${dto.childSeat}`,
       );
     }
 
@@ -4059,6 +4079,12 @@ export class MailService {
     if (dto.preferredVehicle) {
       lines.push(
         `🚙 Vehicle: ${dto.preferredVehicle}`,
+      );
+    }
+
+    if (dto.childSeat) {
+      lines.push(
+        `🧒 Child Seat: ${dto.childSeat}`,
       );
     }
 

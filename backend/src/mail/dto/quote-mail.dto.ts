@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsIn,
   IsNotEmpty,
   IsOptional,
   IsString,
@@ -52,6 +53,16 @@ export class QuoteMailDto {
   @IsOptional()
   @IsString()
   preferredVehicle?: string;
+
+  @IsOptional()
+  @IsString()
+  @IsIn([
+    "",
+    "No child seat required",
+    "Booster Seat",
+    "Child Safety Seat",
+  ])
+  childSeat?: string;
 
   @IsOptional()
   @IsString()
