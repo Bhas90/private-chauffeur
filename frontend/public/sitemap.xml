@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- HOME -->
   <url>
     <loc>https://www.privatechauffeurmelbourne.com.au/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- MAIN PAGES -->
   <url>
     <loc>https://www.privatechauffeurmelbourne.com.au/services</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.privatechauffeurmelbourne.com.au/fleet</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.privatechauffeurmelbourne.com.au/service-areas</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
@@ -40,13 +42,247 @@
   <url>
     <loc>https://www.privatechauffeurmelbourne.com.au/contact</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.privatechauffeurmelbourne.com.au/get-a-quote</loc>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+
+  <!-- SERVICES -->
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/services/airport-transfers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/services/corporate-chauffeur</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/services/wedding-chauffeur</loc>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/services/hotel-transfers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/services/conference-transfers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/services/hourly-chauffeur-hire</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/services/private-tours</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/services/group-transfers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <!-- FLEET -->
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/fleet/bmw-7-series</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/fleet/mercedes-benz-s-class</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/fleet/mercedes-benz-e-class</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/fleet/mercedes-benz-gle</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/fleet/mercedes-benz-gl-gls</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/fleet/bmw-x7</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/fleet/audi-q7</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <!-- SERVICE AREAS -->
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/melbourne</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/melbourne-cbd</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/lancefield</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/camberwell</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/south-melbourne</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/north-melbourne</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/richmond</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/mickleham</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/south-yarra</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/toorak</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/gisborne</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/kyneton</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/east-melbourne</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/west-melbourne</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/kilmore</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/woodend</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/wallan</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/kew</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/wandong</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/service-areas/romsey</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+
+  <!-- LEGAL -->
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/privacy-policy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.privatechauffeurmelbourne.com.au/terms-conditions</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
